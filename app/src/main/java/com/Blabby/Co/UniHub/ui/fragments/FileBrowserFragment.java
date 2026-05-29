@@ -21,6 +21,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.core.content.ContextCompat;
+import androidx.core.content.FileProvider;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -427,6 +428,7 @@ public class FileBrowserFragment extends Fragment {
         boolean isVideo = isVideoFile(lowName);
         boolean isText = isTextFile(lowName);
         boolean isMarkdown = isMarkdownFile(lowName);
+        boolean isApk = lowName.endsWith(".apk");
 
         List<String> labels = new ArrayList<>();
         List<Runnable> actions = new ArrayList<>();
@@ -439,6 +441,10 @@ public class FileBrowserFragment extends Fragment {
                 intent.putExtra("zip_name", item.getName());
                 startActivity(intent);
             });
+        }
+        if (isApk) {
+            labels.add(Localization.getInstance(requireContext()).get("install_apk"));
+            actions.add(() -> installApk(item));
         }
         if (isMarkdown) {
             labels.add(Localization.getInstance(requireContext()).get("md_editor"));
@@ -481,6 +487,16 @@ public class FileBrowserFragment extends Fragment {
                     if (action != null) action.run();
                 })
                 .show();
+    }
+
+    private void installApk(FileItem item) {
+        File file = new File(item.getPath());
+        Intent intent = new Intent(Intent.ACTION_INSTALL_PACKAGE);
+        Uri apkUri = FileProvider.getUriForFile(requireContext(),
+                requireContext().getPackageName() + ".fileprovider", file);
+        intent.setData(apkUri);
+        intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+        startActivity(intent);
     }
 
     private boolean isMarkdownFile(String name) {

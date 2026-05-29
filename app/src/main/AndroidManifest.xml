@@ -8,6 +8,7 @@
     <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE"
         tools:ignore="ScopedStorage" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
 
     <application
         android:name=".MyApplication"
@@ -50,6 +51,7 @@
             android:label="Unihub Markdown编辑器" />
         <activity android:name=".DocsActivity" />
         <activity android:name=".DownloadActivity" />
+        <activity android:name=".AiChatActivity" />
 
     </application>
 </manifest>

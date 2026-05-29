@@ -111,10 +111,13 @@ public class MainActivity extends AppCompatActivity implements FileBrowserFragme
             Intent intent = new Intent(this, DocsActivity.class);
             startActivityForResult(intent, REQUEST_DOCS);
         });
-        // 修改点：点击下载菜单打开 DownloadActivity
         sidebarOverlay.findViewById(R.id.menu_download).setOnClickListener(v -> {
             closeSidebar();
             startActivity(new Intent(this, DownloadActivity.class));
+        });
+        sidebarOverlay.findViewById(R.id.menu_ai).setOnClickListener(v -> {
+            closeSidebar();
+            startActivity(new Intent(this, AiChatActivity.class));
         });
         sidebarOverlay.findViewById(R.id.menu_logout).setOnClickListener(v -> {
             closeSidebar();
@@ -171,6 +174,7 @@ public class MainActivity extends AppCompatActivity implements FileBrowserFragme
         ((TextView) sidebarOverlay.findViewById(R.id.menu_settings)).setText(l.get("settings"));
         ((TextView) sidebarOverlay.findViewById(R.id.menu_docs)).setText(l.get("documents"));
         ((TextView) sidebarOverlay.findViewById(R.id.menu_download)).setText(l.get("download_file"));
+        ((TextView) sidebarOverlay.findViewById(R.id.menu_ai)).setText(l.get("ai_chat"));
         ((TextView) sidebarOverlay.findViewById(R.id.menu_logout)).setText(l.get("logout"));
     }
 
@@ -302,7 +306,6 @@ public class MainActivity extends AppCompatActivity implements FileBrowserFragme
         if (currentFragment != webBrowserFragment) {
             showFragment(webBrowserFragment, 2);
             webBrowserFragment.setOnUrlChangeListener(urlText -> addressPath.setText(urlText));
-            // 修改点：移除下载监听设置（已由 WebBrowserFragment 内部处理）
         }
         addressStats.setVisibility(View.GONE);
         webBrowserFragment.loadUrl(url);

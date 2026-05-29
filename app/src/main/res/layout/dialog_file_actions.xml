@@ -5,7 +5,6 @@
     android:orientation="vertical"
     android:padding="16dp">
 
-    <!-- 第一行：复制 | 移动 -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -62,7 +61,6 @@
         </LinearLayout>
     </LinearLayout>
 
-    <!-- 第二行：删除 | 重命名 -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -119,7 +117,6 @@
         </LinearLayout>
     </LinearLayout>
 
-    <!-- 第三行：工具 | 压缩 -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -176,7 +173,6 @@
         </LinearLayout>
     </LinearLayout>
 
-    <!-- 第四行：属性 | 分享 -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -233,7 +229,6 @@
         </LinearLayout>
     </LinearLayout>
 
-    <!-- 第五行：打开方式 | 添加书签（已隐藏） -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

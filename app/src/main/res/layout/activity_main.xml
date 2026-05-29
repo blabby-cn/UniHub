@@ -4,7 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <!-- 主内容区域 -->
     <LinearLayout
         android:id="@+id/main_content"
         android:layout_width="match_parent"
@@ -96,7 +95,6 @@
         </LinearLayout>
     </LinearLayout>
 
-    <!-- 全屏侧边栏覆盖层 -->
     <LinearLayout
         android:id="@+id/sidebar_overlay"
         android:layout_width="match_parent"
@@ -206,7 +204,6 @@
                     android:clickable="true"
                     android:focusable="true" />
 
-                <!-- 新增：文档选项卡 -->
                 <TextView
                     android:id="@+id/menu_docs"
                     android:layout_width="match_parent"
@@ -219,13 +216,24 @@
                     android:clickable="true"
                     android:focusable="true" />
 
-                <!-- 下载文件 -->
                 <TextView
                     android:id="@+id/menu_download"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="16dp"
                     android:text="下载文件"
+                    android:textColor="@color/on_surface"
+                    android:textSize="16sp"
+                    android:background="?attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:focusable="true" />
+
+                <TextView
+                    android:id="@+id/menu_ai"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp"
+                    android:text="AI功能"
                     android:textColor="@color/on_surface"
                     android:textSize="16sp"
                     android:background="?attr/selectableItemBackground"

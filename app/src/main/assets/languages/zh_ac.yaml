@@ -1,0 +1,161 @@
+app_name: 通樞
+home: 首頁
+menu: 菜單
+back: 返
+close: 闔
+settings: 設置
+language: 語言
+user_agreement: 用戶協約
+privacy_policy: 隱私之策
+changelog: 更錄
+third_party_assets: 第三方資源引錄
+download_file: 下載文檔
+logout: 登出
+not_logged_in: 未登
+click_to_login: 點以登
+logged_out: 已登出
+enter_path_or_url: 輸入路徑或網址
+confirm: 確認
+cancel: 取消
+ok: 可
+save: 存
+dont_save: 弗存
+login: 登
+login_blabby: 登 Blabby 賬
+login_remote_server: 登遠程伺服
+connect: 連
+empty_account: 賬號密碼不可空
+login_success: 登成
+file_url: 文檔URL
+output_path: 輸出路徑
+download: 下載
+empty_url_path: URL及輸出路徑不可空
+download_failed: 下載敗
+no_perm_or_full: 無權或儲滿，請復查再試。
+starting_download: 始下載...
+download_failed_code: 下載敗，狀態碼: %d
+download_complete: 下載畢: %s
+search_not_impl: 搜索之功待成
+select_all_not_impl: 全選之功待成
+filter_not_impl: 過濾之功待成
+sort_not_impl: 排序之功待成
+show_hidden_files: 顯隱檔: %s
+bookmark_not_impl: 書籤之功暫未啟
+set_home_not_impl: 設為主頁之功待成
+swap_window_not_impl: 換窗之功待成
+folder_colon: 目錄:%d
+file_colon: 檔:%d
+storage_colon: 儲:%s/%s
+remote_no_create: 遠程暫不許新建
+ftp_failed: FTP連敗
+sftp_failed: SFTP連敗
+conn_error: 連誤: %s
+need_storage_perm: 須儲權
+already_root: 已為根目
+no_earlier: 無更早之錄
+no_later: 無更新之錄
+op_failed: 操作敗
+error_colon: 誤: %s
+confirm_delete: 確認刪除
+confirm_delete_msg: 實欲刪 %s 乎？
+delete: 刪
+deleted: 已刪
+delete_failed: 刪敗
+rename: 更名
+rename_success: 更名成
+rename_failed: 更名敗
+name_colon: 名: %s
+path_colon: 路: %s
+size_colon: 大: %s
+folder: 目
+bytes: 字節
+modified_colon: 末修: %s
+readable_colon: 可讀: %s
+writable_colon: 可寫: %s
+properties: 屬
+create_new: 新
+create: 建
+name_empty: 名不可空
+already_exists: 已有同名檔或目
+create_success: 建成
+create_failed: 建敗
+zip_browser: Zip覽器
+md_editor: Unihub Markdown編輯器
+text_editor: Unihub 文本編輯器
+video_player: Unihub VideoSee
+other_open_with: 他法開
+choose_open_with: 欲擇何法開？
+compress_title: 壓 %s
+start_compress: 始壓
+path_name_empty: 路名不可空
+compressing: 正壓...
+compress_done: 壓畢: %s
+compress_failed: 壓敗: %s
+external_app_title: 將跳他APP
+external_app_warning: 系統權不足，無法訪某檔，建議用Unihub內覽之法。
+dont_ask_again: 此會不復告
+display: 顯
+theme_tbd: 主題（待成）
+default_home: 默首頁
+more_settings_tbd: 更多設（待造）
+select_all: 全選
+copy: 複
+copy_to_other: 複至對側
+move_to_other: 移至對側
+share: 分饗
+share_text: 分饗文
+cut: 剪
+paste: 貼
+tools: 具
+compress: 壓
+open_with: 開法
+add_bookmark: 添書籤
+input_name: 輸入名
+file: 檔
+host_hint: 主機（例如 ftp.example.com）
+port_hint: 埠（21/22）
+username: 用戶名
+password: 密碼
+username_or_email: 用戶名或郵箱
+save_path: 存路
+enter_dir_path: 請入目路
+archive_name: 壓包名
+enter_archive_name: 請入壓包名（無後綴）
+format: 式
+file_name_label: 檔名
+enter_file_name: 請入檔名
+encoding: 編碼
+unsaved: 未存
+unsaved_msg: 文已改，欲存否？
+cant_open_file: 無法開檔: %s
+save_as: 另存為
+need_perm: 須權
+save_as_need_perm: 另存為須儲權，欲往設否？
+go_to: 往
+no_storage_perm: 無儲權
+saved: 已存
+saved_with_encoding: 已存 (%s)
+save_failed: 存敗: %s
+open: 開
+extract_failed: 提取敗: %s
+zip_error: 誤: %s
+moving: 移
+copying: 複
+move_success: %s成
+code_block: 多行碼塊
+insert: 插
+avatar: 首像
+refresh: 刷
+search: 搜
+filter: 濾
+sort: 排序法
+show_hidden: 顯隱檔
+exit: 出
+forward: 進
+new_file: 新
+up_level: 上級
+
+language_restart_title: "切換語言"
+language_restart_message: "切換語言須重啟應用，是否現即重啟？"
+restart_now: "重啟"
+documents: "文檔"

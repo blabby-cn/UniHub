@@ -1,0 +1,161 @@
+﻿app_name: Unihub
+home: 홈
+menu: 메뉴
+back: 뒤로
+close: 닫기
+settings: 설정
+language: 언어
+user_agreement: 이용약관
+privacy_policy: 개인정보처리방침
+changelog: 변경 로그
+third_party_assets: 타사 에셋
+download_file: 파일 다운로드
+logout: 로그아웃
+not_logged_in: 로그인되지 않음
+click_to_login: 클릭하여 로그인
+logged_out: 로그아웃되었습니다
+enter_path_or_url: 경로 또는 URL 입력
+confirm: 확인
+cancel: 취소
+ok: 확인
+save: 저장
+dont_save: 저장 안 함
+login: 로그인
+login_blabby: Blabby 계정 로그인
+login_remote_server: 원격 서버 로그인
+connect: 연결
+empty_account: 계정과 비밀번호를 입력하세요
+login_success: 로그인 성공
+file_url: 파일 URL
+output_path: 출력 경로
+download: 다운로드
+empty_url_path: URL과 출력 경로를 입력하세요
+download_failed: 다운로드 실패
+no_perm_or_full: 권한이 없거나 저장 공간이 가득 찼습니다. 확인 후 다시 시도하세요.
+starting_download: 다운로드 시작 중...
+download_failed_code: 다운로드 실패, 상태 코드: %d
+download_complete: 다운로드 완료: %s
+search_not_impl: 검색 기능이 구현되지 않았습니다
+select_all_not_impl: 전체 선택이 구현되지 않았습니다
+filter_not_impl: 필터가 구현되지 않았습니다
+sort_not_impl: 정렬이 구현되지 않았습니다
+show_hidden_files: 숨김 파일 표시: %s
+bookmark_not_impl: 북마크를 아직 사용할 수 없습니다
+set_home_not_impl: 홈으로 설정이 구현되지 않았습니다
+swap_window_not_impl: 창 교환이 구현되지 않았습니다
+folder_colon: 폴더: %d
+file_colon: 파일: %d
+storage_colon: 저장소: %s/%s
+remote_no_create: 원격에서는 생성할 수 없습니다
+ftp_failed: FTP 연결 실패
+sftp_failed: SFTP 연결 실패
+conn_error: 연결 오류: %s
+need_storage_perm: 저장소 권한이 필요합니다
+already_root: 이미 루트 디렉토리입니다
+no_earlier: 이전 기록이 없습니다
+no_later: 이후 기록이 없습니다
+op_failed: 작업 실패
+error_colon: 오류: %s
+confirm_delete: 삭제 확인
+confirm_delete_msg: %s을(를) 삭제하시겠습니까?
+delete: 삭제
+deleted: 삭제됨
+delete_failed: 삭제 실패
+rename: 이름 바꾸기
+rename_success: 이름을 변경했습니다
+rename_failed: 이름 변경 실패
+name_colon: 이름: %s
+path_colon: 경로: %s
+size_colon: 크기: %s
+folder: 폴더
+bytes: 바이트
+modified_colon: 수정일: %s
+readable_colon: 읽기: %s
+writable_colon: 쓰기: %s
+properties: 속성
+create_new: 새로 만들기
+create: 생성
+name_empty: 이름을 입력하세요
+already_exists: 같은 이름의 파일 또는 폴더가 이미 존재합니다
+create_success: 생성 성공
+create_failed: 생성 실패
+zip_browser: Zip 브라우저
+md_editor: Unihub Markdown 편집기
+text_editor: Unihub 텍스트 편집기
+video_player: Unihub 비디오 플레이어
+other_open_with: 다른 앱으로 열기
+choose_open_with: 어떻게 열겠습니까?
+compress_title: %s 압축
+start_compress: 압축 시작
+path_name_empty: 경로와 이름을 입력하세요
+compressing: 압축 중...
+compress_done: 압축 완료: %s
+compress_failed: 압축 실패: %s
+external_app_title: 다른 앱으로 이동하려고 합니다
+external_app_warning: 시스템이 일부 파일에 접근할 권한이 없을 수 있습니다. UniHub 내장 브라우저를 사용하는 것이 좋습니다.
+dont_ask_again: 이 세션에서 다시 묻지 않음
+display: 표시
+theme_tbd: 테마 (미정)
+default_home: 기본 홈
+more_settings_tbd: 더 많은 설정 (미정)
+select_all: 전체 선택
+copy: 복사
+copy_to_other: 반대쪽에 복사
+move_to_other: 반대쪽으로 이동
+share: 공유
+share_text: 텍스트 공유
+cut: 잘라내기
+paste: 붙여넣기
+tools: 도구
+compress: 압축
+open_with: 열기
+add_bookmark: 북마크 추가
+input_name: 이름 입력
+file: 파일
+host_hint: 호스트 (예: ftp.example.com)
+port_hint: 포트 (21/22)
+username: 사용자 이름
+password: 비밀번호
+username_or_email: 사용자 이름 또는 이메일
+save_path: 저장 경로
+enter_dir_path: 디렉토리 경로 입력
+archive_name: 압축파일 이름
+enter_archive_name: 압축파일 이름 입력 (확장자 제외)
+format: 형식
+file_name_label: 파일명
+enter_file_name: 파일명 입력
+encoding: 인코딩
+unsaved: 저장되지 않음
+unsaved_msg: 내용이 수정되었습니다. 저장하시겠습니까?
+cant_open_file: 파일을 열 수 없습니다: %s
+save_as: 다른 이름으로 저장
+need_perm: 권한 필요
+save_as_need_perm: 저장하려면 저장소 권한이 필요합니다. 설정으로 이동하시겠습니까?
+go_to: 이동
+no_storage_perm: 저장소 권한이 없습니다
+saved: 저장됨
+saved_with_encoding: 저장됨 (%s)
+save_failed: 저장 실패: %s
+open: 열기
+extract_failed: 추출 실패: %s
+moving: 이동
+copying: 복사
+move_success: %s 성공
+code_block: 코드 블록
+insert: 삽입
+avatar: 아바타
+refresh: 새로고침
+search: 검색
+filter: 필터
+sort: 정렬
+show_hidden: 숨김 파일 표시
+exit: 종료
+forward: 앞으로
+new_file: 새로 만들기
+up_level: 위로
+zip_error: 에러: %s
+
+language_restart_title: "언어 전환"
+language_restart_message: "언어를 전환하려면 앱을 다시 시작해야 합니다. 지금 다시 시작하시겠습니까?"
+restart_now: "다시 시작"
+documents: "문서"

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/action_web_back"
+        android:icon="@drawable/ic_arrow_back"
+        android:title="后退" />
+    <item
+        android:id="@+id/action_web_forward"
+        android:icon="@drawable/ic_arrow_forward"
+        android:title="前进" />
+    <item
+        android:id="@+id/action_new_tab"
+        android:icon="@drawable/ic_add"
+        android:title="新建标签页" />
+    <item
+        android:id="@+id/action_web_refresh"
+        android:icon="@drawable/ic_refresh"
+        android:title="刷新" />
+    <item
+        android:id="@+id/action_tabs"
+        android:icon="@drawable/ic_menu_24"
+        android:title="标签页" />
+</menu>

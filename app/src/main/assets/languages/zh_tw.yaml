@@ -1,0 +1,161 @@
+﻿app_name: 通樞
+home: 首頁
+menu: 選單
+back: 返回
+close: 關閉
+settings: 設定
+language: 語言
+user_agreement: 使用者條款
+privacy_policy: 隱私權政策
+changelog: 更新日誌
+third_party_assets: 第三方資源引用
+download_file: 下載檔案
+logout: 登出
+not_logged_in: 未登入
+click_to_login: 點擊登入
+logged_out: 已登出
+enter_path_or_url: 輸入路徑或網址
+confirm: 確認
+cancel: 取消
+ok: 確定
+save: 儲存
+dont_save: 不儲存
+login: 登入
+login_blabby: 登入 Blabby 帳號
+login_remote_server: 登入遠端伺服器
+connect: 連線
+empty_account: 帳號和密碼不能為空
+login_success: 登入成功
+file_url: 檔案URL
+output_path: 輸出路徑
+download: 下載
+empty_url_path: URL和輸出路徑不能為空
+download_failed: 下載失敗
+no_perm_or_full: 沒有權限或儲存已滿，請檢查後再試。
+starting_download: 開始下載...
+download_failed_code: 下載失敗，狀態碼: %d
+download_complete: 下載完成: %s
+search_not_impl: 搜尋功能待實現
+select_all_not_impl: 全選功能待實現
+filter_not_impl: 過濾功能待實現
+sort_not_impl: 排序功能待實現
+show_hidden_files: 顯示隱藏檔案: %s
+bookmark_not_impl: 書籤功能暫未開放
+set_home_not_impl: 設為首頁功能待實現
+swap_window_not_impl: 交換視窗功能待實現
+folder_colon: 資料夾:%d
+file_colon: 檔案:%d
+storage_colon: 儲存:%s/%s
+remote_no_create: 遠端暫不支援新建
+ftp_failed: FTP 連線失敗
+sftp_failed: SFTP 連線失敗
+conn_error: 連線錯誤: %s
+need_storage_perm: 需要儲存權限
+already_root: 已經在根目錄
+no_earlier: 沒有更早的記錄
+no_later: 沒有更新的記錄
+op_failed: 操作失敗
+error_colon: 錯誤: %s
+confirm_delete: 確認刪除
+confirm_delete_msg: 確定要刪除 %s 嗎？
+delete: 刪除
+deleted: 已刪除
+delete_failed: 刪除失敗
+rename: 重新命名
+rename_success: 重新命名成功
+rename_failed: 重新命名失敗
+name_colon: 名稱: %s
+path_colon: 路徑: %s
+size_colon: 大小: %s
+folder: 資料夾
+bytes: 位元組
+modified_colon: 最後修改: %s
+readable_colon: 可讀: %s
+writable_colon: 可寫: %s
+properties: 屬性
+create_new: 新增
+create: 建立
+name_empty: 名稱不能為空
+already_exists: 已存在同名檔案或資料夾
+create_success: 建立成功
+create_failed: 建立失敗
+zip_browser: Zip瀏覽器
+md_editor: Unihub Markdown編輯器
+text_editor: Unihub 文字編輯器
+video_player: Unihub VideoSee
+other_open_with: 其它開啟方式
+choose_open_with: 你要選擇什麼開啟方式？
+compress_title: 壓縮 %s
+start_compress: 開始壓縮
+path_name_empty: 路徑和名稱不能為空
+compressing: 正在壓縮...
+compress_done: 壓縮完成: %s
+compress_failed: 壓縮失敗: %s
+external_app_title: 即將跳轉到其它APP
+external_app_warning: 系統可能沒有足夠權限，無法存取某些檔案，建議使用UniHub內部的瀏覽方式。
+dont_ask_again: 此次對話不再提示
+display: 顯示
+theme_tbd: 主題（待實現）
+default_home: 預設首頁
+more_settings_tbd: 更多設定（待開發）
+select_all: 全選
+copy: 複製
+copy_to_other: 複製到對側
+move_to_other: 移動到對側
+share: 分享
+share_text: 分享文字
+cut: 剪下
+paste: 貼上
+tools: 工具
+compress: 壓縮
+open_with: 開啟方式
+add_bookmark: 加入書籤
+input_name: 輸入名稱
+file: 檔案
+host_hint: 主機 (如 ftp.example.com)
+port_hint: 連接埠 (21/22)
+username: 使用者名稱
+password: 密碼
+username_or_email: 使用者名稱或電子郵件
+save_path: 儲存路徑
+enter_dir_path: 請輸入目錄路徑
+archive_name: 壓縮包名稱
+enter_archive_name: 請輸入壓縮包名稱（不含副檔名）
+format: 格式
+file_name_label: 檔案名稱
+enter_file_name: 請輸入檔案名稱
+encoding: 編碼
+unsaved: 未儲存
+unsaved_msg: 內容已修改，是否儲存？
+cant_open_file: 無法開啟檔案: %s
+save_as: 另存新檔
+need_perm: 需要權限
+save_as_need_perm: 另存新檔需要儲存權限，是否前往設定？
+go_to: 前往
+no_storage_perm: 沒有儲存權限
+saved: 已儲存
+saved_with_encoding: 已儲存 (%s)
+save_failed: 儲存失敗: %s
+open: 開啟
+extract_failed: 解壓縮失敗: %s
+moving: 移動
+copying: 複製
+move_success: %s成功
+code_block: 多行程式碼區塊
+insert: 插入
+avatar: 大頭貼
+refresh: 重新整理
+search: 搜尋
+filter: 過濾
+sort: 排序方式
+show_hidden: 顯示隱藏檔案
+exit: 退出
+forward: 前進
+new_file: 新增
+up_level: 上層
+zip_error: Error: %s
+
+language_restart_title: "切換語言"
+language_restart_message: "切換語言需要重新啟動應用程式，是否現在重新啟動？"
+restart_now: "重新啟動"
+documents: "文件"

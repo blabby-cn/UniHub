@@ -1,0 +1,161 @@
+﻿app_name: Unihub
+home: Главная
+menu: Меню
+back: Назад
+close: Закрыть
+settings: Настройки
+language: Язык
+user_agreement: Пользовательское соглашение
+privacy_policy: Политика конфиденциальности
+changelog: История изменений
+third_party_assets: Сторонние ресурсы
+download_file: Скачать файл
+logout: Выйти
+not_logged_in: Не авторизован
+click_to_login: Нажмите для входа
+logged_out: Выполнен выход
+enter_path_or_url: Введите путь или URL
+confirm: Подтвердить
+cancel: Отмена
+ok: ОК
+save: Сохранить
+dont_save: Не сохранять
+login: Войти
+login_blabby: Войти в аккаунт Blabby
+login_remote_server: Подключиться к удаленному серверу
+connect: Подключиться
+empty_account: Логин и пароль не могут быть пустыми
+login_success: Вход выполнен успешно
+file_url: URL файла
+output_path: Путь вывода
+download: Скачать
+empty_url_path: URL и путь вывода не могут быть пустыми
+download_failed: Ошибка скачивания
+no_perm_or_full: Нет разрешения или хранилище заполнено. Проверьте и повторите попытку.
+starting_download: Начинаем скачивание...
+download_failed_code: Ошибка скачивания, код состояния: %d
+download_complete: Скачивание завершено: %s
+search_not_impl: Поиск не реализован
+select_all_not_impl: Выделить всё не реализовано
+filter_not_impl: Фильтр не реализован
+sort_not_impl: Сортировка не реализована
+show_hidden_files: Показать скрытые файлы: %s
+bookmark_not_impl: Закладки пока недоступны
+set_home_not_impl: Установить домашней страницей не реализовано
+swap_window_not_impl: Обмен окнами не реализован
+folder_colon: Папок: %d
+file_colon: Файлов: %d
+storage_colon: Хранилище: %s/%s
+remote_no_create: Удаленный сервер не поддерживает создание
+ftp_failed: Ошибка подключения FTP
+sftp_failed: Ошибка подключения SFTP
+conn_error: Ошибка подключения: %s
+need_storage_perm: Требуется разрешение на доступ к хранилищу
+already_root: Уже в корневом каталоге
+no_earlier: Нет более ранних записей
+no_later: Нет более поздних записей
+op_failed: Операция не удалась
+error_colon: Ошибка: %s
+confirm_delete: Подтверждение удаления
+confirm_delete_msg: Вы уверены, что хотите удалить %s?
+delete: Удалить
+deleted: Удалено
+delete_failed: Ошибка удаления
+rename: Переименовать
+rename_success: Успешно переименовано
+rename_failed: Ошибка переименования
+name_colon: Имя: %s
+path_colon: Путь: %s
+size_colon: Размер: %s
+folder: Папка
+bytes: байт
+modified_colon: Изменен: %s
+readable_colon: Чтение: %s
+writable_colon: Запись: %s
+properties: Свойства
+create_new: Создать
+create: Создать
+name_empty: Имя не может быть пустым
+already_exists: Файл или папка с таким именем уже существует
+create_success: Успешно создано
+create_failed: Ошибка создания
+zip_browser: Zip-обозреватель
+md_editor: Markdown-редактор Unihub
+text_editor: Текстовый редактор Unihub
+video_player: Видеоплеер Unihub
+other_open_with: Другое приложение
+choose_open_with: Как вы хотите открыть?
+compress_title: Сжать %s
+start_compress: Начать сжатие
+path_name_empty: Путь и имя не могут быть пустыми
+compressing: Сжатие...
+compress_done: Сжатие завершено: %s
+compress_failed: Ошибка сжатия: %s
+external_app_title: Будет запущено другое приложение
+external_app_warning: Система может не иметь достаточных разрешений для доступа к некоторым файлам. Рекомендуется использовать встроенный браузер UniHub.
+dont_ask_again: Больше не спрашивать в этой сессии
+display: Дисплей
+theme_tbd: Тема (в разработке)
+default_home: Домашняя страница по умолчанию
+more_settings_tbd: Другие настройки (в разработке)
+select_all: Выделить всё
+copy: Копировать
+copy_to_other: Копировать на другую сторону
+move_to_other: Переместить на другую сторону
+share: Поделиться
+share_text: Поделиться текстом
+cut: Вырезать
+paste: Вставить
+tools: Инструменты
+compress: Сжать
+open_with: Открыть с помощью
+add_bookmark: Добавить закладку
+input_name: Введите имя
+file: Файл
+host_hint: Хост (например ftp.example.com)
+port_hint: Порт (21/22)
+username: Имя пользователя
+password: Пароль
+username_or_email: Имя пользователя или email
+save_path: Путь сохранения
+enter_dir_path: Введите путь к каталогу
+archive_name: Имя архива
+enter_archive_name: Введите имя архива (без расширения)
+format: Формат
+file_name_label: Имя файла
+enter_file_name: Введите имя файла
+encoding: Кодировка
+unsaved: Не сохранено
+unsaved_msg: Содержимое было изменено. Сохранить?
+cant_open_file: Невозможно открыть файл: %s
+save_as: Сохранить как
+need_perm: Требуется разрешение
+save_as_need_perm: Для сохранения требуется разрешение на доступ к хранилищу. Перейти в настройки?
+go_to: Перейти
+no_storage_perm: Нет разрешения на доступ к хранилищу
+saved: Сохранено
+saved_with_encoding: Сохранено (%s)
+save_failed: Ошибка сохранения: %s
+open: Открыть
+extract_failed: Ошибка извлечения: %s
+moving: Перемещение
+copying: Копирование
+move_success: %s выполнено
+code_block: Блок кода
+insert: Вставить
+avatar: Аватар
+refresh: Обновить
+search: Поиск
+filter: Фильтр
+sort: Сортировать по
+show_hidden: Показать скрытые файлы
+exit: Выход
+forward: Вперед
+new_file: Создать
+up_level: На уровень вверх
+zip_error: Ошибка: %s
+
+language_restart_title: "Сменить язык"
+language_restart_message: "Смена языка требует перезапуска приложения. Перезапустить сейчас?"
+restart_now: "Перезапустить"
+documents: "Документы"

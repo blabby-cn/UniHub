@@ -1,0 +1,161 @@
+﻿app_name: Unihub
+home: Laman Utama
+menu: Menu
+back: Kembali
+close: Tutup
+settings: Tetapan
+language: Bahasa
+user_agreement: Syarat Penggunaan
+privacy_policy: Dasar Privasi
+changelog: Log Perubahan
+third_party_assets: Aset Pihak Ketiga
+download_file: Muat Turun Fail
+logout: Log Keluar
+not_logged_in: Belum log masuk
+click_to_login: Klik untuk log masuk
+logged_out: Telah log keluar
+enter_path_or_url: Masukkan laluan atau URL
+confirm: Sahkan
+cancel: Batal
+ok: OK
+save: Simpan
+dont_save: Jangan simpan
+login: Log Masuk
+login_blabby: Log masuk akaun Blabby
+login_remote_server: Log masuk pelayan jauh
+connect: Sambung
+empty_account: Akaun dan kata laluan tidak boleh kosong
+login_success: Log masuk berjaya
+file_url: URL fail
+output_path: Laluan output
+download: Muat Turun
+empty_url_path: URL dan laluan output tidak boleh kosong
+download_failed: Muat turun gagal
+no_perm_or_full: Tiada kebenaran atau storan penuh. Sila periksa dan cuba lagi.
+starting_download: Mula memuat turun...
+download_failed_code: Muat turun gagal, kod status: %d
+download_complete: Muat turun selesai: %s
+search_not_impl: Carian belum dilaksanakan
+select_all_not_impl: Pilih semua belum dilaksanakan
+filter_not_impl: Penapis belum dilaksanakan
+sort_not_impl: Susun belum dilaksanakan
+show_hidden_files: Tunjukkan fail tersembunyi: %s
+bookmark_not_impl: Tanda buku belum tersedia
+set_home_not_impl: Tetap sebagai laman utama belum dilaksanakan
+swap_window_not_impl: Tukar tetingkap belum dilaksanakan
+folder_colon: Folder: %d
+file_colon: Fail: %d
+storage_colon: Storan: %s/%s
+remote_no_create: Pelayan jauh tidak menyokong penciptaan
+ftp_failed: Sambungan FTP gagal
+sftp_failed: Sambungan SFTP gagal
+conn_error: Ralat sambungan: %s
+need_storage_perm: Kebenaran storan diperlukan
+already_root: Sudah berada dalam direktori akar
+no_earlier: Tiada rekod terdahulu
+no_later: Tiada rekod terkemudian
+op_failed: Operasi gagal
+error_colon: Ralat: %s
+confirm_delete: Sahkan pemadaman
+confirm_delete_msg: Adakah anda pasti mahu memadam %s?
+delete: Padam
+deleted: Dipadam
+delete_failed: Pemadaman gagal
+rename: Tukar nama
+rename_success: Berjaya menukar nama
+rename_failed: Penukaran nama gagal
+name_colon: Nama: %s
+path_colon: Laluan: %s
+size_colon: Saiz: %s
+folder: Folder
+bytes: bait
+modified_colon: Diubah suai: %s
+readable_colon: Boleh baca: %s
+writable_colon: Boleh tulis: %s
+properties: Sifat
+create_new: Baru
+create: Cipta
+name_empty: Nama tidak boleh kosong
+already_exists: Fail atau folder dengan nama ini sudah wujud
+create_success: Berjaya dicipta
+create_failed: Penciptaan gagal
+zip_browser: Pelayar Zip
+md_editor: Editor Markdown Unihub
+text_editor: Editor teks Unihub
+video_player: Pemain video Unihub
+other_open_with: Aplikasi lain
+choose_open_with: Bagaimana anda mahu membuka?
+compress_title: Mampat %s
+start_compress: Mula pemampatan
+path_name_empty: Laluan dan nama tidak boleh kosong
+compressing: Sedang memampat...
+compress_done: Pemampatan selesai: %s
+compress_failed: Pemampatan gagal: %s
+external_app_title: Akan melancarkan aplikasi lain
+external_app_warning: Sistem mungkin tidak mempunyai kebenaran yang mencukupi untuk mengakses beberapa fail. Disyorkan menggunakan pelayar terbina dalam UniHub.
+dont_ask_again: Jangan tanya lagi sesi ini
+display: Paparan
+theme_tbd: Tema (akan datang)
+default_home: Laman utama lalai
+more_settings_tbd: Lagi tetapan (akan datang)
+select_all: Pilih semua
+copy: Salin
+copy_to_other: Salin ke sisi lain
+move_to_other: Pindah ke sisi lain
+share: Kongsi
+share_text: Kongsi teks
+cut: Potong
+paste: Tampal
+tools: Alat
+compress: Mampat
+open_with: Buka dengan
+add_bookmark: Tambah tanda buku
+input_name: Masukkan nama
+file: Fail
+host_hint: Hos (cth: ftp.example.com)
+port_hint: Port (21/22)
+username: Nama pengguna
+password: Kata laluan
+username_or_email: Nama pengguna atau e-mel
+save_path: Laluan simpan
+enter_dir_path: Masukkan laluan direktori
+archive_name: Nama arkib
+enter_archive_name: Masukkan nama arkib (tanpa sambungan)
+format: Format
+file_name_label: Nama fail
+enter_file_name: Masukkan nama fail
+encoding: Pengekodan
+unsaved: Belum disimpan
+unsaved_msg: Kandungan telah diubah. Simpan?
+cant_open_file: Tidak dapat membuka fail: %s
+save_as: Simpan sebagai
+need_perm: Kebenaran diperlukan
+save_as_need_perm: Simpan sebagai memerlukan kebenaran storan. Pergi ke tetapan?
+go_to: Pergi ke
+no_storage_perm: Tiada kebenaran storan
+saved: Disimpan
+saved_with_encoding: Disimpan (%s)
+save_failed: Simpan gagal: %s
+open: Buka
+extract_failed: Ekstrak gagal: %s
+moving: Memindah
+copying: Menyalin
+move_success: %s berjaya
+code_block: Blok kod
+insert: Sisip
+avatar: Avatar
+refresh: Segar semula
+search: Cari
+filter: Tapis
+sort: Susun mengikut
+show_hidden: Tunjukkan fail tersembunyi
+exit: Keluar
+forward: Maju
+new_file: Baru
+up_level: Naik
+zip_error: Ralat: %s
+
+language_restart_title: "Tukar Bahasa"
+language_restart_message: "Menukar bahasa memerlukan aplikasi dimulakan semula. Mulakan semula sekarang?"
+restart_now: "Mulakan semula"
+documents: "Dokumen"

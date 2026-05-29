@@ -1,0 +1,161 @@
+﻿app_name: Unihub
+home: Hjem
+menu: Menu
+back: Tilbage
+close: Luk
+settings: Indstillinger
+language: Sprog
+user_agreement: Brugsbetingelser
+privacy_policy: Fortrolighedspolitik
+changelog: Ændringslog
+third_party_assets: Tredjepartsaktiver
+download_file: Download fil
+logout: Log ud
+not_logged_in: Ikke logget ind
+click_to_login: Klik for at logge ind
+logged_out: Logget ud
+enter_path_or_url: Indtast sti eller URL
+confirm: Bekræft
+cancel: Annuller
+ok: OK
+save: Gem
+dont_save: Gem ikke
+login: Log ind
+login_blabby: Log ind på Blabby-konto
+login_remote_server: Log ind på fjernserver
+connect: Forbind
+empty_account: Konto og adgangskode må ikke være tomme
+login_success: Log ind lykkedes
+file_url: Fil-URL
+output_path: Outputsti
+download: Download
+empty_url_path: URL og outputsti må ikke være tomme
+download_failed: Download mislykkedes
+no_perm_or_full: Ingen tilladelse eller lager fuldt. Tjek og prøv igen.
+starting_download: Starter download...
+download_failed_code: Download mislykkedes, statuskode: %d
+download_complete: Download fuldført: %s
+search_not_impl: Søgning ikke implementeret
+select_all_not_impl: Vælg alle ikke implementeret
+filter_not_impl: Filter ikke implementeret
+sort_not_impl: Sortering ikke implementeret
+show_hidden_files: Vis skjulte filer: %s
+bookmark_not_impl: Bogmærker endnu ikke tilgængelige
+set_home_not_impl: Indstil som hjem ikke implementeret
+swap_window_not_impl: Skift vinduer ikke implementeret
+folder_colon: Mapper: %d
+file_colon: Filer: %d
+storage_colon: Lager: %s/%s
+remote_no_create: Fjern understøtter ikke oprettelse
+ftp_failed: FTP-forbindelse mislykkedes
+sftp_failed: SFTP-forbindelse mislykkedes
+conn_error: Forbindelsesfejl: %s
+need_storage_perm: Lagertilladelse påkrævet
+already_root: Allerede i rodmappen
+no_earlier: Ingen tidligere poster
+no_later: Ingen senere poster
+op_failed: Operation mislykkedes
+error_colon: Fejl: %s
+confirm_delete: Bekræft sletning
+confirm_delete_msg: Er du sikker på, at du vil slette %s?
+delete: Slet
+deleted: Slettet
+delete_failed: Sletning mislykkedes
+rename: Omdøb
+rename_success: Omdøbt med succes
+rename_failed: Omdøbning mislykkedes
+name_colon: Navn: %s
+path_colon: Sti: %s
+size_colon: Størrelse: %s
+folder: Mappe
+bytes: bytes
+modified_colon: Ændret: %s
+readable_colon: Læsbar: %s
+writable_colon: Skrivbar: %s
+properties: Egenskaber
+create_new: Ny
+create: Opret
+name_empty: Navn må ikke være tomt
+already_exists: En fil eller mappe med dette navn findes allerede
+create_success: Oprettet med succes
+create_failed: Oprettelse mislykkedes
+zip_browser: Zip-browser
+md_editor: Unihub Markdown-editor
+text_editor: Unihub Teksteditor
+video_player: Unihub Videoafspiller
+other_open_with: Anden app
+choose_open_with: Hvordan vil du åbne?
+compress_title: Komprimér %s
+start_compress: Start komprimering
+path_name_empty: Sti og navn må ikke være tomme
+compressing: Komprimerer...
+compress_done: Komprimering fuldført: %s
+compress_failed: Komprimering mislykkedes: %s
+external_app_title: Er ved at starte en anden app
+external_app_warning: Systemet har muligvis ikke tilstrækkelige tilladelser til at få adgang til nogle filer. Det anbefales at bruge UniHubs indbyggede browser.
+dont_ask_again: Spørg ikke igen i denne session
+display: Skærm
+theme_tbd: Tema (kommer snart)
+default_home: Standard hjemmeside
+more_settings_tbd: Flere indstillinger (kommer snart)
+select_all: Vælg alle
+copy: Kopiér
+copy_to_other: Kopiér til modsatte side
+move_to_other: Flyt til modsatte side
+share: Del
+share_text: Del tekst
+cut: Klip
+paste: Sæt ind
+tools: Værktøj
+compress: Komprimér
+open_with: Åbn med
+add_bookmark: Tilføj bogmærke
+input_name: Indtast navn
+file: Fil
+host_hint: Vært (f.eks. ftp.example.com)
+port_hint: Port (21/22)
+username: Brugernavn
+password: Adgangskode
+username_or_email: Brugernavn eller e-mail
+save_path: Gem sti
+enter_dir_path: Indtast mappesti
+archive_name: Arkivnavn
+enter_archive_name: Indtast arkivnavn (uden filendelse)
+format: Format
+file_name_label: Filnavn
+enter_file_name: Indtast filnavn
+encoding: Kodning
+unsaved: Ikke gemt
+unsaved_msg: Indholdet er blevet ændret. Gem?
+cant_open_file: Kan ikke åbne filen: %s
+save_as: Gem som
+need_perm: Tilladelse påkrævet
+save_as_need_perm: Gem som kræver lagertilladelse. Gå til indstillinger?
+go_to: Gå til
+no_storage_perm: Ingen lagertilladelse
+saved: Gemt
+saved_with_encoding: Gemt (%s)
+save_failed: Gem mislykkedes: %s
+open: Åbn
+extract_failed: Udtrækning mislykkedes: %s
+moving: Flytter
+copying: Kopierer
+move_success: %s lykkedes
+code_block: Kodeblok
+insert: Indsæt
+avatar: Avatar
+refresh: Opdater
+search: Søg
+filter: Filtrér
+sort: Sorter efter
+show_hidden: Vis skjulte filer
+exit: Afslut
+forward: Frem
+new_file: Ny
+up_level: Op
+zip_error: Fejl: %s
+
+language_restart_title: "Skift sprog"
+language_restart_message: "Skift af sprog kræver genstart af appen. Genstart nu?"
+restart_now: "Genstart"
+documents: "Dokumenter"

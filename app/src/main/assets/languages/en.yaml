@@ -1,0 +1,161 @@
+app_name: Unihub
+home: Home
+menu: Menu
+back: Back
+close: Close
+settings: Settings
+language: Language
+user_agreement: User Agreement
+privacy_policy: Privacy Policy
+changelog: Changelog
+third_party_assets: Third-Party Assets
+download_file: Download File
+logout: Logout
+not_logged_in: Not logged in
+click_to_login: Click to login
+logged_out: Logged out
+enter_path_or_url: Enter path or URL
+confirm: Confirm
+cancel: Cancel
+ok: OK
+save: Save
+dont_save: Don't save
+login: Login
+login_blabby: Login Blabby Account
+login_remote_server: Login Remote Server
+connect: Connect
+empty_account: Account and password cannot be empty
+login_success: Login successful
+file_url: File URL
+output_path: Output path
+download: Download
+empty_url_path: URL and output path cannot be empty
+download_failed: Download failed
+no_perm_or_full: No permission or storage full, please check and try again.
+starting_download: Starting download...
+download_failed_code: Download failed, status code: %d
+download_complete: Download complete: %s
+search_not_impl: Search not implemented
+select_all_not_impl: Select all not implemented
+filter_not_impl: Filter not implemented
+sort_not_impl: Sort not implemented
+show_hidden_files: Show hidden files: %s
+bookmark_not_impl: Bookmarks not yet available
+set_home_not_impl: Set as home not implemented
+swap_window_not_impl: Swap windows not implemented
+folder_colon: Folders: %d
+file_colon: Files: %d
+storage_colon: Storage: %s/%s
+remote_no_create: Remote does not support create
+ftp_failed: FTP connection failed
+sftp_failed: SFTP connection failed
+conn_error: Connection error: %s
+need_storage_perm: Storage permission required
+already_root: Already at root directory
+no_earlier: No earlier records
+no_later: No newer records
+op_failed: Operation failed
+error_colon: Error: %s
+confirm_delete: Confirm Delete
+confirm_delete_msg: Are you sure you want to delete %s?
+delete: Delete
+deleted: Deleted
+delete_failed: Delete failed
+rename: Rename
+rename_success: Renamed successfully
+rename_failed: Rename failed
+name_colon: Name: %s
+path_colon: Path: %s
+size_colon: Size: %s
+folder: Folder
+bytes: bytes
+modified_colon: Modified: %s
+readable_colon: Readable: %s
+writable_colon: Writable: %s
+properties: Properties
+create_new: New
+create: Create
+name_empty: Name cannot be empty
+already_exists: A file or folder with the same name already exists
+create_success: Created successfully
+create_failed: Create failed
+zip_browser: Zip Browser
+md_editor: Unihub Markdown Editor
+text_editor: Unihub Text Editor
+video_player: Unihub Video Player
+other_open_with: Other open with
+choose_open_with: How would you like to open this?
+compress_title: Compress %s
+start_compress: Start Compress
+path_name_empty: Path and name cannot be empty
+compressing: Compressing...
+compress_done: Compression complete: %s
+compress_failed: Compression failed: %s
+external_app_title: About to launch another app
+external_app_warning: The system may not have sufficient permissions to access certain files. It is recommended to use UniHub's built-in browser.
+dont_ask_again: Don't ask again this session
+display: Display
+theme_tbd: Theme (TBD)
+default_home: Default Home
+more_settings_tbd: More Settings (TBD)
+select_all: Select All
+copy: Copy
+copy_to_other: Copy to opposite
+move_to_other: Move to opposite
+share: Share
+share_text: Share text
+cut: Cut
+paste: Paste
+tools: Tools
+compress: Compress
+open_with: Open with
+add_bookmark: Add bookmark
+input_name: Enter name
+file: File
+host_hint: Host (e.g. ftp.example.com)
+port_hint: Port (21/22)
+username: Username
+password: Password
+username_or_email: Username or email
+save_path: Save path
+enter_dir_path: Enter directory path
+archive_name: Archive name
+enter_archive_name: Enter archive name (without extension)
+format: Format
+file_name_label: Filename
+enter_file_name: Enter filename
+encoding: Encoding
+unsaved: Unsaved
+unsaved_msg: Content has been modified. Save?
+cant_open_file: Cannot open file: %s
+save_as: Save As
+need_perm: Permission required
+save_as_need_perm: Save As requires storage permission. Go to settings?
+go_to: Go to
+no_storage_perm: No storage permission
+saved: Saved
+saved_with_encoding: Saved (%s)
+save_failed: Save failed: %s
+open: Open
+extract_failed: Extract failed: %s
+zip_error: Error: %s
+moving: moving
+copying: copying
+move_success: %s successful
+code_block: Code Block
+insert: Insert
+avatar: Avatar
+refresh: Refresh
+search: Search
+filter: Filter
+sort: Sort by
+show_hidden: Show hidden files
+exit: Exit
+forward: Forward
+new_file: New
+up_level: Up
+
+language_restart_title: "Switch Language"
+language_restart_message: "Switching language requires restarting the app. Restart now?"
+restart_now: "Restart"
+documents: "Documents"

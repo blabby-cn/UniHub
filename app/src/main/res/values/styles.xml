@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 对话框主题：强制按钮和文字为白色 -->
+    <style name="AlertDialogTheme" parent="ThemeOverlay.Material3.MaterialAlertDialog">
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorOnPrimary">@color/on_primary</item>
+        <item name="android:textColor">@color/on_surface</item>
+        <item name="buttonBarPositiveButtonStyle">@style/AlertButtonStyle</item>
+        <item name="buttonBarNegativeButtonStyle">@style/AlertButtonStyle</item>
+    </style>
+
+    <!-- 关键修改：强制按钮文字白色 -->
+    <style name="AlertButtonStyle" parent="Widget.Material3.Button.TextButton.Dialog">
+        <item name="android:textColor">@color/on_surface</item>
+        <item name="backgroundTint">@android:color/transparent</item>
+        <item name="rippleColor">@color/primary</item>
+    </style>
+
+    <!-- 底栏按钮样式保持不变 -->
+    <style name="BottomBarButton">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:background">?attr/selectableItemBackgroundBorderless</item>
+        <item name="android:scaleType">centerInside</item>
+        <item name="android:tint">@color/on_surface</item>
+        <item name="android:padding">8dp</item>
+    </style>
+</resources>

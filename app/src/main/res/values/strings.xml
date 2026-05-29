@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Unihub</string>
+    <string name="nav_open">打开导航</string>
+    <string name="nav_close">关闭导航</string>
+    <string-array name="compress_formats">
+        <item>.zip</item>
+        <item>.xz</item>
+    </string-array>
+</resources>

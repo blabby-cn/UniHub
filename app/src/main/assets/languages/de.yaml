@@ -1,0 +1,161 @@
+﻿ï»؟app_name: Unihub
+home: Start
+menu: Mençœ‰
+back: Zurçœ‰ck
+close: Schlieè„½en
+settings: Einstellungen
+language: Sprache
+user_agreement: Nutzungsbedingungen
+privacy_policy: Datenschutz
+changelog: è„›nderungsprotokoll
+third_party_assets: Drittanbieter-Assets
+download_file: Datei herunterladen
+logout: Abmelden
+not_logged_in: Nicht angemeldet
+click_to_login: Klicken zum Anmelden
+logged_out: Abgemeldet
+enter_path_or_url: Pfad oder URL eingeben
+confirm: Bestç›²tigen
+cancel: Abbrechen
+ok: OK
+save: Speichern
+dont_save: Nicht speichern
+login: Anmelden
+login_blabby: Bei Blabby-Konto anmelden
+login_remote_server: Auf Remote-Server anmelden
+connect: Verbinden
+empty_account: Konto und Passwort dçœ‰rfen nicht leer sein
+login_success: Anmeldung erfolgreich
+file_url: Datei-URL
+output_path: Ausgabepfad
+download: Herunterladen
+empty_url_path: URL und Ausgabepfad dçœ‰rfen nicht leer sein
+download_failed: Download fehlgeschlagen
+no_perm_or_full: Keine Berechtigung oder Speicher voll. Bitte çœ‰berprçœ‰fen und erneut versuchen.
+starting_download: Download wird gestartet...
+download_failed_code: Download fehlgeschlagen, Statuscode: %d
+download_complete: Download abgeschlossen: %s
+search_not_impl: Suche nicht implementiert
+select_all_not_impl: Alle auswç›²hlen nicht implementiert
+filter_not_impl: Filter nicht implementiert
+sort_not_impl: Sortieren nicht implementiert
+show_hidden_files: Versteckte Dateien anzeigen: %s
+bookmark_not_impl: Lesezeichen noch nicht verfçœ‰gbar
+set_home_not_impl: Als Startseite festlegen nicht implementiert
+swap_window_not_impl: Fenster tauschen nicht implementiert
+folder_colon: Ordner: %d
+file_colon: Dateien: %d
+storage_colon: Speicher: %s/%s
+remote_no_create: Remote unterstçœ‰tzt keine Erstellung
+ftp_failed: FTP-Verbindung fehlgeschlagen
+sftp_failed: SFTP-Verbindung fehlgeschlagen
+conn_error: Verbindungsfehler: %s
+need_storage_perm: Speicherberechtigung erforderlich
+already_root: Bereits im Stammverzeichnis
+no_earlier: Keine frçœ‰heren Aufzeichnungen
+no_later: Keine neueren Aufzeichnungen
+op_failed: Vorgang fehlgeschlagen
+error_colon: Fehler: %s
+confirm_delete: Læžšschen bestç›²tigen
+confirm_delete_msg: Mæžšchten Sie %s wirklich læžšschen?
+delete: Læžšschen
+deleted: Gelæžšscht
+delete_failed: Læžšschen fehlgeschlagen
+rename: Umbenennen
+rename_success: Erfolgreich umbenannt
+rename_failed: Umbenennen fehlgeschlagen
+name_colon: Name: %s
+path_colon: Pfad: %s
+size_colon: Græžšè„½e: %s
+folder: Ordner
+bytes: Bytes
+modified_colon: Geç›²ndert: %s
+readable_colon: Lesbar: %s
+writable_colon: Schreibbar: %s
+properties: Eigenschaften
+create_new: Neu
+create: Erstellen
+name_empty: Name darf nicht leer sein
+already_exists: Eine Datei oder ein Ordner mit diesem Namen existiert bereits
+create_success: Erfolgreich erstellt
+create_failed: Erstellen fehlgeschlagen
+zip_browser: Zip-Browser
+md_editor: Unihub Markdown-Editor
+text_editor: Unihub Texteditor
+video_player: Unihub Videoplayer
+other_open_with: Andere è„°ffnen-mit
+choose_open_with: Wie mæžšchten Sie æžšffnen?
+compress_title: %s komprimieren
+start_compress: Komprimierung starten
+path_name_empty: Pfad und Name dçœ‰rfen nicht leer sein
+compressing: Komprimiere...
+compress_done: Komprimierung abgeschlossen: %s
+compress_failed: Komprimierung fehlgeschlagen: %s
+external_app_title: Dabei, eine andere App zu æžšffnen
+external_app_warning: Das System hat mæžšglicherweise nicht gençœ‰gend Berechtigungen, um auf einige Dateien zuzugreifen. Es wird empfohlen, den integrierten Browser von UniHub zu verwenden.
+dont_ask_again: Diese Sitzung nicht erneut fragen
+display: Anzeige
+theme_tbd: Design (in Entwicklung)
+default_home: Standard-Startseite
+more_settings_tbd: Weitere Einstellungen (in Entwicklung)
+select_all: Alle auswç›²hlen
+copy: Kopieren
+copy_to_other: Auf andere Seite kopieren
+move_to_other: Auf andere Seite verschieben
+share: Teilen
+share_text: Text teilen
+cut: Ausschneiden
+paste: Einfçœ‰gen
+tools: Werkzeuge
+compress: Komprimieren
+open_with: è„°ffnen mit
+add_bookmark: Lesezeichen hinzufçœ‰gen
+input_name: Name eingeben
+file: Datei
+host_hint: Host (z.B. ftp.example.com)
+port_hint: Port (21/22)
+username: Benutzername
+password: Passwort
+username_or_email: Benutzername oder E-Mail
+save_path: Speicherpfad
+enter_dir_path: Verzeichnispfad eingeben
+archive_name: Archivname
+enter_archive_name: Archivnamen eingeben (ohne Erweiterung)
+format: Format
+file_name_label: Dateiname
+enter_file_name: Dateinamen eingeben
+encoding: Kodierung
+unsaved: Nicht gespeichert
+unsaved_msg: Der Inhalt wurde geç›²ndert. Speichern?
+cant_open_file: Datei kann nicht geæžšffnet werden: %s
+save_as: Speichern unter
+need_perm: Berechtigung erforderlich
+save_as_need_perm: Speichern unter erfordert Speicherberechtigung. Zu den Einstellungen gehen?
+go_to: Gehe zu
+no_storage_perm: Keine Speicherberechtigung
+saved: Gespeichert
+saved_with_encoding: Gespeichert (%s)
+save_failed: Speichern fehlgeschlagen: %s
+open: è„°ffnen
+extract_failed: Extrahieren fehlgeschlagen: %s
+moving: Verschieben
+copying: Kopieren
+move_success: %s erfolgreich
+code_block: Codeblock
+insert: Einfçœ‰gen
+avatar: Avatar
+refresh: Aktualisieren
+search: Suchen
+filter: Filtern
+sort: Sortieren nach
+show_hidden: Versteckte Dateien anzeigen
+exit: Beenden
+forward: Vorwç›²rts
+new_file: Neu
+up_level: Hinauf
+zip_error: Error: %s
+
+language_restart_title: "Sprache ändern"
+language_restart_message: "Sprachwechsel erfordert einen Neustart der App. Jetzt neu starten?"
+restart_now: "Neu starten"
+documents: "Dokumente"

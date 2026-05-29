@@ -1,0 +1,161 @@
+﻿app_name: Unihub
+home: ပင်မစာမျက်နှာ
+menu: မီနူး
+back: နောက်သို့
+close: ပိတ်ရန်
+settings: ဆက်တင်များ
+language: ဘာသာစကား
+user_agreement: အသုံးပြုခြင်းဆိုင်ရာစည်းကမ်းချက်များ
+privacy_policy: ကိုယ်ရေးလုံခြုံမှုမူဝါဒ
+changelog: ပြောင်းလဲမှုမှတ်တမ်း
+third_party_assets: တတိယပါတီအရင်းအမြစ်များ
+download_file: ဖိုင်ဒေါင်းလုတ်
+logout: ထွက်ရန်
+not_logged_in: အကောင့်ဝင်မထားပါ
+click_to_login: အကောင့်ဝင်ရန်နှိပ်ပါ
+logged_out: ထွက်ပြီးပါပြီ
+enter_path_or_url: လမ်းကြောင်း သို့မဟုတ် URL ရိုက်ထည့်ပါ
+confirm: အတည်ပြုရန်
+cancel: ပယ်ဖျက်ရန်
+ok: OK
+save: သိမ်းရန်
+dont_save: မသိမ်းပါနှင့်
+login: အကောင့်ဝင်ရန်
+login_blabby: Blabby အကောင့်ဝင်ရန်
+login_remote_server: အဝေးထိန်းဆာဗာသို့အကောင့်ဝင်ရန်
+connect: ချိတ်ဆက်ရန်
+empty_account: အကောင့်နှင့်စကားဝှက်မထည့်ဘဲမဖြစ်ပါ
+login_success: အကောင့်ဝင်ခြင်းအောင်မြင်ပါသည်
+file_url: ဖိုင် URL
+output_path: ထွက်ပေါက်လမ်းကြောင်း
+download: ဒေါင်းလုတ်
+empty_url_path: URL နှင့်ထွက်ပေါက်လမ်းကြောင်းမထည့်ဘဲမဖြစ်ပါ
+download_failed: ဒေါင်းလုတ်မအောင်မြင်ပါ
+no_perm_or_full: ခွင့်ပြုချက်မရှိပါ သို့မဟုတ် သိုလှောင်ခန်းပြည့်နေပါသည်။ စစ်ဆေးပြီးပြန်ကြိုးစားပါ။
+starting_download: ဒေါင်းလုတ်စတင်နေပါသည်...
+download_failed_code: ဒေါင်းလုတ်မအောင်မြင်၊ အခြေအနေကုဒ်: %d
+download_complete: ဒေါင်းလုတ်ပြီးပါပြီ: %s
+search_not_impl: ရှာဖွေခြင်းမဆောင်ရွက်ရသေး
+select_all_not_impl: အားလုံးရွေးချယ်ခြင်းမဆောင်ရွက်ရသေး
+filter_not_impl: စစ်ထုတ်ခြင်းမဆောင်ရွက်ရသေး
+sort_not_impl: စီခြင်းမဆောင်ရွက်ရသေး
+show_hidden_files: ဝှက်ထားသောဖိုင်များပြရန်: %s
+bookmark_not_impl: စာညှပ်များမရသေးပါ
+set_home_not_impl: ပင်မအဖြစ်သတ်မှတ်ခြင်းမဆောင်ရွက်ရသေး
+swap_window_not_impl: ဝင်းဒိုးလဲလှယ်ခြင်းမဆောင်ရွက်ရသေး
+folder_colon: ဖိုင်တွဲများ: %d
+file_colon: ဖိုင်များ: %d
+storage_colon: သိုလှောင်ခန်း: %s/%s
+remote_no_create: အဝေးထိန်းဆာဗာမှဖန်တီးခြင်းကိုမပံ့ပိုးပါ
+ftp_failed: FTP ချိတ်ဆက်မှုမအောင်မြင်ပါ
+sftp_failed: SFTP ချိတ်ဆက်မှုမအောင်မြင်ပါ
+conn_error: ချိတ်ဆက်မှုအမှား: %s
+need_storage_perm: သိုလှောင်ခန်းခွင့်ပြုချက်လိုအပ်ပါသည်
+already_root: အရင်းမြစ်လမ်းညွှန်တွင်ရှိနေပါပြီ
+no_earlier: ယခင်မှတ်တမ်းများမရှိပါ
+no_later: နောက်ပိုင်းမှတ်တမ်းများမရှိပါ
+op_failed: လုပ်ဆောင်ချက်မအောင်မြင်ပါ
+error_colon: အမှား: %s
+confirm_delete: ဖျက်ခြင်းအတည်ပြုရန်
+confirm_delete_msg: %s ကိုဖျက်ရန်သေချာပါသလား။
+delete: ဖျက်ရန်
+deleted: ဖျက်ပြီးပါပြီ
+delete_failed: ဖျက်ခြင်းမအောင်မြင်ပါ
+rename: အမည်ပြောင်းရန်
+rename_success: အမည်ပြောင်းလဲခြင်းအောင်မြင်ပါသည်
+rename_failed: အမည်ပြောင်းလဲခြင်းမအောင်မြင်ပါ
+name_colon: အမည်: %s
+path_colon: လမ်းကြောင်း: %s
+size_colon: အရွယ်အစား: %s
+folder: ဖိုင်တွဲ
+bytes: ဘိုက်
+modified_colon: ပြုပြင်ထားသော: %s
+readable_colon: ဖတ်နိုင်: %s
+writable_colon: ရေးနိုင်: %s
+properties: ဂုဏ်သတ္တိများ
+create_new: အသစ်
+create: ဖန်တီးရန်
+name_empty: အမည်မထည့်ဘဲမဖြစ်ပါ
+already_exists: ဤအမည်ရှိဖိုင် သို့မဟုတ် ဖိုင်တွဲရှိနှင့်ပြီးသားဖြစ်ပါသည်
+create_success: ဖန်တီးခြင်းအောင်မြင်ပါသည်
+create_failed: ဖန်တီးခြင်းမအောင်မြင်ပါ
+zip_browser: Zip ကြည့်ရှုရေး
+md_editor: Unihub Markdown တည်းဖြတ်ရေး
+text_editor: Unihub စာသားတည်းဖြတ်ရေး
+video_player: Unihub ဗီဒီယိုဖွင့်စက်
+other_open_with: အခြားအက်ပ်
+choose_open_with: သင်မည်သို့ဖွင့်လိုပါသလဲ။
+compress_title: %s ကိုချုံ့ရန်
+start_compress: ချုံ့ခြင်းစတင်ရန်
+path_name_empty: လမ်းကြောင်းနှင့်အမည်မထည့်ဘဲမဖြစ်ပါ
+compressing: ချုံ့နေပါသည်...
+compress_done: ချုံ့ခြင်းပြီးပါပြီ: %s
+compress_failed: ချုံ့ခြင်းမအောင်မြင်ပါ: %s
+external_app_title: အခြားအက်ပ်တစ်ခုဖွင့်တော့မည်
+external_app_warning: စနစ်တွင် အချို့ဖိုင်များကိုဝင်ရောက်ရန်ခွင့်ပြုချက်မလုံလောက်နိုင်ပါ။ UniHub ၏ built-in ဘရောင်ဇာကိုအသုံးပြုရန်အကြံပြုပါသည်။
+dont_ask_again: ဤဆက်ရှင်တွင်ထပ်မံမမေးပါနှင့်
+display: မျက်နှာပြင်
+theme_tbd: အပြင်အဆင် (မသေချာသေး)
+default_home: ပုံသေပင်မစာမျက်နှာ
+more_settings_tbd: နောက်ထပ်ဆက်တင်များ (မသေချာသေး)
+select_all: အားလုံးရွေးရန်
+copy: မိတ္တူကူးရန်
+copy_to_other: အခြားဘက်သို့မိတ္တူကူးရန်
+move_to_other: အခြားဘက်သို့ရွှေ့ရန်
+share: မျှဝေရန်
+share_text: စာသားမျှဝေရန်
+cut: ဖြတ်ရန်
+paste: ကူးထည့်ရန်
+tools: ကိရိယာများ
+compress: ချုံ့ရန်
+open_with: ဖွင့်ရန်
+add_bookmark: စာညှပ်ထည့်ရန်
+input_name: အမည်ထည့်ပါ
+file: ဖိုင်
+host_hint: ဆာဗာ (ဥပမာ ftp.example.com)
+port_hint: ပို့ (21/22)
+username: အသုံးပြုသူအမည်
+password: စကားဝှက်
+username_or_email: အသုံးပြုသူအမည် သို့မဟုတ် အီးမေးလ်
+save_path: သိမ်းရန်လမ်းကြောင်း
+enter_dir_path: လမ်းညွှန်လမ်းကြောင်းထည့်ပါ
+archive_name: မှတ်တမ်းအမည်
+enter_archive_name: မှတ်တမ်းအမည်ထည့်ပါ (တိုးချဲ့မှုမပါ)
+format: ဖော်မတ်
+file_name_label: ဖိုင်အမည်
+enter_file_name: ဖိုင်အမည်ထည့်ပါ
+encoding: ကုဒ်ပြောင်းခြင်း
+unsaved: မသိမ်းရသေး
+unsaved_msg: အကြောင်းအရာပြောင်းလဲသွားပါသည်။ သိမ်းမလား။
+cant_open_file: ဖိုင်ကိုမဖွင့်နိုင်ပါ: %s
+save_as: အခြားအမည်ဖြင့်သိမ်းရန်
+need_perm: ခွင့်ပြုချက်လိုအပ်ပါသည်
+save_as_need_perm: အခြားအမည်ဖြင့်သိမ်းရန်သိုလှောင်ခန်းခွင့်ပြုချက်လိုအပ်ပါသည်။ ဆက်တင်များသို့သွားမလား။
+go_to: သွားရန်
+no_storage_perm: သိုလှောင်ခန်းခွင့်ပြုချက်မရှိပါ
+saved: သိမ်းပြီးပါပြီ
+saved_with_encoding: သိမ်းပြီးပါပြီ (%s)
+save_failed: သိမ်းခြင်းမအောင်မြင်ပါ: %s
+open: ဖွင့်ရန်
+extract_failed: ထုတ်ယူခြင်းမအောင်မြင်ပါ: %s
+moving: ရွှေ့နေပါသည်
+copying: မိတ္တူကူးနေပါသည်
+move_success: %s အောင်မြင်ပါသည်
+code_block: ကုဒ်ဘလောက်
+insert: ထည့်ရန်
+avatar: ကိုယ်ပိုင်ပုံ
+refresh: ပြန်လည်ဆန်းသစ်ရန်
+search: ရှာဖွေရန်
+filter: စစ်ထုတ်ရန်
+sort: စီရန်
+show_hidden: ဝှက်ထားသောဖိုင်များပြရန်
+exit: ထွက်ရန်
+forward: ရှေ့သို့
+new_file: အသစ်
+up_level: အထက်သို့
+zip_error: အမှား: %s
+
+language_restart_title: "ဘာသာစကားပြောင်းရန်"
+language_restart_message: "ဘာသာစကားပြောင်းရန် အက်ပ်ကို ပြန်လည်စတင်ရန်လိုအပ်သည်။ ယခုပြန်လည်စတင်မည်လား။"
+restart_now: "ပြန်လည်စတင်ရန်"
+documents: "စာရွက်စာတမ်းများ"

@@ -1,0 +1,161 @@
+﻿app_name: Unihub
+home: Головна
+menu: Меню
+back: Назад
+close: Закрити
+settings: Налаштування
+language: Мова
+user_agreement: Умови використання
+privacy_policy: Політика конфіденційності
+changelog: Журнал змін
+third_party_assets: Сторонні ресурси
+download_file: Завантажити файл
+logout: Вийти
+not_logged_in: Не увійшли
+click_to_login: Натисніть для входу
+logged_out: Вийшли
+enter_path_or_url: Введіть шлях або URL
+confirm: Підтвердити
+cancel: Скасувати
+ok: ОК
+save: Зберегти
+dont_save: Не зберігати
+login: Увійти
+login_blabby: Увійти в обліковий запис Blabby
+login_remote_server: Підключитися до віддаленого сервера
+connect: Підключитися
+empty_account: Обліковий запис і пароль не можуть бути порожніми
+login_success: Вхід виконано успішно
+file_url: URL файлу
+output_path: Шлях виведення
+download: Завантажити
+empty_url_path: URL і шлях виведення не можуть бути порожніми
+download_failed: Помилка завантаження
+no_perm_or_full: Немає дозволу або сховище заповнене. Перевірте та спробуйте знову.
+starting_download: Починаємо завантаження...
+download_failed_code: Помилка завантаження, код стану: %d
+download_complete: Завантаження завершено: %s
+search_not_impl: Пошук не реалізовано
+select_all_not_impl: Виділити все не реалізовано
+filter_not_impl: Фільтр не реалізовано
+sort_not_impl: Сортування не реалізовано
+show_hidden_files: Показати приховані файли: %s
+bookmark_not_impl: Закладки поки недоступні
+set_home_not_impl: Встановити домашньою сторінкою не реалізовано
+swap_window_not_impl: Обмін вікнами не реалізовано
+folder_colon: Тек: %d
+file_colon: Файлів: %d
+storage_colon: Сховище: %s/%s
+remote_no_create: Віддалений сервер не підтримує створення
+ftp_failed: Помилка підключення FTP
+sftp_failed: Помилка підключення SFTP
+conn_error: Помилка підключення: %s
+need_storage_perm: Потрібен дозвіл на доступ до сховища
+already_root: Вже в кореневому каталозі
+no_earlier: Немає попередніх записів
+no_later: Немає пізніших записів
+op_failed: Операція не вдалася
+error_colon: Помилка: %s
+confirm_delete: Підтвердження видалення
+confirm_delete_msg: Ви впевнені, що хочете видалити %s?
+delete: Видалити
+deleted: Видалено
+delete_failed: Помилка видалення
+rename: Перейменувати
+rename_success: Успішно перейменовано
+rename_failed: Помилка перейменування
+name_colon: Ім'я: %s
+path_colon: Шлях: %s
+size_colon: Розмір: %s
+folder: Тека
+bytes: байт
+modified_colon: Змінено: %s
+readable_colon: Читання: %s
+writable_colon: Запис: %s
+properties: Властивості
+create_new: Створити
+create: Створити
+name_empty: Ім'я не може бути порожнім
+already_exists: Файл або теку з таким ім'ям вже існує
+create_success: Успішно створено
+create_failed: Помилка створення
+zip_browser: Zip-переглядач
+md_editor: Редактор Markdown Unihub
+text_editor: Текстовий редактор Unihub
+video_player: Відеоплеєр Unihub
+other_open_with: Інший застосунок
+choose_open_with: Як ви хочете відкрити?
+compress_title: Стиснути %s
+start_compress: Почати стиснення
+path_name_empty: Шлях та ім'я не можуть бути порожніми
+compressing: Стиснення...
+compress_done: Стиснення завершено: %s
+compress_failed: Помилка стиснення: %s
+external_app_title: Буде запущено інший застосунок
+external_app_warning: Система може не мати достатніх дозволів для доступу до деяких файлів. Рекомендується використовувати вбудований браузер UniHub.
+dont_ask_again: Більше не питати в цій сесії
+display: Дисплей
+theme_tbd: Тема (в розробці)
+default_home: Домашня сторінка за замовчуванням
+more_settings_tbd: Інші налаштування (в розробці)
+select_all: Виділити все
+copy: Копіювати
+copy_to_other: Копіювати на інший бік
+move_to_other: Перемістити на інший бік
+share: Поділитися
+share_text: Поділитися текстом
+cut: Вирізати
+paste: Вставити
+tools: Інструменти
+compress: Стиснути
+open_with: Відкрити за допомогою
+add_bookmark: Додати закладку
+input_name: Введіть ім'я
+file: Файл
+host_hint: Хост (наприклад ftp.example.com)
+port_hint: Порт (21/22)
+username: Ім'я користувача
+password: Пароль
+username_or_email: Ім'я користувача або email
+save_path: Шлях збереження
+enter_dir_path: Введіть шлях до каталогу
+archive_name: Ім'я архіву
+enter_archive_name: Введіть ім'я архіву (без розширення)
+format: Формат
+file_name_label: Ім'я файлу
+enter_file_name: Введіть ім'я файлу
+encoding: Кодування
+unsaved: Не збережено
+unsaved_msg: Вміст було змінено. Зберегти?
+cant_open_file: Неможливо відкрити файл: %s
+save_as: Зберегти як
+need_perm: Потрібен дозвіл
+save_as_need_perm: Зберегти як потребує дозволу на сховище. Перейти до налаштувань?
+go_to: Перейти
+no_storage_perm: Немає дозволу на сховище
+saved: Збережено
+saved_with_encoding: Збережено (%s)
+save_failed: Помилка збереження: %s
+open: Відкрити
+extract_failed: Помилка вилучення: %s
+moving: Переміщення
+copying: Копіювання
+move_success: %s виконано
+code_block: Блок коду
+insert: Вставити
+avatar: Аватар
+refresh: Оновити
+search: Пошук
+filter: Фільтр
+sort: Сортувати за
+show_hidden: Показати приховані файли
+exit: Вихід
+forward: Вперед
+new_file: Створити
+up_level: Вгору
+zip_error: Помилка: %s
+
+language_restart_title: "Змінити мову"
+language_restart_message: "Зміна мови потребує перезапуску застосунку. Перезапустити зараз?"
+restart_now: "Перезапустити"
+documents: "Документи"

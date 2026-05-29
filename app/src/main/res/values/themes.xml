@@ -1,0 +1,45 @@
+<resources>
+    <style name="Theme.UniHub" parent="Theme.Material3.Dark.NoActionBar">
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorOnPrimary">@color/on_primary</item>
+        <item name="colorPrimaryContainer">@color/primary_container</item>
+        <item name="colorSecondary">@color/secondary</item>
+        <item name="colorOnSecondary">@color/on_secondary</item>
+        <item name="android:colorBackground">@color/background</item>
+        <item name="colorSurface">@color/surface</item>
+        <item name="colorOnSurface">@color/on_surface</item>
+        <item name="colorError">@color/error</item>
+        <item name="colorOutline">@color/outline</item>
+
+        <item name="android:statusBarColor">@color/primary</item>
+        <item name="android:navigationBarColor">@color/background</item>
+
+        <!-- 对话框主题链接 -->
+        <item name="materialAlertDialogTheme">@style/AlertDialogTheme</item>
+        <item name="alertDialogTheme">@style/AlertDialogTheme</item>
+
+        <!-- 组件样式 -->
+        <item name="toolbarStyle">@style/ToolbarStyle</item>
+        <item name="bottomNavigationStyle">@style/BottomNavStyle</item>
+        <item name="materialCardViewStyle">@style/CardStyle</item>
+    </style>
+
+    <style name="ToolbarStyle" parent="Widget.Material3.Toolbar">
+        <item name="android:background">@color/primary</item>
+        <item name="titleTextColor">@color/on_primary</item>
+        <item name="android:elevation">0dp</item>
+    </style>
+
+    <style name="BottomNavStyle" parent="Widget.Material3.BottomNavigationView">
+        <item name="android:background">@color/background</item>
+        <item name="itemIconTint">@color/bottom_nav_selector</item>
+        <item name="itemTextColor">@color/bottom_nav_selector</item>
+        <item name="elevation">0dp</item>
+    </style>
+
+    <style name="CardStyle" parent="Widget.Material3.CardView.Elevated">
+        <item name="cardBackgroundColor">@color/surface</item>
+        <item name="cardCornerRadius">16dp</item>
+        <item name="cardElevation">2dp</item>
+    </style>
+</resources>

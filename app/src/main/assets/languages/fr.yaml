@@ -1,0 +1,161 @@
+﻿ï»؟app_name: Unihub
+home: Accueil
+menu: Menu
+back: Retour
+close: Fermer
+settings: ParamçŒ«tres
+language: Langue
+user_agreement: Conditions d'utilisation
+privacy_policy: Politique de confidentialitèŒ…
+changelog: Journal des modifications
+third_party_assets: Ressources tierces
+download_file: TèŒ…lèŒ…charger le fichier
+logout: DèŒ…connexion
+not_logged_in: Non connectèŒ…
+click_to_login: Cliquez pour vous connecter
+logged_out: DèŒ…connectèŒ…
+enter_path_or_url: Entrez le chemin ou l'URL
+confirm: Confirmer
+cancel: Annuler
+ok: OK
+save: Enregistrer
+dont_save: Ne pas enregistrer
+login: Connexion
+login_blabby: Connexion au compte Blabby
+login_remote_server: Connexion au serveur distant
+connect: Connecter
+empty_account: Le compte et le mot de passe ne peuvent pas é”ڑtre vides
+login_success: Connexion rèŒ…ussie
+file_url: URL du fichier
+output_path: Chemin de sortie
+download: TèŒ…lèŒ…charger
+empty_url_path: L'URL et le chemin de sortie ne peuvent pas é”ڑtre vides
+download_failed: è„،chec du tèŒ…lèŒ…chargement
+no_perm_or_full: Pas de permission ou stockage plein. Veuillez vèŒ…rifier et rèŒ…essayer.
+starting_download: TèŒ…lèŒ…chargement en cours...
+download_failed_code: è„،chec du tèŒ…lèŒ…chargement, code d'èŒ…tat: %d
+download_complete: TèŒ…lèŒ…chargement terminèŒ…: %s
+search_not_impl: Recherche non implèŒ…mentèŒ…e
+select_all_not_impl: SèŒ…lectionner tout non implèŒ…mentèŒ…
+filter_not_impl: Filtre non implèŒ…mentèŒ…
+sort_not_impl: Tri non implèŒ…mentèŒ…
+show_hidden_files: Afficher les fichiers cachèŒ…s: %s
+bookmark_not_impl: Signets pas encore disponibles
+set_home_not_impl: DèŒ…finir comme accueil non implèŒ…mentèŒ…
+swap_window_not_impl: è„،changer les fené”ڑtres non implèŒ…mentèŒ…
+folder_colon: Dossiers: %d
+file_colon: Fichiers: %d
+storage_colon: Stockage: %s/%s
+remote_no_create: Le serveur distant ne prend pas en charge la crèŒ…ation
+ftp_failed: è„،chec de la connexion FTP
+sftp_failed: è„،chec de la connexion SFTP
+conn_error: Erreur de connexion: %s
+need_storage_perm: Permission de stockage requise
+already_root: DèŒ…jè„؟ dans le rèŒ…pertoire racine
+no_earlier: Aucun enregistrement antèŒ…rieur
+no_later: Aucun enregistrement plus rèŒ…cent
+op_failed: OpèŒ…ration èŒ…chouèŒ…e
+error_colon: Erreur: %s
+confirm_delete: Confirmer la suppression
+confirm_delete_msg: Voulez-vous vraiment supprimer %s ?
+delete: Supprimer
+deleted: SupprimèŒ…
+delete_failed: è„،chec de la suppression
+rename: Renommer
+rename_success: RenommèŒ… avec succçŒ«s
+rename_failed: è„،chec du renommage
+name_colon: Nom: %s
+path_colon: Chemin: %s
+size_colon: Taille: %s
+folder: Dossier
+bytes: octets
+modified_colon: ModifièŒ…: %s
+readable_colon: Lecture: %s
+writable_colon: è„،criture: %s
+properties: ProprièŒ…tèŒ…s
+create_new: Nouveau
+create: CrèŒ…er
+name_empty: Le nom ne peut pas é”ڑtre vide
+already_exists: Un fichier ou dossier avec ce nom existe dèŒ…jè„؟
+create_success: CrèŒ…èŒ… avec succçŒ«s
+create_failed: è„،chec de la crèŒ…ation
+zip_browser: Navigateur Zip
+md_editor: è„،diteur Markdown Unihub
+text_editor: è„،diteur de texte Unihub
+video_player: Lecteur vidèŒ…o Unihub
+other_open_with: Autre application
+choose_open_with: Comment voulez-vous ouvrir ce fichier ?
+compress_title: Compresser %s
+start_compress: Commencer la compression
+path_name_empty: Le chemin et le nom ne peuvent pas é”ڑtre vides
+compressing: Compression en cours...
+compress_done: Compression terminèŒ…e: %s
+compress_failed: è„،chec de la compression: %s
+external_app_title: Sur le point de lancer une autre application
+external_app_warning: Le systçŒ«me peut ne pas avoir les permissions suffisantes pour accèŒ…der è„؟ certains fichiers. Il est recommandèŒ… d'utiliser le navigateur intèŒ…grèŒ… d'UniHub.
+dont_ask_again: Ne plus demander cette session
+display: Affichage
+theme_tbd: ThçŒ«me (è„؟ venir)
+default_home: Accueil par dèŒ…faut
+more_settings_tbd: Plus de paramçŒ«tres (è„؟ venir)
+select_all: Tout sèŒ…lectionner
+copy: Copier
+copy_to_other: Copier de l'autre cن¹ˆtèŒ…
+move_to_other: DèŒ…placer de l'autre cن¹ˆtèŒ…
+share: Partager
+share_text: Partager le texte
+cut: Couper
+paste: Coller
+tools: Outils
+compress: Compresser
+open_with: Ouvrir avec
+add_bookmark: Ajouter un signet
+input_name: Entrez le nom
+file: Fichier
+host_hint: Hن¹ˆte (ex: ftp.example.com)
+port_hint: Port (21/22)
+username: Nom d'utilisateur
+password: Mot de passe
+username_or_email: Nom d'utilisateur ou email
+save_path: Chemin de sauvegarde
+enter_dir_path: Entrez le chemin du rèŒ…pertoire
+archive_name: Nom de l'archive
+enter_archive_name: Entrez le nom de l'archive (sans extension)
+format: Format
+file_name_label: Nom du fichier
+enter_file_name: Entrez le nom du fichier
+encoding: Encodage
+unsaved: Non enregistrèŒ…
+unsaved_msg: Le contenu a èŒ…tèŒ… modifièŒ…. Enregistrer ?
+cant_open_file: Impossible d'ouvrir le fichier: %s
+save_as: Enregistrer sous
+need_perm: Permission requise
+save_as_need_perm: Enregistrer sous nèŒ…cessite une permission de stockage. Aller aux paramçŒ«tres ?
+go_to: Aller è„؟
+no_storage_perm: Pas de permission de stockage
+saved: EnregistrèŒ…
+saved_with_encoding: EnregistrèŒ… (%s)
+save_failed: è„،chec de l'enregistrement: %s
+open: Ouvrir
+extract_failed: è„،chec de l'extraction: %s
+moving: DèŒ…placement
+copying: Copie
+move_success: %s rèŒ…ussi
+code_block: Bloc de code
+insert: InsèŒ…rer
+avatar: Avatar
+refresh: Rafraهچ¯chir
+search: Rechercher
+filter: Filtrer
+sort: Trier par
+show_hidden: Afficher les fichiers cachèŒ…s
+exit: Quitter
+forward: Avancer
+new_file: Nouveau
+up_level: Monter
+zip_error: Error: %s
+
+language_restart_title: "Changer la langue"
+language_restart_message: "Changer la langue nécessite un redémarrage de l'application. Redémarrer maintenant ?"
+restart_now: "Redémarrer"
+documents: "Documents"

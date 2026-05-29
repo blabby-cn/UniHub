@@ -1,0 +1,161 @@
+﻿app_name: Unihub
+home: ホーム
+menu: メニュー
+back: 戻る
+close: 閉じる
+settings: 設定
+language: 言語
+user_agreement: 利用規約
+privacy_policy: プライバシーポリシー
+changelog: 更新履歴
+third_party_assets: サードパーティアセット
+download_file: ファイルをダウンロード
+logout: ログアウト
+not_logged_in: ログインしていません
+click_to_login: クリックしてログイン
+logged_out: ログアウトしました
+enter_path_or_url: パスまたはURLを入力
+confirm: 確認
+cancel: キャンセル
+ok: OK
+save: 保存
+dont_save: 保存しない
+login: ログイン
+login_blabby: Blabbyアカウントにログイン
+login_remote_server: リモートサーバーにログイン
+connect: 接続
+empty_account: アカウントとパスワードを入力してください
+login_success: ログイン成功
+file_url: ファイルURL
+output_path: 出力パス
+download: ダウンロード
+empty_url_path: URLと出力パスを入力してください
+download_failed: ダウンロード失敗
+no_perm_or_full: 権限がないかストレージがいっぱいです。確認してから再試行してください。
+starting_download: ダウンロードを開始します...
+download_failed_code: ダウンロード失敗、ステータスコード: %d
+download_complete: ダウンロード完了: %s
+search_not_impl: 検索機能は未実装です
+select_all_not_impl: 全選択は未実装です
+filter_not_impl: フィルターは未実装です
+sort_not_impl: 並べ替えは未実装です
+show_hidden_files: 隠しファイルを表示: %s
+bookmark_not_impl: ブックマークはまだ利用できません
+set_home_not_impl: ホームに設定は未実装です
+swap_window_not_impl: ウィンドウ交換は未実装です
+folder_colon: フォルダ: %d
+file_colon: ファイル: %d
+storage_colon: ストレージ: %s/%s
+remote_no_create: リモートでは作成できません
+ftp_failed: FTP接続に失敗しました
+sftp_failed: SFTP接続に失敗しました
+conn_error: 接続エラー: %s
+need_storage_perm: ストレージ権限が必要です
+already_root: 既にルートディレクトリです
+no_earlier: 以前の記録はありません
+no_later: 新しい記録はありません
+op_failed: 操作に失敗しました
+error_colon: エラー: %s
+confirm_delete: 削除の確認
+confirm_delete_msg: %s を削除してもよろしいですか？
+delete: 削除
+deleted: 削除しました
+delete_failed: 削除に失敗しました
+rename: 名前変更
+rename_success: 名前を変更しました
+rename_failed: 名前の変更に失敗しました
+name_colon: 名前: %s
+path_colon: パス: %s
+size_colon: サイズ: %s
+folder: フォルダ
+bytes: バイト
+modified_colon: 更新日: %s
+readable_colon: 読み取り: %s
+writable_colon: 書き込み: %s
+properties: プロパティ
+create_new: 新規作成
+create: 作成
+name_empty: 名前を入力してください
+already_exists: 同名のファイルまたはフォルダが既に存在します
+create_success: 作成しました
+create_failed: 作成に失敗しました
+zip_browser: Zipブラウザ
+md_editor: Unihub Markdownエディタ
+text_editor: Unihub テキストエディタ
+video_player: Unihub ビデオプレーヤー
+other_open_with: 他のアプリで開く
+choose_open_with: どのように開きますか？
+compress_title: %s を圧縮
+start_compress: 圧縮開始
+path_name_empty: パスと名前を入力してください
+compressing: 圧縮中...
+compress_done: 圧縮完了: %s
+compress_failed: 圧縮失敗: %s
+external_app_title: 他のアプリを起動しようとしています
+external_app_warning: システムに一部のファイルにアクセスする権限がない可能性があります。UniHubの内蔵ブラウザを使用することをお勧めします。
+dont_ask_again: このセッションでは再度表示しない
+display: 表示
+theme_tbd: テーマ（未定）
+default_home: デフォルトホーム
+more_settings_tbd: その他の設定（未定）
+select_all: すべて選択
+copy: コピー
+copy_to_other: 反対側にコピー
+move_to_other: 反対側に移動
+share: 共有
+share_text: テキストを共有
+cut: 切り取り
+paste: 貼り付け
+tools: ツール
+compress: 圧縮
+open_with: 開く
+add_bookmark: ブックマークに追加
+input_name: 名前を入力
+file: ファイル
+host_hint: ホスト (例: ftp.example.com)
+port_hint: ポート (21/22)
+username: ユーザー名
+password: パスワード
+username_or_email: ユーザー名またはメール
+save_path: 保存先
+enter_dir_path: ディレクトリパスを入力
+archive_name: アーカイブ名
+enter_archive_name: アーカイブ名を入力（拡張子なし）
+format: 形式
+file_name_label: ファイル名
+enter_file_name: ファイル名を入力
+encoding: エンコード
+unsaved: 未保存
+unsaved_msg: 内容が変更されています。保存しますか？
+cant_open_file: ファイルを開けません: %s
+save_as: 名前を付けて保存
+need_perm: 権限が必要
+save_as_need_perm: 保存にはストレージ権限が必要です。設定に移動しますか？
+go_to: 設定へ
+no_storage_perm: ストレージ権限がありません
+saved: 保存しました
+saved_with_encoding: 保存しました (%s)
+save_failed: 保存に失敗しました: %s
+open: 開く
+extract_failed: 抽出に失敗しました: %s
+moving: 移動
+copying: コピー
+move_success: %s成功
+code_block: コードブロック
+insert: 挿入
+avatar: アバター
+refresh: 更新
+search: 検索
+filter: フィルター
+sort: 並べ替え
+show_hidden: 隠しファイルを表示
+exit: 終了
+forward: 進む
+new_file: 新規
+up_level: 上へ
+zip_error: エラー: %s
+
+language_restart_title: "言語切り替え"
+language_restart_message: "言語を切り替えるにはアプリを再起動する必要があります。今再起動しますか？"
+restart_now: "再起動"
+documents: "ドキュメント"

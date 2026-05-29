@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>UniHub 隐私政策</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background-color: #121212;
+            color: #ffffff;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            padding: 20px 16px 32px;
+            line-height: 1.7;
+            font-size: 15px;
+        }
+        h1 {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #ffffff;
+        }
+        h2 {
+            font-size: 18px;
+            font-weight: 600;
+            margin: 28px 0 14px;
+            color: #ffffff;
+        }
+        h3 {
+            font-size: 16px;
+            font-weight: 600;
+            margin: 18px 0 10px;
+            color: #cccccc;
+        }
+        p {
+            margin-bottom: 12px;
+            text-align: justify;
+        }
+        ul {
+            margin: 8px 0 16px 20px;
+        }
+        li {
+            margin-bottom: 6px;
+        }
+        a {
+            color: #ffffff;
+            text-decoration: underline;
+        }
+        strong {
+            font-weight: 600;
+            color: #ffffff;
+        }
+        .contact {
+            margin-top: 28px;
+            border-top: 1px solid #333333;
+            padding-top: 18px;
+        }
+        .indent {
+            margin-left: 16px;
+        }
+    </style>
+</head>
+<body>
+    <h1>UniHub 隐私政策</h1>
+
+    <p>Blabby.Co（以下简称“我们”）深知个人信息安全的重要性。本隐私政策将详细说明 UniHub 应用（以下简称“本软件”）如何收集、使用、存储和保护您的个人信息，以及您所拥有的权利。请您在使用本软件前仔细阅读。</p>
+
+    <h2>一、我们收集哪些信息及如何收集</h2>
+    <p>我们会收集以下类型的信息，仅在您主动使用相关功能时产生：</p>
+
+    <h3>1. 登录信息</h3>
+    <p>当您登录 Blabby 账号时，我们会收集您提供的账号名（或邮箱）和密码。登录成功后，服务器返回的认证 Cookie 及用户信息（用户名、邮箱、头像 URL）会加密存储于应用私有 SharedPreferences 中，用于保持登录状态和界面展示。退出登录时上述认证信息将被清除。</p>
+
+    <h3>2. 远程连接凭据</h3>
+    <p>当您使用 FTP 或 SFTP 功能连接远程服务器时，您需要输入服务器地址、端口、用户名及密码。此类凭据仅用于本次连接会话，我们不将其上传至任何服务器或在后台保存，除非您主动选择在本机保存连接记录（如有该功能）。</p>
+
+    <h3>3. 浏览与书签数据</h3>
+    <p>网页浏览历史、标签页列表及您添加的书签仅存储在您设备本地，不同步也不上传。我们不会对您的浏览内容进行跟踪或分析。</p>
+
+    <h3>4. 设备存储统计信息</h3>
+    <p>在您浏览文件目录时，本软件会读取当前文件夹内的文件与文件夹数量以及设备剩余存储空间，该过程仅用于界面展示，不向外发送。</p>
+
+    <h3>5. 权限使用说明</h3>
+    <ul>
+        <li><strong>完全网络访问权限</strong>：用于远程连接服务器和加载网页。</li>
+        <li><strong>管理所有文件权限（MANAGE_EXTERNAL_STORAGE）</strong>：用于在 Android 11 及以上版本中提供完整的文件管理能力。</li>
+        <li><strong>读写外部存储权限（WRITE_EXTERNAL_STORAGE）</strong>：在 Android 10 及以下版本中替代管理权限，以进行文件读写。</li>
+        <li><strong>网络状态查看权限</strong>：用于判断当前是否联网，以优化连接体验。</li>
+    </ul>
+    <p>上述权限均为功能所必需，您可在系统设置中随时关闭，但可能影响相关功能使用。</p>
+
+    <h2>二、第三方组件与服务的数据处理</h2>
+    <p>本软件使用了以下第三方库，用于实现特定功能。这些库可能会按照其自身隐私政策处理有限数据：</p>
+    <ul>
+        <li><strong>OkHttp</strong>：用于 Blabby 账户登录时的 HTTPS 网络请求，不会额外收集个人信息。</li>
+        <li><strong>Glide</strong>：用于加载用户头像图片，仅从指定 URL 获取图片，不收集设备信息。</li>
+        <li><strong>Apache Commons Net</strong>：实现 FTP 协议，不传输数据至第三方。</li>
+        <li><strong>JSch</strong>：实现 SFTP 协议，不传输数据至第三方。</li>
+        <li><strong>Blabby 账户系统后端</strong>（login.blabby.top）：由我们运营，仅用于账号认证。登录过程中您提交的账号、密码经 HTTPS 加密传输，登录后下发 Cookie。我们不会将此认证数据用于任何其他目的。</li>
+    </ul>
+
+    <h2>三、我们如何使用收集的信息</h2>
+    <ul>
+        <li>提供核心功能，如登录认证、远程连接、文件管理和网页浏览。</li>
+        <li>维持您的登录状态，展示您的身份信息。</li>
+        <li>分析并修复应用崩溃或错误（若开启此功能）。</li>
+        <li>不会用于自动决策、用户画像或广告推送。</li>
+    </ul>
+
+    <h2>四、信息的存储与保护</h2>
+    <ul>
+        <li>所有个人信息均存储于您的设备本地，或仅在您主动登录时与我们的账户服务器短暂交换。</li>
+        <li>账户服务器采用 HTTPS 加密通信，并采取访问控制与防火墙等措施保护数据安全。</li>
+        <li>我们承诺不会将您的远程连接凭据、文件内容或浏览记录上传至任何外部服务器。</li>
+        <li>本地存储的登录凭据使用 Android 安全存储机制（如 SharedPreferences 中的加密保存或系统凭据存储）加以保护。</li>
+        <li>我们仅在实现功能所需的最短时间内保留您的个人信息，超出后依规删除或匿名化处理。</li>
+    </ul>
+
+    <h2>五、信息的共享、转让与公开披露</h2>
+    <ul>
+        <li>我们不会将您的个人信息出售给任何第三方。</li>
+        <li>除非获得您的明确同意，或应法律、政府机关强制性要求，我们不会主动共享、转让或公开披露您的个人信息。</li>
+        <li>在涉及合并、收购等情形时，我们将要求新的持有人继续受本政策约束，或重新征得您的授权。</li>
+    </ul>
+
+    <h2>六、您的权利</h2>
+    <p>按照适用法律法规，您对自己的个人信息享有以下权利：</p>
+    <ul>
+        <li><strong>访问与更正</strong>：您可以在登录后查看用户名、邮箱等信息；部分信息可在应用内直接修改，或通过清除数据后重新登录更新。</li>
+        <li><strong>删除与撤回同意</strong>：您可以退出账号以清除登录凭据，或通过系统设置撤销已授予的权限。您也可以卸载应用以彻底删除所有本地数据。</li>
+        <li><strong>账号注销</strong>：如需注销 Blabby 账号，请发送邮件至 <a href="mailto:Blabbyglobe6674@163.com">Blabbyglobe6674@163.com</a>，说明诉求并附上相关证明（如账号页面截图），我们将在7个工作日内处理。注销后，我们将停止为您提供相关服务并删除可识别个人身份的数据。</li>
+        <li><strong>投诉与咨询</strong>：如您对数据处理有任何疑问或担忧，可通过下方联系方式与我们沟通，我们将在7个工作日内反馈。</li>
+    </ul>
+    <p>请注意，基于法律要求或国家安全、公共利益等情形，我们可能无法完全响应某些请求。</p>
+
+    <h2>七、未成年人保护</h2>
+    <p>本软件并非针对18周岁以下的未成年人设计。如果您是未成年人，请在法定监护人的同意下使用本软件。如果我们发现无意中收集了未成年人的个人信息，将及时删除。</p>
+
+    <h2>八、隐私政策的更新</h2>
+    <p>我们可能会适时更新本隐私政策。更新后的版本将在软件内或官网 <a href="https://blabby.top" target="_blank" rel="noopener">blabby.top</a> 发布。如涉及重大变更，我们会以显著方式（如弹窗提示）通知您。建议您定期查阅以了解最新内容。</p>
+
+    <h2>九、联系我们</h2>
+    <p>如果您对本隐私政策有任何疑问、意见或投诉，请联系我们：</p>
+    <p>邮箱：<a href="mailto:Blabbyglobe6674@163.com">Blabbyglobe6674@163.com</a></p>
+    <p>官网：<a href="https://blabby.top" target="_blank" rel="noopener">blabby.top</a></p>
+</body>
+</html>

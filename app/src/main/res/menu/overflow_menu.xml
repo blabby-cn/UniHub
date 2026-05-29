@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/menu_refresh" android:title="刷新" />
+    <item android:id="@+id/menu_search" android:title="搜索" />
+    <item android:id="@+id/menu_select_all" android:title="全选" />
+    <item android:id="@+id/menu_filter" android:title="过滤" />
+    <item android:id="@+id/menu_sort" android:title="排序方式" />
+    <item android:id="@+id/menu_show_hidden" android:title="显示隐藏文件" android:checkable="true" />
+    <item android:id="@+id/menu_add_bookmark" android:title="添加书签" />
+    <item android:id="@+id/menu_set_home" android:title="设为首页" />
+    <item android:id="@+id/menu_swap_window" android:title="交换窗口" />
+    <item android:id="@+id/menu_settings" android:title="设置" />
+    <item android:id="@+id/menu_exit" android:title="退出" />
+</menu>

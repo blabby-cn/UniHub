@@ -1,0 +1,161 @@
+﻿app_name: Unihub
+home: Αρχική
+menu: Μενού
+back: Πίσω
+close: Κλείσιμο
+settings: Ρυθμίσεις
+language: Γλώσσα
+user_agreement: Όροι χρήσης
+privacy_policy: Πολιτική απορρήτου
+changelog: Ημερολόγιο αλλαγών
+third_party_assets: Πόροι τρίτων
+download_file: Λήψη αρχείου
+logout: Αποσύνδεση
+not_logged_in: Δεν έχετε συνδεθεί
+click_to_login: Κάντε κλικ για σύνδεση
+logged_out: Αποσυνδεθήκατε
+enter_path_or_url: Εισάγετε διαδρομή ή URL
+confirm: Επιβεβαίωση
+cancel: Ακύρωση
+ok: ΟΚ
+save: Αποθήκευση
+dont_save: Μην αποθηκεύσεις
+login: Σύνδεση
+login_blabby: Σύνδεση λογαριασμού Blabby
+login_remote_server: Σύνδεση σε απομακρυσμένο διακομιστή
+connect: Σύνδεση
+empty_account: Ο λογαριασμός και ο κωδικός δεν μπορούν να είναι κενοί
+login_success: Επιτυχής σύνδεση
+file_url: URL αρχείου
+output_path: Διαδρομή εξόδου
+download: Λήψη
+empty_url_path: Το URL και η διαδρομή εξόδου δεν μπορούν να είναι κενά
+download_failed: Η λήψη απέτυχε
+no_perm_or_full: Χωρίς άδεια ή γεμάτος αποθηκευτικός χώρος. Ελέγξτε και δοκιμάστε ξανά.
+starting_download: Έναρξη λήψης...
+download_failed_code: Η λήψη απέτυχε, κωδικός κατάστασης: %d
+download_complete: Η λήψη ολοκληρώθηκε: %s
+search_not_impl: Η αναζήτηση δεν υλοποιήθηκε
+select_all_not_impl: Η επιλογή όλων δεν υλοποιήθηκε
+filter_not_impl: Το φίλτρο δεν υλοποιήθηκε
+sort_not_impl: Η ταξινόμηση δεν υλοποιήθηκε
+show_hidden_files: Εμφάνιση κρυφών αρχείων: %s
+bookmark_not_impl: Οι σελιδοδείκτες δεν είναι ακόμη διαθέσιμοι
+set_home_not_impl: Ορισμός ως αρχικής δεν υλοποιήθηκε
+swap_window_not_impl: Εναλλαγή παραθύρων δεν υλοποιήθηκε
+folder_colon: Φάκελοι: %d
+file_colon: Αρχεία: %d
+storage_colon: Αποθηκευτικός χώρος: %s/%s
+remote_no_create: Ο απομακρυσμένος διακομιστής δεν υποστηρίζει δημιουργία
+ftp_failed: Η σύνδεση FTP απέτυχε
+sftp_failed: Η σύνδεση SFTP απέτυχε
+conn_error: Σφάλμα σύνδεσης: %s
+need_storage_perm: Απαιτείται άδεια αποθηκευτικού χώρου
+already_root: Είστε ήδη στον ριζικό κατάλογο
+no_earlier: Δεν υπάρχουν παλαιότερες εγγραφές
+no_later: Δεν υπάρχουν νεότερες εγγραφές
+op_failed: Η λειτουργία απέτυχε
+error_colon: Σφάλμα: %s
+confirm_delete: Επιβεβαίωση διαγραφής
+confirm_delete_msg: Είστε σίγουροι ότι θέλετε να διαγράψετε το %s;
+delete: Διαγραφή
+deleted: Διαγράφηκε
+delete_failed: Η διαγραφή απέτυχε
+rename: Μετονομασία
+rename_success: Επιτυχής μετονομασία
+rename_failed: Η μετονομασία απέτυχε
+name_colon: Όνομα: %s
+path_colon: Διαδρομή: %s
+size_colon: Μέγεθος: %s
+folder: Φάκελος
+bytes: byte
+modified_colon: Τροποποιήθηκε: %s
+readable_colon: Αναγνώσιμο: %s
+writable_colon: Εγγράψιμο: %s
+properties: Ιδιότητες
+create_new: Νέο
+create: Δημιουργία
+name_empty: Το όνομα δεν μπορεί να είναι κενό
+already_exists: Αρχείο ή φάκελος με αυτό το όνομα υπάρχει ήδη
+create_success: Δημιουργήθηκε με επιτυχία
+create_failed: Η δημιουργία απέτυχε
+zip_browser: Περιηγητής Zip
+md_editor: Επεξεργαστής Markdown Unihub
+text_editor: Επεξεργαστής κειμένου Unihub
+video_player: Αναπαραγωγή βίντεο Unihub
+other_open_with: Άλλη εφαρμογή
+choose_open_with: Πώς θέλετε να ανοίξετε;
+compress_title: Συμπίεση %s
+start_compress: Έναρξη συμπίεσης
+path_name_empty: Η διαδρομή και το όνομα δεν μπορούν να είναι κενά
+compressing: Συμπίεση...
+compress_done: Η συμπίεση ολοκληρώθηκε: %s
+compress_failed: Η συμπίεση απέτυχε: %s
+external_app_title: Πρόκειται να εκκινηθεί άλλη εφαρμογή
+external_app_warning: Το σύστημα μπορεί να μην έχει επαρκή δικαιώματα για πρόσβαση σε ορισμένα αρχεία. Συνιστάται η χρήση του ενσωματωμένου προγράμματος περιήγησης UniHub.
+dont_ask_again: Να μην ξαναρωτηθεί σε αυτήν τη συνεδρία
+display: Οθόνη
+theme_tbd: Θέμα (σε εξέλιξη)
+default_home: Προεπιλεγμένη αρχική σελίδα
+more_settings_tbd: Περισσότερες ρυθμίσεις (σε εξέλιξη)
+select_all: Επιλογή όλων
+copy: Αντιγραφή
+copy_to_other: Αντιγραφή στην άλλη πλευρά
+move_to_other: Μετακίνηση στην άλλη πλευρά
+share: Κοινοποίηση
+share_text: Κοινοποίηση κειμένου
+cut: Αποκοπή
+paste: Επικόλληση
+tools: Εργαλεία
+compress: Συμπίεση
+open_with: Άνοιγμα με
+add_bookmark: Προσθήκη σελιδοδείκτη
+input_name: Εισάγετε όνομα
+file: Αρχείο
+host_hint: Υπολογιστής (π.χ. ftp.example.com)
+port_hint: Θύρα (21/22)
+username: Όνομα χρήστη
+password: Κωδικός
+username_or_email: Όνομα χρήστη ή email
+save_path: Διαδρομή αποθήκευσης
+enter_dir_path: Εισάγετε διαδρομή καταλόγου
+archive_name: Όνομα αρχείου
+enter_archive_name: Εισάγετε όνομα (χωρίς επέκταση)
+format: Μορφή
+file_name_label: Όνομα αρχείου
+enter_file_name: Εισάγετε όνομα αρχείου
+encoding: Κωδικοποίηση
+unsaved: Μη αποθηκευμένο
+unsaved_msg: Το περιεχόμενο έχει τροποποιηθεί. Να αποθηκευτεί;
+cant_open_file: Δεν είναι δυνατό το άνοιγμα του αρχείου: %s
+save_as: Αποθήκευση ως
+need_perm: Απαιτείται άδεια
+save_as_need_perm: Η αποθήκευση ως απαιτεί άδεια αποθηκευτικού χώρου. Μετάβαση στις ρυθμίσεις;
+go_to: Μετάβαση
+no_storage_perm: Δεν υπάρχει άδεια αποθηκευτικού χώρου
+saved: Αποθηκεύτηκε
+saved_with_encoding: Αποθηκεύτηκε (%s)
+save_failed: Η αποθήκευση απέτυχε: %s
+open: Άνοιγμα
+extract_failed: Η εξαγωγή απέτυχε: %s
+moving: Μετακίνηση
+copying: Αντιγραφή
+move_success: %s επιτυχής
+code_block: Μπλοκ κώδικα
+insert: Εισαγωγή
+avatar: Avatar
+refresh: Ανανέωση
+search: Αναζήτηση
+filter: Φίλτρο
+sort: Ταξινόμηση κατά
+show_hidden: Εμφάνιση κρυφών αρχείων
+exit: Έξοδος
+forward: Εμπρός
+new_file: Νέο
+up_level: Πάνω
+zip_error: Σφάλμα: %s
+
+language_restart_title: "Αλλαγή γλώσσας"
+language_restart_message: "Η αλλαγή γλώσσας απαιτεί επανεκκίνηση της εφαρμογής. Επανεκκίνηση τώρα;"
+restart_now: "Επανεκκίνηση"
+documents: "Έγγραφα"

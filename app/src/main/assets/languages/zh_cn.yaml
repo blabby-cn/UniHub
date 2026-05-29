@@ -1,0 +1,161 @@
+app_name: 通枢
+home: 首页
+menu: 菜单
+back: 返回
+close: 关闭
+settings: 设置
+language: 语言
+user_agreement: 用户协议
+privacy_policy: 隐私政策
+changelog: 更新日志
+third_party_assets: 三方资源引用
+download_file: 下载文件
+logout: 退出登录
+not_logged_in: 未登录
+click_to_login: 点击登录
+logged_out: 已退出登录
+enter_path_or_url: 输入路径或网址
+confirm: Confirm
+cancel: Cancel
+ok: OK
+save: 保存
+dont_save: 不保存
+login: 登录
+login_blabby: 登录 Blabby 账号
+login_remote_server: 登录远程服务器
+connect: 连接
+empty_account: 账号和密码不能为空
+login_success: 登录成功
+file_url: 文件URL
+output_path: 输出路径
+download: 下载
+empty_url_path: URL和输出路径不能为空
+download_failed: 下载失败
+no_perm_or_full: 没有权限或存储已满，请检查后再试。
+starting_download: 开始下载...
+download_failed_code: 下载失败，状态码: %d
+download_complete: 下载完成: %s
+search_not_impl: 搜索功能待实现
+select_all_not_impl: 全选功能待实现
+filter_not_impl: 过滤功能待实现
+sort_not_impl: 排序功能待实现
+show_hidden_files: 显示隐藏文件: %s
+bookmark_not_impl: 书签功能暂未开放
+set_home_not_impl: 设为首页功能待实现
+swap_window_not_impl: 交换窗口功能待实现
+folder_colon: 文件夹:%d
+file_colon: 文件:%d
+storage_colon: 储存:%s/%s
+remote_no_create: 远程暂不支持新建
+ftp_failed: FTP 连接失败
+sftp_failed: SFTP 连接失败
+conn_error: 连接错误: %s
+need_storage_perm: 需要存储权限
+already_root: 已经是根目录
+no_earlier: 没有更早的记录
+no_later: 没有更新的记录
+op_failed: 操作失败
+error_colon: 错误: %s
+confirm_delete: 确认删除
+confirm_delete_msg: 确定要删除 %s 吗？
+delete: 删除
+deleted: 已删除
+delete_failed: 删除失败
+rename: 重命名
+rename_success: 重命名成功
+rename_failed: 重命名失败
+name_colon: 名称: %s
+path_colon: 路径: %s
+size_colon: 大小: %s
+folder: 文件夹
+bytes: 字节
+modified_colon: 最后修改: %s
+readable_colon: 可读: %s
+writable_colon: 可写: %s
+properties: 属性
+create_new: 新建
+create: 创建
+name_empty: 名称不能为空
+already_exists: 已存在同名文件或文件夹
+create_success: 创建成功
+create_failed: 创建失败
+zip_browser: Zip浏览器
+md_editor: Unihub Markdown编辑器
+text_editor: Unihub 文本编辑器
+video_player: Unihub VideoSee
+other_open_with: 其它打开方式
+choose_open_with: 你要选择什么打开方式？
+compress_title: 压缩 %s
+start_compress: 开始压缩
+path_name_empty: 路径和名称不能为空
+compressing: 正在压缩...
+compress_done: 压缩完成: %s
+compress_failed: 压缩失败: %s
+external_app_title: 即将跳转到其它APP
+external_app_warning: 系统可能没有足够权限，无法访问某些文件，建议使用Unihub内部的浏览方式。
+dont_ask_again: 此次会话不再提示
+display: 显示
+theme_tbd: 主题（待实现）
+default_home: 默认首页
+more_settings_tbd: 更多设置（待开发）
+select_all: 全选
+copy: 复制
+copy_to_other: 复制到对侧
+move_to_other: 移动到对侧
+share: 分享
+share_text: 分享文本
+cut: 剪切
+paste: 粘贴
+tools: 工具
+compress: 压缩
+open_with: 打开方式
+add_bookmark: 添加书签
+input_name: 输入名称
+file: 文件
+host_hint: 主机 (如 ftp.example.com)
+port_hint: 端口 (21/22)
+username: 用户名
+password: 密码
+username_or_email: 用户名或邮箱
+save_path: 保存路径
+enter_dir_path: 请输入目录路径
+archive_name: 压缩包名称
+enter_archive_name: 请输入压缩包名称（不含后缀）
+format: 格式
+file_name_label: 文件名
+enter_file_name: 请输入文件名
+encoding: 编码
+unsaved: 未保存
+unsaved_msg: 内容已修改，是否保存？
+cant_open_file: 无法打开文件: %s
+save_as: 另存为
+need_perm: 需要权限
+save_as_need_perm: 另存为需要存储权限，是否前往设置？
+go_to: 前往
+no_storage_perm: 没有存储权限
+saved: 已保存
+saved_with_encoding: 已保存 (%s)
+save_failed: 保存失败: %s
+open: 打开
+extract_failed: 提取失败: %s
+zip_error: 错误: %s
+moving: 移动
+copying: 复制
+move_success: %s成功
+code_block: 多行代码块
+insert: 插入
+avatar: 头像
+refresh: 刷新
+search: 搜索
+filter: 过滤
+sort: 排序方式
+show_hidden: 显示隐藏文件
+exit: 退出
+forward: 前进
+new_file: 新建
+up_level: 上级
+
+language_restart_title: "切换语言"
+language_restart_message: "切换语言需要重启应用，是否现在重启？"
+restart_now: "重启"
+documents: "文档"

@@ -1,0 +1,161 @@
+﻿app_name: Unihub
+home: Domů
+menu: Nabídka
+back: Zpět
+close: Zavřít
+settings: Nastavení
+language: Jazyk
+user_agreement: Podmínky použití
+privacy_policy: Zásady ochrany osobních údajů
+changelog: Seznam změn
+third_party_assets: Zdroje třetích stran
+download_file: Stáhnout soubor
+logout: Odhlásit
+not_logged_in: Nezjištěn
+click_to_login: Kliknutím se přihlásíte
+logged_out: Odhlášeno
+enter_path_or_url: Zadejte cestu nebo URL
+confirm: Potvrdit
+cancel: Zrušit
+ok: OK
+save: Uložit
+dont_save: Neukládat
+login: Přihlásit
+login_blabby: Přihlásit k účtu Blabby
+login_remote_server: Přihlásit ke vzdálenému serveru
+connect: Připojit
+empty_account: Účet a heslo nesmí být prázdné
+login_success: Přihlášení úspěšné
+file_url: URL souboru
+output_path: Výstupní cesta
+download: Stáhnout
+empty_url_path: URL a výstupní cesta nesmí být prázdné
+download_failed: Stahování selhalo
+no_perm_or_full: Žádné oprávnění nebo plné úložiště. Zkontrolujte a zkuste znovu.
+starting_download: Zahajuji stahování...
+download_failed_code: Stahování selhalo, kód stavu: %d
+download_complete: Stahování dokončeno: %s
+search_not_impl: Vyhledávání není implementováno
+select_all_not_impl: Vybrat vše není implementováno
+filter_not_impl: Filtr není implementován
+sort_not_impl: Řazení není implementováno
+show_hidden_files: Zobrazit skryté soubory: %s
+bookmark_not_impl: Záložky zatím nejsou k dispozici
+set_home_not_impl: Nastavit jako domov není implementováno
+swap_window_not_impl: Prohodit okna není implementováno
+folder_colon: Složky: %d
+file_colon: Soubory: %d
+storage_colon: Úložiště: %s/%s
+remote_no_create: Vzdálený server nepodporuje vytváření
+ftp_failed: Připojení FTP selhalo
+sftp_failed: Připojení SFTP selhalo
+conn_error: Chyba připojení: %s
+need_storage_perm: Vyžadováno oprávnění k úložišti
+already_root: Již v kořenovém adresáři
+no_earlier: Žádné dřívější záznamy
+no_later: Žádné novější záznamy
+op_failed: Operace selhala
+error_colon: Chyba: %s
+confirm_delete: Potvrdit smazání
+confirm_delete_msg: Opravdu chcete smazat %s?
+delete: Smazat
+deleted: Smazáno
+delete_failed: Smazání selhalo
+rename: Přejmenovat
+rename_success: Přejmenování úspěšné
+rename_failed: Přejmenování selhalo
+name_colon: Název: %s
+path_colon: Cesta: %s
+size_colon: Velikost: %s
+folder: Složka
+bytes: bajtů
+modified_colon: Změněno: %s
+readable_colon: Čtení: %s
+writable_colon: Zápis: %s
+properties: Vlastnosti
+create_new: Nový
+create: Vytvořit
+name_empty: Název nesmí být prázdný
+already_exists: Soubor nebo složka s tímto názvem již existuje
+create_success: Vytvořeno úspěšně
+create_failed: Vytvoření selhalo
+zip_browser: Prohlížeč Zip
+md_editor: Editor Markdown Unihub
+text_editor: Textový editor Unihub
+video_player: Přehrávač videa Unihub
+other_open_with: Jiná aplikace
+choose_open_with: Jak chcete otevřít?
+compress_title: Komprimovat %s
+start_compress: Zahájit kompresi
+path_name_empty: Cesta a název nesmí být prázdné
+compressing: Komprimuji...
+compress_done: Komprese dokončena: %s
+compress_failed: Komprese selhala: %s
+external_app_title: Chystá se spuštění jiné aplikace
+external_app_warning: Systém nemusí mít dostatečná oprávnění pro přístup k některým souborům. Doporučujeme použít vestavěný prohlížeč UniHub.
+dont_ask_again: V této relaci znovu neptat
+display: Zobrazení
+theme_tbd: Motiv (bude doplněno)
+default_home: Výchozí domovská stránka
+more_settings_tbd: Další nastavení (bude doplněno)
+select_all: Vybrat vše
+copy: Kopírovat
+copy_to_other: Kopírovat na druhou stranu
+move_to_other: Přesunout na druhou stranu
+share: Sdílet
+share_text: Sdílet text
+cut: Vyjmout
+paste: Vložit
+tools: Nástroje
+compress: Komprimovat
+open_with: Otevřít pomocí
+add_bookmark: Přidat záložku
+input_name: Zadejte název
+file: Soubor
+host_hint: Hostitel (např. ftp.example.com)
+port_hint: Port (21/22)
+username: Uživatelské jméno
+password: Heslo
+username_or_email: Uživatelské jméno nebo email
+save_path: Cesta uložení
+enter_dir_path: Zadejte cestu k adresáři
+archive_name: Název archivu
+enter_archive_name: Zadejte název archivu (bez přípony)
+format: Formát
+file_name_label: Název souboru
+enter_file_name: Zadejte název souboru
+encoding: Kódování
+unsaved: Neuloženo
+unsaved_msg: Obsah byl změněn. Uložit?
+cant_open_file: Nelze otevřít soubor: %s
+save_as: Uložit jako
+need_perm: Vyžadováno oprávnění
+save_as_need_perm: Uložit jako vyžaduje oprávnění k úložišti. Přejít do nastavení?
+go_to: Přejít
+no_storage_perm: Žádné oprávnění k úložišti
+saved: Uloženo
+saved_with_encoding: Uloženo (%s)
+save_failed: Uložení selhalo: %s
+open: Otevřít
+extract_failed: Extrakce selhala: %s
+moving: Přesouvání
+copying: Kopírování
+move_success: %s úspěšné
+code_block: Blok kódu
+insert: Vložit
+avatar: Avatar
+refresh: Obnovit
+search: Hledat
+filter: Filtrovat
+sort: Seřadit podle
+show_hidden: Zobrazit skryté soubory
+exit: Konec
+forward: Vpřed
+new_file: Nový
+up_level: Nahoru
+zip_error: Chyba: %s
+
+language_restart_title: "Změnit jazyk"
+language_restart_message: "Změna jazyka vyžaduje restartování aplikace. Restartovat nyní?"
+restart_now: "Restartovat"
+documents: "Dokumenty"

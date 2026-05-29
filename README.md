@@ -144,54 +144,6 @@ The debug APK will be generated at `app/build/outputs/apk/debug/`.
 
 > **Note**: Release builds require a valid signing certificate. Configure `signingConfigs.release` in `app/build.gradle` before building.
 
-## Project Structure
-
-```
-UniHub/
-├── app/
-│   ├── src/
-│   │   └── main/
-│   │       ├── java/com/Blabby/Co/UniHub/
-│   │       │   ├── MainActivity.java        # Main activity
-│   │       │   ├── SettingsActivity.java     # Settings
-│   │       │   ├── DocumentActivity.java     # Document viewer
-│   │       │   ├── VideoSee.java            # Video player
-│   │       │   ├── ZipLiulan.java           # ZIP browser
-│   │       │   ├── WenbenBianjiqi.java      # Text editor
-│   │       │   ├── GeshihuaBianji.java      # Markdown editor
-│   │       │   ├── MyApplication.java       # Application class
-│   │       │   ├── data/
-│   │       │   │   └── model/
-│   │       │   │       ├── FileItem.java
-│   │       │   │       └── RemoteFileEntry.java
-│   │       │   ├── network/
-│   │       │   │   ├── FtpClient.java       # FTP client
-│   │       │   │   └── SftpClient.java      # SFTP client
-│   │       │   ├── ui/
-│   │       │   │   ├── adapters/
-│   │       │   │   │   ├── FileListAdapter.java
-│   │       │   │   │   └── RemoteFileListAdapter.java
-│   │       │   │   ├── dialogs/
-│   │       │   │   │   └── LoginDialog.java
-│   │       │   │   └── fragments/
-│   │       │   │       ├── FileBrowserFragment.java
-│   │       │   │       ├── RemoteFileBrowserFragment.java
-│   │       │   │       └── WebBrowserFragment.java
-│   │       │   └── util/
-│   │       │       ├── AccountManager.java
-│   │       │       ├── FileOperations.java
-│   │       │       ├── FileUtils.java
-│   │       │       ├── Localization.java    # i18n engine
-│   │       │       └── PathParser.java
-│   │       ├── res/
-│   │       └── AndroidManifest.xml
-│   ├── build.gradle
-│   └── proguard-rules.pro
-├── build.gradle                              # Root build script
-├── settings.gradle
-├── gradle.properties
-└── gradlew
-```
 
 ## License
 

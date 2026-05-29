@@ -144,54 +144,6 @@ cd UniHub
 
 > **注意**：Release 构建需要有效的签名证书，请在 `app/build.gradle` 中配置 `signingConfigs.release`。
 
-## 项目结构
-
-```
-UniHub/
-├── app/
-│   ├── src/
-│   │   └── main/
-│   │       ├── java/com/Blabby/Co/UniHub/
-│   │       │   ├── MainActivity.java        # 主活动
-│   │       │   ├── SettingsActivity.java     # 设置
-│   │       │   ├── DocumentActivity.java     # 文档查看
-│   │       │   ├── VideoSee.java            # 视频播放
-│   │       │   ├── ZipLiulan.java           # ZIP 浏览
-│   │       │   ├── WenbenBianjiqi.java      # 文本编辑器
-│   │       │   ├── GeshihuaBianji.java      # Markdown 编辑器
-│   │       │   ├── MyApplication.java       # Application 类
-│   │       │   ├── data/
-│   │       │   │   └── model/
-│   │       │   │       ├── FileItem.java
-│   │       │   │       └── RemoteFileEntry.java
-│   │       │   ├── network/
-│   │       │   │   ├── FtpClient.java       # FTP 客户端
-│   │       │   │   └── SftpClient.java      # SFTP 客户端
-│   │       │   ├── ui/
-│   │       │   │   ├── adapters/
-│   │       │   │   │   ├── FileListAdapter.java
-│   │       │   │   │   └── RemoteFileListAdapter.java
-│   │       │   │   ├── dialogs/
-│   │       │   │   │   └── LoginDialog.java
-│   │       │   │   └── fragments/
-│   │       │   │       ├── FileBrowserFragment.java
-│   │       │   │       ├── RemoteFileBrowserFragment.java
-│   │       │   │       └── WebBrowserFragment.java
-│   │       │   └── util/
-│   │       │       ├── AccountManager.java
-│   │       │       ├── FileOperations.java
-│   │       │       ├── FileUtils.java
-│   │       │       ├── Localization.java    # 国际化引擎
-│   │       │       └── PathParser.java
-│   │       ├── res/
-│   │       └── AndroidManifest.xml
-│   ├── build.gradle
-│   └── proguard-rules.pro
-├── build.gradle                              # 根构建脚本
-├── settings.gradle
-├── gradle.properties
-└── gradlew
-```
 
 ## 许可证
 

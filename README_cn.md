@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="https://raw.githubusercontent.com/blabby-cn/UniHub/main/app/src/main/res/mipmap-anydpi-v26/ic_launcher.png" alt="UniHub Logo" width="120" />
+  <img src="[https://raw.githubusercontent.com/blabby-cn/UniHub/main/app/src/main/res/mipmap-anydpi-v26/ic_launcher.png](https://github.com/blabby-cn/UniHub/blob/main/Unihub.png)" alt="UniHub Logo" width="120" />
 
   # UniHub
 

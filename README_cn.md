@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="https://raw.githubusercontent.com/blabby-cn/UniHub/main/Unihub.png" alt="UniHub Logo" width="120" />alt="UniHub Logo" width="120" />
+  <img src="https://raw.githubusercontent.com/blabby-cn/UniHub/main/Unihub.png" alt="UniHub Logo" width="120" />
 
   # UniHub
 

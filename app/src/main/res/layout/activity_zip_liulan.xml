@@ -20,7 +20,7 @@
             android:layout_height="40dp"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:src="@drawable/ic_arrow_back"
-            android:contentDescription="返回"
+            android:contentDescription="@string/back_description"
             android:tint="@color/on_primary" />
 
         <TextView
@@ -28,7 +28,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Unihub Zip"
+            android:text="@string/title_zip_browser"
             android:textColor="@color/on_primary"
             android:textSize="16sp"
             android:textStyle="bold"

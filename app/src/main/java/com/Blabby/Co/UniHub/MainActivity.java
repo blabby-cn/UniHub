@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
 import android.widget.*;
@@ -20,11 +21,13 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import com.Blabby.Co.UniHub.network.FtpClient;
 import com.Blabby.Co.UniHub.network.SftpClient;
+import com.Blabby.Co.UniHub.data.model.BookmarkItem;
 import com.Blabby.Co.UniHub.ui.dialogs.LoginDialog;
 import com.Blabby.Co.UniHub.ui.fragments.FileBrowserFragment;
 import com.Blabby.Co.UniHub.ui.fragments.RemoteFileBrowserFragment;
 import com.Blabby.Co.UniHub.ui.fragments.WebBrowserFragment;
 import com.Blabby.Co.UniHub.util.AccountManager;
+import com.Blabby.Co.UniHub.util.BookmarkManager;
 import com.Blabby.Co.UniHub.util.Localization;
 import com.Blabby.Co.UniHub.util.PathParser;
 import com.bumptech.glide.Glide;
@@ -32,6 +35,7 @@ import com.google.android.material.appbar.MaterialToolbar;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.List;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.OkHttpClient;
@@ -115,9 +119,9 @@ public class MainActivity extends AppCompatActivity implements FileBrowserFragme
             closeSidebar();
             startActivity(new Intent(this, DownloadActivity.class));
         });
-        sidebarOverlay.findViewById(R.id.menu_ai).setOnClickListener(v -> {
+        sidebarOverlay.findViewById(R.id.menu_bookmarks).setOnClickListener(v -> {
             closeSidebar();
-            startActivity(new Intent(this, AiChatActivity.class));
+            showBookmarkDialog();
         });
         sidebarOverlay.findViewById(R.id.menu_logout).setOnClickListener(v -> {
             closeSidebar();
@@ -174,7 +178,7 @@ public class MainActivity extends AppCompatActivity implements FileBrowserFragme
         ((TextView) sidebarOverlay.findViewById(R.id.menu_settings)).setText(l.get("settings"));
         ((TextView) sidebarOverlay.findViewById(R.id.menu_docs)).setText(l.get("documents"));
         ((TextView) sidebarOverlay.findViewById(R.id.menu_download)).setText(l.get("download_file"));
-        ((TextView) sidebarOverlay.findViewById(R.id.menu_ai)).setText(l.get("ai_chat"));
+        ((TextView) sidebarOverlay.findViewById(R.id.menu_bookmarks)).setText(l.get("bookmarks"));
         ((TextView) sidebarOverlay.findViewById(R.id.menu_logout)).setText(l.get("logout"));
     }
 
@@ -250,7 +254,11 @@ public class MainActivity extends AppCompatActivity implements FileBrowserFragme
             item.setChecked(!item.isChecked());
             Toast.makeText(this, Localization.getInstance(this).get("show_hidden_files", String.valueOf(item.isChecked())), Toast.LENGTH_SHORT).show();
         } else if (id == R.id.menu_add_bookmark) {
-            Toast.makeText(this, Localization.getInstance(this).get("bookmark_not_impl"), Toast.LENGTH_SHORT).show();
+            if (currentMode == 2) {
+                addCurrentAsBookmark();
+            } else {
+                Toast.makeText(this, Localization.getInstance(this).get("web_only_bookmark"), Toast.LENGTH_SHORT).show();
+            }
         } else if (id == R.id.menu_set_home) {
             Toast.makeText(this, Localization.getInstance(this).get("set_home_not_impl"), Toast.LENGTH_SHORT).show();
         } else if (id == R.id.menu_swap_window) {
@@ -530,5 +538,288 @@ public class MainActivity extends AppCompatActivity implements FileBrowserFragme
                         Localization.getInstance(MainActivity.this).get("download_complete", outFile.getAbsolutePath()), Toast.LENGTH_LONG).show());
             }
         });
+    }
+
+    private void addCurrentAsBookmark() {
+        Localization l = Localization.getInstance(this);
+        BookmarkManager bm = BookmarkManager.getInstance(this);
+        if (!bm.canAdd()) {
+            Toast.makeText(this, l.get("bookmark_limit_reached"), Toast.LENGTH_SHORT).show();
+            return;
+        }
+        String currentAddr = addressPath.getText().toString();
+        boolean isWeb = currentMode == 2;
+        final String name;
+        final String type;
+        final String pathVal;
+        final String browserVal;
+        if (isWeb) {
+            type = "web";
+            pathVal = "nil";
+            browserVal = currentAddr;
+            name = currentAddr;
+        } else {
+            type = "path";
+            pathVal = currentAddr;
+            browserVal = "nil";
+            String[] parts = currentAddr.split("/");
+            String lastPart = parts.length > 0 ? parts[parts.length - 1] : currentAddr;
+            name = lastPart.isEmpty() ? currentAddr : lastPart;
+        }
+        EditText etName = new EditText(this);
+        etName.setText(name);
+        etName.setTextColor(getResources().getColor(R.color.on_surface));
+        new AlertDialog.Builder(this, R.style.AlertDialogTheme)
+                .setTitle(l.get("add_bookmark"))
+                .setView(etName)
+                .setPositiveButton(l.get("confirm"), (d, w) -> {
+                    String n = etName.getText().toString().trim();
+                    int id = bm.add(n.isEmpty() ? name : n, type, pathVal, browserVal);
+                    if (id > 0) {
+                        Toast.makeText(MainActivity.this, l.get("bookmark_added"), Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(MainActivity.this, l.get("bookmark_limit_reached"), Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .setNegativeButton(l.get("cancel"), null)
+                .show();
+    }
+
+    private void showBookmarkDialog() {
+        Localization l = Localization.getInstance(this);
+        BookmarkManager bm = BookmarkManager.getInstance(this);
+        List<BookmarkItem> items = bm.getAll();
+        AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.AlertDialogTheme);
+        builder.setTitle(l.get("bookmarks") + " (" + items.size() + "/" + bm.getMax() + ")");
+        if (items.isEmpty()) {
+            builder.setMessage(l.get("no_bookmarks"));
+            builder.setPositiveButton(l.get("add_bookmark"), (d, w) -> showAddBookmarkDialog());
+            builder.setNegativeButton(l.get("cancel"), null);
+            builder.show();
+            return;
+        }
+        View dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_bookmarks, null);
+        ListView listView = dialogView.findViewById(R.id.bookmark_list);
+        TextView countView = dialogView.findViewById(R.id.bookmark_count);
+        Button addBtn = dialogView.findViewById(R.id.btn_add_bookmark);
+        List<BookmarkItem> finalItems = items;
+        ArrayAdapter<BookmarkItem> adapter = new ArrayAdapter<BookmarkItem>(this, R.layout.item_bookmark, R.id.bookmark_text, items) {
+            @NonNull
+            @Override
+            public View getView(int position, View convertView, @NonNull ViewGroup parent) {
+                View v = super.getView(position, convertView, parent);
+                BookmarkItem bi = getItem(position);
+                ImageView icon = v.findViewById(R.id.bookmark_icon);
+                if (bi.type.equals("web")) {
+                    icon.setImageResource(R.drawable.ic_open_in_new);
+                    icon.setColorFilter(getResources().getColor(R.color.on_surface));
+                } else {
+                    icon.setImageResource(R.drawable.ic_folder_24);
+                    icon.setColorFilter(getResources().getColor(R.color.on_surface));
+                }
+                TextView text = v.findViewById(R.id.bookmark_text);
+                text.setText("#" + bi.id + " " + bi.name);
+                return v;
+            }
+        };
+        listView.setAdapter(adapter);
+        listView.setOnItemClickListener((parent, view, position, id) -> {
+            showBookmarkActionDialog(finalItems.get(position));
+        });
+        countView.setText(items.size() + "/" + bm.getMax());
+        addBtn.setOnClickListener(v -> showAddBookmarkDialog());
+        addBtn.setText(l.get("add_bookmark"));
+        builder.setView(dialogView);
+        builder.setNegativeButton(l.get("cancel"), null);
+        builder.show();
+    }
+
+    private void showBookmarkActionDialog(BookmarkItem item) {
+        Localization l = Localization.getInstance(this);
+        String typeLabel = item.type.equals("web") ? l.get("web_bookmark") : l.get("path_bookmark");
+        String info = l.get("name_colon", item.name) + "\n"
+                + l.get("bookmark_type") + ": " + typeLabel + "\n"
+                + (item.type.equals("web") ? l.get("bookmark_url") + ": " + item.browser
+                : l.get("bookmark_path") + ": " + item.path);
+        new AlertDialog.Builder(this, R.style.AlertDialogTheme)
+                .setTitle("#" + item.id + " " + item.name)
+                .setMessage(info)
+                .setPositiveButton(l.get("jump"), (d, w) -> jumpToBookmark(item))
+                .setNeutralButton(l.get("edit"), (d, w) -> showEditBookmarkDialog(item))
+                .setNegativeButton(l.get("delete"), (d, w) -> {
+                    BookmarkManager.getInstance(MainActivity.this).delete(item.id);
+                    Toast.makeText(MainActivity.this, l.get("bookmark_deleted"), Toast.LENGTH_SHORT).show();
+                })
+                .show();
+    }
+
+    private void jumpToBookmark(BookmarkItem item) {
+        if (item.type.equals("web")) {
+            switchToWebMode(item.browser);
+        } else {
+            File f = new File(item.path);
+            if (f.isFile()) {
+                switchToLocalMode(f.getParent());
+            } else {
+                switchToLocalMode(item.path);
+            }
+        }
+    }
+
+    private void showAddBookmarkDialog() {
+        Localization l = Localization.getInstance(this);
+        BookmarkManager bm = BookmarkManager.getInstance(this);
+        if (!bm.canAdd()) {
+            Toast.makeText(this, l.get("bookmark_limit_reached"), Toast.LENGTH_SHORT).show();
+            return;
+        }
+        EditText etName = new EditText(this);
+        etName.setHint(l.get("bookmark_name"));
+        etName.setTextColor(getResources().getColor(R.color.on_surface));
+        RadioGroup radioGroup = new RadioGroup(this);
+        RadioButton rbWeb = new RadioButton(this);
+        rbWeb.setText(l.get("web_bookmark"));
+        rbWeb.setTextColor(getResources().getColor(R.color.on_surface));
+        rbWeb.setId(View.generateViewId());
+        RadioButton rbPath = new RadioButton(this);
+        rbPath.setText(l.get("path_bookmark"));
+        rbPath.setTextColor(getResources().getColor(R.color.on_surface));
+        rbPath.setId(View.generateViewId());
+        radioGroup.addView(rbWeb);
+        radioGroup.addView(rbPath);
+        radioGroup.check(rbWeb.getId());
+        LinearLayout layout = new LinearLayout(this);
+        layout.setOrientation(LinearLayout.VERTICAL);
+        layout.setPadding(32, 0, 32, 0);
+        layout.addView(etName);
+        layout.addView(radioGroup);
+        new AlertDialog.Builder(this, R.style.AlertDialogTheme)
+                .setTitle(l.get("add_bookmark"))
+                .setView(layout)
+                .setPositiveButton(l.get("confirm"), (d, w) -> {
+                    String n = etName.getText().toString().trim();
+                    if (n.isEmpty()) {
+                        Toast.makeText(MainActivity.this, l.get("name_empty"), Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    if (radioGroup.getCheckedRadioButtonId() == rbWeb.getId()) {
+                        showWebUrlInput(n);
+                    } else {
+                        showPathInput(n);
+                    }
+                })
+                .setNegativeButton(l.get("cancel"), null)
+                .show();
+    }
+
+    private void showWebUrlInput(String name) {
+        Localization l = Localization.getInstance(this);
+        EditText input = new EditText(this);
+        input.setHint(l.get("bookmark_url"));
+        input.setTextColor(getResources().getColor(R.color.on_surface));
+        new AlertDialog.Builder(this, R.style.AlertDialogTheme)
+                .setTitle(name)
+                .setView(input)
+                .setPositiveButton(l.get("confirm"), (d, w) -> {
+                    String url = input.getText().toString().trim();
+                    if (url.isEmpty()) {
+                        Toast.makeText(MainActivity.this, l.get("name_empty"), Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    BookmarkManager bm = BookmarkManager.getInstance(MainActivity.this);
+                    int id = bm.add(name, "web", "nil", url);
+                    if (id > 0) Toast.makeText(MainActivity.this, l.get("bookmark_added"), Toast.LENGTH_SHORT).show();
+                })
+                .setNegativeButton(l.get("cancel"), null)
+                .show();
+    }
+
+    private void showPathInput(String name) {
+        Localization l = Localization.getInstance(this);
+        EditText input = new EditText(this);
+        input.setHint(l.get("bookmark_path"));
+        input.setTextColor(getResources().getColor(R.color.on_surface));
+        new AlertDialog.Builder(this, R.style.AlertDialogTheme)
+                .setTitle(name)
+                .setView(input)
+                .setPositiveButton(l.get("confirm"), (d, w) -> {
+                    String path = input.getText().toString().trim();
+                    if (path.isEmpty()) {
+                        Toast.makeText(MainActivity.this, l.get("name_empty"), Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    BookmarkManager bm = BookmarkManager.getInstance(MainActivity.this);
+                    int id = bm.add(name, "path", path, "nil");
+                    if (id > 0) Toast.makeText(MainActivity.this, l.get("bookmark_added"), Toast.LENGTH_SHORT).show();
+                })
+                .setNegativeButton(l.get("cancel"), null)
+                .show();
+    }
+
+    private void showEditBookmarkDialog(BookmarkItem item) {
+        Localization l = Localization.getInstance(this);
+        EditText etName = new EditText(this);
+        etName.setText(item.name);
+        etName.setTextColor(getResources().getColor(R.color.on_surface));
+        EditText etValue = new EditText(this);
+        etValue.setTextColor(getResources().getColor(R.color.on_surface));
+        if (item.type.equals("web")) {
+            etValue.setHint(l.get("bookmark_url"));
+            etValue.setText(item.browser);
+        } else {
+            etValue.setHint(l.get("bookmark_path"));
+            etValue.setText(item.path);
+        }
+        RadioGroup radioGroup = new RadioGroup(this);
+        RadioButton rbWeb = new RadioButton(this);
+        rbWeb.setText(l.get("web_bookmark"));
+        rbWeb.setTextColor(getResources().getColor(R.color.on_surface));
+        rbWeb.setId(View.generateViewId());
+        RadioButton rbPath = new RadioButton(this);
+        rbPath.setText(l.get("path_bookmark"));
+        rbPath.setTextColor(getResources().getColor(R.color.on_surface));
+        rbPath.setId(View.generateViewId());
+        radioGroup.addView(rbWeb);
+        radioGroup.addView(rbPath);
+        if (item.type.equals("web")) {
+            radioGroup.check(rbWeb.getId());
+        } else {
+            radioGroup.check(rbPath.getId());
+        }
+        radioGroup.setOnCheckedChangeListener((group, checkedId) -> {
+            if (checkedId == rbWeb.getId()) {
+                etValue.setHint(l.get("bookmark_url"));
+                etValue.setText(item.browser);
+            } else {
+                etValue.setHint(l.get("bookmark_path"));
+                etValue.setText(item.path);
+            }
+        });
+        LinearLayout layout = new LinearLayout(this);
+        layout.setOrientation(LinearLayout.VERTICAL);
+        layout.setPadding(32, 0, 32, 0);
+        layout.addView(etName);
+        layout.addView(radioGroup);
+        layout.addView(etValue);
+        new AlertDialog.Builder(this, R.style.AlertDialogTheme)
+                .setTitle(l.get("edit"))
+                .setView(layout)
+                .setPositiveButton(l.get("confirm"), (d, w) -> {
+                    String n = etName.getText().toString().trim();
+                    String v = etValue.getText().toString().trim();
+                    if (n.isEmpty() || v.isEmpty()) {
+                        Toast.makeText(MainActivity.this, l.get("name_empty"), Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    boolean ok;
+                    if (radioGroup.getCheckedRadioButtonId() == rbWeb.getId()) {
+                        ok = BookmarkManager.getInstance(MainActivity.this).update(item.id, n, "web", "nil", v);
+                    } else {
+                        ok = BookmarkManager.getInstance(MainActivity.this).update(item.id, n, "path", v, "nil");
+                    }
+                    if (ok) Toast.makeText(MainActivity.this, l.get("bookmark_updated"), Toast.LENGTH_SHORT).show();
+                })
+                .setNegativeButton(l.get("cancel"), null)
+                .show();
     }
 }

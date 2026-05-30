@@ -18,6 +18,7 @@ public class WenjianTanchuang {
         void onShare(File file);
         void onOpenWith(File file);
         void onCompress(File file);
+        void onAddBookmark(File file);
     }
 
     public static void show(Context context, File file, ActionListener listener) {
@@ -30,6 +31,7 @@ public class WenjianTanchuang {
         LinearLayout btnShare = dialogView.findViewById(R.id.btn_share);
         LinearLayout btnOpenWith = dialogView.findViewById(R.id.btn_open_with);
         LinearLayout btnCompress = dialogView.findViewById(R.id.btn_compress);
+        LinearLayout btnBookmark = dialogView.findViewById(R.id.btn_bookmark);
 
         AlertDialog dialog = new AlertDialog.Builder(context, R.style.AlertDialogTheme)
                 .setTitle(file.getName())
@@ -46,6 +48,7 @@ public class WenjianTanchuang {
         btnShare.setOnClickListener(v -> { listener.onShare(file); dialog.dismiss(); });
         btnOpenWith.setOnClickListener(v -> { listener.onOpenWith(file); dialog.dismiss(); });
         btnCompress.setOnClickListener(v -> { listener.onCompress(file); dialog.dismiss(); });
+        btnBookmark.setOnClickListener(v -> { listener.onAddBookmark(file); dialog.dismiss(); });
 
         dialog.show();
     }

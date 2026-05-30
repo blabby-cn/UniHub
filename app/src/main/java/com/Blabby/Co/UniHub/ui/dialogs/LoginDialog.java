@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -32,7 +33,7 @@ public class LoginDialog extends DialogFragment {
     @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(requireActivity());
+        AlertDialog.Builder builder = new AlertDialog.Builder(requireActivity(), R.style.AlertDialogTheme);
         LayoutInflater inflater = requireActivity().getLayoutInflater();
         View view = inflater.inflate(R.layout.dialog_login, null);
 
@@ -49,9 +50,20 @@ public class LoginDialog extends DialogFragment {
                 .setTitle(l.get("login_remote_server"))
                 .setPositiveButton(l.get("connect"), (dialog, which) -> {
                     String host = etHost.getText().toString().trim();
-                    int port = Integer.parseInt(etPort.getText().toString().trim());
+                    String portStr = etPort.getText().toString().trim();
                     String user = etUser.getText().toString().trim();
                     String pass = etPass.getText().toString().trim();
+                    if (host.isEmpty()) {
+                        Toast.makeText(requireContext(), l.get("name_empty"), Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    int port;
+                    try {
+                        port = Integer.parseInt(portStr);
+                    } catch (NumberFormatException e) {
+                        Toast.makeText(requireContext(), l.get("error_colon", l.get("port_hint")), Toast.LENGTH_SHORT).show();
+                        return;
+                    }
                     if (listener != null) listener.onLogin(host, port, user, pass);
                 })
                 .setNegativeButton(l.get("cancel"), null);

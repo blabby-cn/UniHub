@@ -17,7 +17,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="下载选项"
+            android:text="@string/download_options_title"
             android:textSize="20sp"
             android:textStyle="bold"
             android:textColor="?attr/colorOnSurface"
@@ -26,7 +26,7 @@
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="保存路径"
+            android:hint="@string/download_save_path_hint"
             style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
             android:layout_marginBottom="12dp">
 
@@ -42,7 +42,7 @@
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="文件名"
+            android:hint="@string/download_file_name_hint"
             style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
             android:layout_marginBottom="24dp">
 
@@ -65,7 +65,7 @@
                 android:id="@+id/btn_cancel"
                 android:layout_width="wrap_content"
                 android:layout_height="36dp"
-                android:text="取消"
+                android:text="@string/cancel"
                 style="@style/Widget.Material3.Button.TextButton"
                 android:textColor="?attr/colorOnSurfaceVariant" />
 
@@ -73,7 +73,7 @@
                 android:id="@+id/btn_confirm"
                 android:layout_width="wrap_content"
                 android:layout_height="36dp"
-                android:text="下载"
+                android:text="@string/download"
                 style="@style/Widget.Material3.Button.TextButton"
                 android:textColor="?attr/colorOnSurfaceVariant" />
 

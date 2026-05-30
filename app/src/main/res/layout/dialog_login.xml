@@ -9,26 +9,26 @@
         android:id="@+id/et_host"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="主机 (如 ftp.example.com)"
+        android:hint="@string/host_hint"
         android:inputType="textUri" />
 
     <EditText
         android:id="@+id/et_port"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="端口 (21/22)"
+        android:hint="@string/port_hint"
         android:inputType="number" />
 
     <EditText
         android:id="@+id/et_username"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="用户名" />
+        android:hint="@string/username_hint" />
 
     <EditText
         android:id="@+id/et_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="密码"
+        android:hint="@string/password_hint"
         android:inputType="textPassword" />
 </LinearLayout>

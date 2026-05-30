@@ -12,12 +12,12 @@
     <string name="save_as_description">另存为</string>
     <string name="close_description">关闭</string>
     <string name="avatar_description">头像</string>
-    <string name="cancel">取消</string>
+    <string name="cancel">Cancel</string>
     <string name="download">下载</string>
-    <string name="pause">暂停</string>
+    <string name="pause">Pause</string>
     <string name="resume">继续</string>
     <string name="delete_download">删除</string>
-    <string name="ok">确定</string>
+    <string name="ok">Ok</string>
     <string name="save">保存</string>
     <string name="dont_save">不保存</string>
     <string name="confirm">确认</string>
@@ -218,13 +218,13 @@
     <string name="path_bookmark">路径书签</string>
     <string name="jump">跳转</string>
     <string name="bookmark_name">书签名</string>
-    <string name="bookmark_type">类型</string>
+    <string name="bookmark_type">Type</string>
     <string name="bookmark_url">网址</string>
     <string name="bookmark_path">路径</string>
     <string name="bookmark_added">书签已添加</string>
     <string name="bookmark_deleted">书签已删除</string>
     <string name="bookmark_updated">书签已修改</string>
-    <string name="bookmark_limit_reached">已达书签上限(150)</string>
+    <string name="bookmark_limit_reached">Bookmark Limit (150)</string>
     <string name="no_bookmarks">暂无书签</string>
     <string name="quick_add_bookmark">快捷添加书签</string>
     <string name="web_only_bookmark">仅网页模式下可用</string>
@@ -265,7 +265,7 @@
 
     <string name="undo">撤销</string>
     <string name="redo">重做</string>
-    <string name="more">更多</string>
+    <string name="more">More</string>
     <string name="untitled">未命名</string>
 
     <string name="inline_code">行内代码</string>

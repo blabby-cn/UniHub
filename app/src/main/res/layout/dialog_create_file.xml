@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:hint="输入名称">
+        android:hint="@string/create_name_hint">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/et_name"
@@ -33,7 +33,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="文件"
+            android:text="@string/create_file"
             android:textColor="@color/on_surface" />
 
         <RadioButton
@@ -41,7 +41,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="文件夹"
+            android:text="@string/create_folder"
             android:textColor="@color/on_surface" />
     </RadioGroup>
 </LinearLayout>

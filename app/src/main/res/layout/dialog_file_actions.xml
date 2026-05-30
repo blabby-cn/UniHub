@@ -29,7 +29,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="复制到对侧"
+                android:text="@string/copy_to_other"
                 android:textSize="14sp"
                 android:textColor="@color/on_surface"
                 android:layout_marginStart="8dp" />
@@ -54,7 +54,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="移动到对侧"
+                android:text="@string/move_to_other"
                 android:textSize="14sp"
                 android:textColor="@color/on_surface"
                 android:layout_marginStart="8dp" />
@@ -85,7 +85,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="删除"
+                android:text="@string/delete"
                 android:textSize="14sp"
                 android:textColor="@color/on_surface"
                 android:layout_marginStart="8dp" />
@@ -110,7 +110,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="重命名"
+                android:text="@string/rename"
                 android:textSize="14sp"
                 android:textColor="@color/on_surface"
                 android:layout_marginStart="8dp" />
@@ -141,7 +141,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="工具"
+                android:text="@string/tools"
                 android:textSize="14sp"
                 android:textColor="@color/on_surface"
                 android:layout_marginStart="8dp" />
@@ -166,7 +166,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="压缩"
+                android:text="@string/compress"
                 android:textSize="14sp"
                 android:textColor="@color/on_surface"
                 android:layout_marginStart="8dp" />
@@ -197,7 +197,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="属性"
+                android:text="@string/properties"
                 android:textSize="14sp"
                 android:textColor="@color/on_surface"
                 android:layout_marginStart="8dp" />
@@ -222,7 +222,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="分享"
+                android:text="@string/share"
                 android:textSize="14sp"
                 android:textColor="@color/on_surface"
                 android:layout_marginStart="8dp" />
@@ -253,7 +253,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="打开方式"
+                android:text="@string/open_with"
                 android:textSize="14sp"
                 android:textColor="@color/on_surface"
                 android:layout_marginStart="8dp" />
@@ -267,8 +267,7 @@
             android:gravity="center_vertical"
             android:orientation="horizontal"
             android:padding="12dp"
-            android:background="?attr/selectableItemBackground"
-            android:visibility="gone">
+            android:background="?attr/selectableItemBackground">
 
             <ImageView
                 android:layout_width="24dp"
@@ -279,7 +278,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="添加书签"
+                android:text="@string/quick_add_bookmark"
                 android:textSize="14sp"
                 android:textColor="@color/on_surface"
                 android:layout_marginStart="8dp" />

@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.Blabby.Co.UniHub.download.DownloadManager;
 import com.Blabby.Co.UniHub.ui.adapters.DownloadAdapter;
+import com.Blabby.Co.UniHub.util.Localization;
 
 public class DownloadActivity extends AppCompatActivity {
 
@@ -25,10 +26,12 @@ public class DownloadActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_download);
 
+        Localization l = Localization.getInstance(this);
+
         ImageButton btnBack = findViewById(R.id.btn_back);
         ImageButton btnAdd = findViewById(R.id.btn_add);
         TextView tvTitle = findViewById(R.id.tv_title);
-        tvTitle.setText("下载管理");
+        tvTitle.setText(l.get("title_download"));
 
         recyclerView = findViewById(R.id.recycler_downloads);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -40,17 +43,17 @@ public class DownloadActivity extends AppCompatActivity {
 
         btnAdd.setOnClickListener(v -> {
             EditText editText = new EditText(this);
-            editText.setHint("输入下载链接");
+            editText.setHint(l.get("input_download_url"));
             new AlertDialog.Builder(this)
-                    .setTitle("新建下载")
+                    .setTitle(l.get("new_download"))
                     .setView(editText)
-                    .setPositiveButton("下载", (dialog, which) -> {
+                    .setPositiveButton(l.get("download"), (dialog, which) -> {
                         String url = editText.getText().toString().trim();
                         if (url.isEmpty()) return;
                         String fileName = URLUtil.guessFileName(url, null, null);
                         DownloadManager.getInstance().addTask(url, fileName, null);
                     })
-                    .setNegativeButton("取消", null)
+                    .setNegativeButton(l.get("cancel"), null)
                     .show();
         });
 

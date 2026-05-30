@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Unihub</string>
+    <string-array name="compress_formats">
+        <item>.zip</item>
+        <item>.xz</item>
+    </string-array>
+
+    <string name="back_description">Kembali</string>
+    <string name="save_description">Simpan</string>
+    <string name="tools_description">Alatan</string>
+    <string name="save_as_description">Simpan Sebagai</string>
+    <string name="close_description">Tutup</string>
+    <string name="avatar_description">Avatar</string>
+    <string name="cancel">Batal</string>
+    <string name="download">Muat Turun</string>
+    <string name="pause">Jeda</string>
+    <string name="resume">Sambung</string>
+    <string name="delete_download">Padam</string>
+    <string name="ok">OK</string>
+    <string name="save">Simpan</string>
+    <string name="dont_save">Jangan simpan</string>
+    <string name="confirm">Sahkan</string>
+    <string name="open">Buka</string>
+    <string name="close">Tutup</string>
+    <string name="insert">Sisip</string>
+    <string name="share">Kongsi</string>
+    <string name="share_text">Kongsi teks</string>
+    <string name="cut">Potong</string>
+    <string name="paste">Tampal</string>
+    <string name="copy">Salin</string>
+    <string name="select_all">Pilih Semua</string>
+    <string name="delete">Padam</string>
+    <string name="rename">Tukar Nama</string>
+    <string name="properties">Sifat</string>
+    <string name="tools">Alatan</string>
+    <string name="compress">Mampat</string>
+    <string name="open_with">Buka dengan</string>
+    <string name="add_bookmark">Tambah Tandabuku</string>
+    <string name="refresh">Muat Semula</string>
+    <string name="search">Cari</string>
+    <string name="filter">Tapis</string>
+    <string name="sort">Susun</string>
+    <string name="show_hidden">Tunjukkan fail tersembunyi</string>
+    <string name="exit">Keluar</string>
+    <string name="forward">Maju</string>
+    <string name="new_file">Baru</string>
+    <string name="up_level">Naik</string>
+    <string name="copy_to_other">Salin ke sebelah</string>
+    <string name="move_to_other">Pindah ke sebelah</string>
+
+    <string name="title_docs">Dokumen</string>
+    <string name="title_download">Pengurus Muat Turun</string>
+    <string name="title_md_editor">Penyunting Markdown Unihub</string>
+    <string name="title_text_editor">Penyunting Teks Unihub</string>
+    <string name="title_video_see">Pemain Video Unihub</string>
+    <string name="title_zip_browser">Pelayar Zip Unihub</string>
+    <string name="settings_title">Tetapan</string>
+
+    <string name="menu">Menu</string>
+    <string name="home">Laman Utama</string>
+    <string name="settings">Tetapan</string>
+    <string name="documents">Dokumen</string>
+    <string name="download_file">Muat Turun Fail</string>
+    <string name="logout">Log Keluar</string>
+    <string name="not_logged_in">Belum log masuk</string>
+    <string name="click_to_login">Klik untuk log masuk</string>
+    <string name="logged_out">Telah log keluar</string>
+
+    <string name="language">Bahasa</string>
+    <string name="current_language_label">Bahasa Semasa</string>
+    <string name="language_simplified_chinese">Bahasa Melayu</string>
+    <string name="language_restart_title">Tukar Bahasa</string>
+    <string name="language_restart_message">Menukar bahasa memerlukan mulakan semula aplikasi. Mulakan semula sekarang?</string>
+    <string name="restart_now">Mulakan Semula</string>
+
+    <string name="enter_path_or_url">Masukkan laluan atau URL</string>
+
+    <string name="login">Log Masuk</string>
+    <string name="login_blabby">Log Masuk Akaun Blabby</string>
+    <string name="login_remote_server">Log Masuk Pelayan Jarak Jauh</string>
+    <string name="connect">Sambung</string>
+    <string name="empty_account">Akaun dan kata laluan tidak boleh kosong</string>
+    <string name="login_success">Log masuk berjaya</string>
+    <string name="host_hint">Hos (cth. ftp.example.com)</string>
+    <string name="port_hint">Port (21/22)</string>
+    <string name="username_hint">Nama pengguna</string>
+    <string name="password_hint">Kata laluan</string>
+    <string name="username_or_email_hint">Nama pengguna atau emel</string>
+
+    <string name="file_url">URL Fail</string>
+    <string name="output_path">Laluan output</string>
+    <string name="empty_url_path">URL dan laluan output tidak boleh kosong</string>
+    <string name="download_failed">Muat turun gagal</string>
+    <string name="no_perm_or_full">Tiada kebenaran atau storan penuh, sila periksa dan cuba lagi.</string>
+    <string name="starting_download">Memulakan muat turun...</string>
+    <string name="download_failed_code">Muat turun gagal, kod status: %d</string>
+    <string name="download_complete">Muat turun selesai: %s</string>
+    <string name="download_hint_text">Memulakan muat turun, klik untuk lihat</string>
+    <string name="download_options_title">Pilihan Muat Turun</string>
+    <string name="download_save_path_hint">Laluan simpan</string>
+    <string name="download_file_name_hint">Nama fail</string>
+    <string name="new_download">Muat turun baru</string>
+    <string name="input_download_url">Masukkan URL muat turun</string>
+
+    <string name="status_waiting">Menunggu</string>
+    <string name="status_downloading">Muat turun</string>
+    <string name="status_paused">Dijeda</string>
+    <string name="status_finished">Selesai</string>
+    <string name="status_error">Ralat</string>
+    <string name="status_file_missing">Fail hilang</string>
+    <string name="completed">Selesai</string>
+    <string name="file_not_exist_deleted">Fail tidak wujud, mungkin telah dipadam</string>
+    <string name="download_not_finished">Muat turun belum selesai, tidak boleh dibuka</string>
+    <string name="open_file">Buka fail</string>
+    <string name="cannot_open_file">Tidak boleh membuka fail: %s</string>
+
+    <string name="folder_colon">Folder: %d</string>
+    <string name="file_colon">Fail: %d</string>
+    <string name="storage_colon" formatted="true">Storan: %1$s/%2$s</string>
+    <string name="remote_no_create">Jarak jauh tidak menyokong penciptaan</string>
+    <string name="ftp_failed">Sambungan FTP gagal</string>
+    <string name="sftp_failed">Sambungan SFTP gagal</string>
+    <string name="conn_error">Ralat sambungan: %s</string>
+    <string name="need_storage_perm">Kebenaran storan diperlukan</string>
+    <string name="already_root">Sudah di direktori root</string>
+    <string name="no_earlier">Tiada rekod lebih awal</string>
+    <string name="no_later">Tiada rekod terkini</string>
+    <string name="op_failed">Operasi gagal</string>
+    <string name="error_colon">Ralat: %s</string>
+    <string name="confirm_delete">Sahkan Padam</string>
+    <string name="confirm_delete_msg">Adakah anda pasti mahu memadam %s?</string>
+    <string name="deleted">Dipadam</string>
+    <string name="delete_failed">Padam gagal</string>
+    <string name="rename_success">Tukar nama berjaya</string>
+    <string name="rename_failed">Tukar nama gagal</string>
+    <string name="name_colon">Nama: %s</string>
+    <string name="path_colon">Laluan: %s</string>
+    <string name="size_colon">Saiz: %s</string>
+    <string name="folder">Folder</string>
+    <string name="bytes">bait</string>
+    <string name="modified_colon">Diubah suai: %s</string>
+    <string name="readable_colon">Boleh baca: %s</string>
+    <string name="writable_colon">Boleh tulis: %s</string>
+    <string name="create_new">Baru</string>
+    <string name="create">Cipta</string>
+    <string name="name_empty">Nama tidak boleh kosong</string>
+    <string name="already_exists">Fail atau folder dengan nama yang sama sudah wujud</string>
+    <string name="create_success">Berjaya dicipta</string>
+    <string name="create_failed">Penciptaan gagal</string>
+    <string name="moving">memindah</string>
+    <string name="copying">menyalin</string>
+    <string name="move_success">%s berjaya</string>
+    <string name="input_name">Masukkan nama</string>
+    <string name="file">Fail</string>
+    <string name="save_path">Laluan simpan</string>
+    <string name="enter_dir_path">Masukkan laluan direktori</string>
+    <string name="archive_name">Nama arkib</string>
+    <string name="enter_archive_name">Masukkan nama arkib (tanpa sambungan)</string>
+    <string name="format">Format</string>
+    <string name="file_name_label">Nama fail</string>
+    <string name="enter_file_name">Masukkan nama fail</string>
+    <string name="encoding">Pengekodan</string>
+    <string name="unsaved">Belum disimpan</string>
+    <string name="unsaved_msg">Kandungan telah diubah. Simpan?</string>
+    <string name="cant_open_file">Tidak boleh membuka fail: %s</string>
+    <string name="save_as">Simpan Sebagai</string>
+    <string name="need_perm">Kebenaran diperlukan</string>
+    <string name="save_as_need_perm">Simpan Sebagai memerlukan kebenaran storan. Pergi ke tetapan?</string>
+    <string name="go_to">Pergi ke</string>
+    <string name="no_storage_perm">Tiada kebenaran storan</string>
+    <string name="saved">Disimpan</string>
+    <string name="saved_with_encoding">Disimpan (%s)</string>
+    <string name="save_failed">Simpan gagal: %s</string>
+    <string name="extract_failed">Ekstrak gagal: %s</string>
+    <string name="zip_error">Ralat: %s</string>
+    <string name="parent_directory">Direktori Induk</string>
+    <string name="file_prefix">Fail: %s</string>
+    <string name="long_press_todo">Menu tekan lama akan datang</string>
+
+    <string name="compress_title">Mampat %s</string>
+    <string name="start_compress">Mula Mampat</string>
+    <string name="path_name_empty">Laluan dan nama tidak boleh kosong</string>
+    <string name="compressing">Sedang memampat...</string>
+    <string name="compress_done">Mampatan selesai: %s</string>
+    <string name="compress_failed">Mampatan gagal: %s</string>
+    <string name="compress_save_path_hint">Laluan Simpan</string>
+    <string name="compress_archive_name_hint">Nama Arkib</string>
+    <string name="compress_format_label">Format</string>
+
+    <string name="code_block">Blok Kod</string>
+    <string name="preview">Pratonton</string>
+    <string name="default_md_name">untitled.md</string>
+    <string name="zip_browser">Pelayar Zip</string>
+    <string name="md_editor">Penyunting Markdown Unihub</string>
+    <string name="text_editor">Penyunting Teks Unihub</string>
+    <string name="video_player">Pemain Video Unihub</string>
+    <string name="other_open_with">Buka dengan lain</string>
+    <string name="choose_open_with">Bagaimana anda mahu membuka ini?</string>
+    <string name="select_code_language">Pilih Bahasa Kod</string>
+
+    <string name="external_app_title">Akan membuka aplikasi lain</string>
+    <string name="external_app_warning">Sistem mungkin tidak mempunyai kebenaran yang mencukupi untuk mengakses fail tertentu. Disarankan menggunakan pelayar bawaan UniHub.</string>
+    <string name="dont_ask_again">Jangan tanya lagi sesi ini</string>
+
+    <string name="create_name_hint">Masukkan Nama</string>
+    <string name="create_file">Fail</string>
+    <string name="create_folder">Folder</string>
+
+    <string name="search_not_impl">Carian belum dilaksanakan</string>
+    <string name="select_all_not_impl">Pilih semua belum dilaksanakan</string>
+    <string name="filter_not_impl">Penapis belum dilaksanakan</string>
+    <string name="sort_not_impl">Susun belum dilaksanakan</string>
+    <string name="show_hidden_files">Tunjukkan fail tersembunyi: %s</string>
+    <string name="bookmark_not_impl">Tandabuku belum tersedia</string>
+    <string name="quick_add_bookmark">Tambah Tandabuku Pantas</string>
+    <string name="web_only_bookmark">Mod web sahaja</string>
+    <string name="set_home_not_impl">Tetap sebagai laman utama belum dilaksanakan</string>
+    <string name="swap_window_not_impl">Tukar tetingkap belum dilaksanakan</string>
+    <string name="display">Paparan</string>
+    <string name="theme_tbd">Tema (TBD)</string>
+    <string name="default_home">Laman Utama Lalai</string>
+    <string name="more_settings_tbd">Lagi Tetapan (TBD)</string>
+
+    <string name="tabs">Tab</string>
+
+    <string name="user_agreement">Perjanjian Pengguna</string>
+    <string name="privacy_policy">Dasar Privasi</string>
+    <string name="changelog">Log Perubahan</string>
+    <string name="third_party_assets">Aset Pihak Ketiga</string>
+
+    <string name="sidebar_menu">Menu</string>
+    <string name="menu_home">Laman Utama</string>
+    <string name="menu_settings">Tetapan</string>
+    <string name="menu_docs">Dokumen</string>
+    <string name="menu_download">Muat Turun Fail</string>
+    <string name="menu_logout">Log Keluar</string>
+    <string name="save_as_path_hint">Laluan Simpan</string>
+    <string name="save_as_name_hint">Nama Fail</string>
+    <string name="encoding_label">Pengekodan</string>
+
+    <string name="auto_save">Simpan Auto</string>
+    <string name="auto_save_warning_title">Amaran Matikan Simpan Auto</string>
+    <string name="auto_save_warning_msg">Amaran! Selepas mematikan pilihan ini, keluar tidak dijangka atau faktor lain boleh menyebabkan kehilangan fail. Sila berhati-hati!</string>
+    <string name="auto_save_warning_confirm">Sahkan (%ds)</string>
+    <string name="minimize">Minimum</string>
+    <string name="history">Sejarah</string>
+    <string name="new_file_hint">Fail Baru</string>
+    <string name="remove_from_history">Buang dari Sejarah</string>
+    <string name="save_original">Simpan ke Lokasi Asal</string>
+    <string name="settings_menu">Tetapan</string>
+
+    <string name="undo">Buat Asal</string>
+    <string name="redo">Buat Semula</string>
+    <string name="more">Lagi</string>
+    <string name="untitled">Tanpa Tajuk</string>
+
+    <string name="inline_code">Kod Sebaris</string>
+    <string name="auto_save_disabled_warning">Simpan auto dilumpuhkan, sila simpan secara manual dengan kerap!</string>
+    <string name="clear_history">Kosongkan Sejarah</string>
+    <string name="copied">Disalin</string>
+    <string name="auto_save_help_title">Apakah Simpan Auto?</string>
+    <string name="auto_save_help_msg">Simpan Auto:\n\nApabila diaktifkan, kandungan anda disimpan ke cache peribadi aplikasi SETIAP SAAT. Ini mengelakkan kehilangan data akibat ranap atau bekalan elektrik terputus.\n\nApabila anda tekan butang Simpan, ia menyimpan ke lokasi fail asal.\n\nAMARAN: Kandungan cache BUKAN fail asal anda. Sentiasa simpan secara manual ke laluan asal untuk mengekalkan kerja anda.</string>
+    <string name="edit_settings">Tetapan</string>
+    <string name="auto_save_desc">Simpan auto ke cache setiap saat</string>
+    <string name="auto_save_warning_msg_brief">Amaran! Melumpuhkan pilihan ini boleh menyebabkan kehilangan fail akibat keluar tidak dijangka. Sila berhati-hati!</string>
+
+    <string name="bookmarks">Tandabuku</string>
+    <string name="web_bookmark">Tandabuku Web</string>
+    <string name="path_bookmark">Tandabuku Laluan</string>
+    <string name="jump">Pergi</string>
+    <string name="bookmark_name">Nama Tandabuku</string>
+    <string name="bookmark_type">Jenis</string>
+    <string name="bookmark_url">URL</string>
+    <string name="bookmark_path">Laluan</string>
+    <string name="bookmark_added">Tandabuku ditambah</string>
+    <string name="bookmark_deleted">Tandabuku dipadam</string>
+    <string name="bookmark_updated">Tandabuku dikemas kini</string>
+    <string name="bookmark_limit_reached">Had tandabuku tercapai (150)</string>
+    <string name="no_bookmarks">Tiada tandabuku</string>
+</resources>

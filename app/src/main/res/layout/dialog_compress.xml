@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:hint="保存路径">
+        android:hint="@string/compress_save_path_hint">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/et_compress_path"
@@ -28,7 +28,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:hint="压缩包名称">
+        android:hint="@string/compress_archive_name_hint">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/et_compress_name"
@@ -44,7 +44,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
-        android:text="格式"
+        android:text="@string/compress_format_label"
         android:textSize="14sp"
         android:textColor="@color/on_surface" />
 

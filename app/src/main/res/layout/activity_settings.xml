@@ -20,7 +20,7 @@
             android:layout_height="40dp"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:src="@drawable/ic_arrow_back"
-            android:contentDescription="返回"
+            android:contentDescription="@string/back_description"
             android:tint="@color/on_primary" />
 
         <TextView
@@ -28,7 +28,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="设置"
+            android:text="@string/settings_title"
             android:textColor="@color/on_primary"
             android:textSize="18sp"
             android:textStyle="bold"
@@ -48,7 +48,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="语言"
+                android:text="@string/language"
                 android:textColor="@color/on_surface"
                 android:textSize="16sp"
                 android:textStyle="bold"
@@ -68,7 +68,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="当前语言"
+                    android:text="@string/current_language_label"
                     android:textColor="@color/on_surface"
                     android:textSize="14sp" />
 
@@ -76,7 +76,7 @@
                     android:id="@+id/tv_current_language"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="简体中文"
+                    android:text="@string/language_simplified_chinese"
                     android:textColor="@color/outline"
                     android:textSize="14sp" />
             </LinearLayout>

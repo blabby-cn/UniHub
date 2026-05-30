@@ -19,6 +19,7 @@ import com.Blabby.Co.UniHub.R;
 import com.Blabby.Co.UniHub.download.DownloadManager;
 import com.Blabby.Co.UniHub.download.DownloadTask;
 import com.Blabby.Co.UniHub.util.DownloadFileUtils;
+import com.Blabby.Co.UniHub.util.Localization;
 
 import java.io.File;
 import java.util.List;
@@ -44,6 +45,7 @@ public class DownloadAdapter extends RecyclerView.Adapter<DownloadAdapter.Holder
     @Override
     public void onBindViewHolder(@NonNull Holder h, int position) {
         DownloadTask task = tasks.get(position);
+        Localization l = Localization.getInstance(h.itemView.getContext());
 
         manager.checkFileExistence(task);
 
@@ -52,23 +54,23 @@ public class DownloadAdapter extends RecyclerView.Adapter<DownloadAdapter.Holder
         String statusText = "";
         switch (task.status) {
             case DownloadTask.STATUS_WAITING:
-                statusText = "等待中";
+                statusText = l.get("status_waiting");
                 break;
             case DownloadTask.STATUS_DOWNLOADING:
-                statusText = "下载中";
+                statusText = l.get("status_downloading");
                 break;
             case DownloadTask.STATUS_PAUSED:
-                statusText = "已暂停";
+                statusText = l.get("status_paused");
                 break;
             case DownloadTask.STATUS_FINISHED:
-                statusText = "已完成";
+                statusText = l.get("status_finished");
                 break;
             case DownloadTask.STATUS_ERROR:
-                statusText = "错误";
+                statusText = l.get("status_error");
                 break;
         }
         if (task.status == DownloadTask.STATUS_FINISHED && !task.fileExists) {
-            statusText = "文件丢失";
+            statusText = l.get("status_file_missing");
         }
         h.tvStatus.setText(statusText);
 
@@ -77,7 +79,7 @@ public class DownloadAdapter extends RecyclerView.Adapter<DownloadAdapter.Holder
         if (task.status == DownloadTask.STATUS_DOWNLOADING && task.speedBytes > 0) {
             h.tvSpeed.setText(DownloadFileUtils.formatSize(task.speedBytes) + "/s");
         } else if (task.status == DownloadTask.STATUS_FINISHED) {
-            h.tvSpeed.setText("完成");
+            h.tvSpeed.setText(l.get("completed"));
         } else {
             h.tvSpeed.setText("");
         }
@@ -88,9 +90,9 @@ public class DownloadAdapter extends RecyclerView.Adapter<DownloadAdapter.Holder
         h.tvPercent.setText(task.progress + "%");
 
         if (task.status == DownloadTask.STATUS_DOWNLOADING) {
-            h.btnAction.setText("暂停");
+            h.btnAction.setText(l.get("pause"));
         } else {
-            h.btnAction.setText("继续");
+            h.btnAction.setText(l.get("resume"));
         }
 
         h.btnAction.setOnClickListener(v -> {
@@ -111,18 +113,19 @@ public class DownloadAdapter extends RecyclerView.Adapter<DownloadAdapter.Holder
             if (task.status == DownloadTask.STATUS_FINISHED && task.fileExists) {
                 openFile(h.itemView, task);
             } else if (task.status == DownloadTask.STATUS_FINISHED && !task.fileExists) {
-                Toast.makeText(v.getContext(), "文件不存在，可能已被删除", Toast.LENGTH_SHORT).show();
+                Toast.makeText(v.getContext(), l.get("file_not_exist_deleted"), Toast.LENGTH_SHORT).show();
             } else {
-                Toast.makeText(v.getContext(), "下载未完成，无法打开", Toast.LENGTH_SHORT).show();
+                Toast.makeText(v.getContext(), l.get("download_not_finished"), Toast.LENGTH_SHORT).show();
             }
         });
     }
 
     private void openFile(View view, DownloadTask task) {
+        Localization l = Localization.getInstance(view.getContext());
         try {
             File file = new File(task.savePath);
             if (!file.exists()) {
-                Toast.makeText(view.getContext(), "文件不存在", Toast.LENGTH_SHORT).show();
+                Toast.makeText(view.getContext(), l.get("file_not_exist"), Toast.LENGTH_SHORT).show();
                 return;
             }
             String authority = view.getContext().getPackageName() + ".fileprovider";
@@ -138,11 +141,11 @@ public class DownloadAdapter extends RecyclerView.Adapter<DownloadAdapter.Holder
             Intent intent = new Intent(Intent.ACTION_VIEW);
             intent.setDataAndType(uri, mime);
             intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-            Intent chooser = Intent.createChooser(intent, "打开文件");
+            Intent chooser = Intent.createChooser(intent, l.get("open_file"));
             view.getContext().startActivity(chooser);
         } catch (Exception e) {
             e.printStackTrace();
-            Toast.makeText(view.getContext(), "无法打开文件: " + e.getMessage(), Toast.LENGTH_LONG).show();
+            Toast.makeText(view.getContext(), l.get("cannot_open_file", e.getMessage()), Toast.LENGTH_LONG).show();
         }
     }
 

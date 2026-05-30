@@ -22,6 +22,7 @@ import androidx.fragment.app.Fragment;
 import com.Blabby.Co.UniHub.DownloadActivity;
 import com.Blabby.Co.UniHub.R;
 import com.Blabby.Co.UniHub.download.DownloadManager;
+import com.Blabby.Co.UniHub.util.Localization;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 
@@ -155,14 +156,15 @@ public class WebBrowserFragment extends Fragment {
 
     public void showTabList() {
         if (tabs.isEmpty()) return;
+        Localization l = Localization.getInstance(requireContext());
         String[] tabArr = tabs.toArray(new String[0]);
         new AlertDialog.Builder(requireContext())
-                .setTitle("标签页")
+                .setTitle(l.get("tabs"))
                 .setItems(tabArr, (d, which) -> {
                     webView.loadUrl(tabArr[which]);
                     currentTab = which;
                 })
-                .setNegativeButton("关闭", null)
+                .setNegativeButton(l.get("close"), null)
                 .show();
     }
 

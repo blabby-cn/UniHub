@@ -21,6 +21,7 @@ import com.Blabby.Co.UniHub.data.model.RemoteFileEntry;
 import com.Blabby.Co.UniHub.network.FtpClient;
 import com.Blabby.Co.UniHub.network.SftpClient;
 import com.Blabby.Co.UniHub.ui.adapters.RemoteFileListAdapter;
+import com.Blabby.Co.UniHub.util.Localization;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -95,6 +96,7 @@ public class RemoteFileBrowserFragment extends Fragment {
         if (!connected) return;
         String path = currentPaths[panel];
         swipeRefresh.setRefreshing(true);
+        Localization l = Localization.getInstance(requireContext());
         executor.execute(() -> {
             try {
                 List<RemoteFileEntry> items = new ArrayList<>();
@@ -102,7 +104,7 @@ public class RemoteFileBrowserFragment extends Fragment {
                 if (!"/".equals(path)) {
                     String parent = path.substring(0, path.lastIndexOf('/'));
                     if (parent.isEmpty()) parent = "/";
-                    items.add(new RemoteFileEntry("Parent Directory", parent, true));
+                    items.add(new RemoteFileEntry(l.get("parent_directory"), parent, true));
                 }
 
                 List<?> rawItems;
@@ -139,12 +141,12 @@ public class RemoteFileBrowserFragment extends Fragment {
 
                 mainHandler.post(() -> {
                     RemoteFileListAdapter adapter = new RemoteFileListAdapter(items,
-                        item -> {
-                            if ("Parent Directory".equals(item.getName())) goUp(panel);
-                            else if (item.isDirectory()) goInto(panel, item.getPath());
-                            else Toast.makeText(requireContext(), "文件: " + item.getName(), Toast.LENGTH_SHORT).show();
-                        },
-                        (entry, anchor) -> Toast.makeText(requireContext(), "长按菜单待实现", Toast.LENGTH_SHORT).show()
+                            item -> {
+                                if (item.getName().equals(l.get("parent_directory"))) goUp(panel);
+                                else if (item.isDirectory()) goInto(panel, item.getPath());
+                                else Toast.makeText(requireContext(), l.get("file_prefix", item.getName()), Toast.LENGTH_SHORT).show();
+                            },
+                            (entry, anchor) -> Toast.makeText(requireContext(), l.get("long_press_todo"), Toast.LENGTH_SHORT).show()
                     );
                     RecyclerView recycler = panel == PANEL_LEFT ? leftRecycler : rightRecycler;
                     recycler.setAdapter(adapter);
@@ -185,7 +187,7 @@ public class RemoteFileBrowserFragment extends Fragment {
             currentPaths[panel] = parent;
             loadPanel(panel);
         } else {
-            Toast.makeText(requireContext(), "已经是根目录", Toast.LENGTH_SHORT).show();
+            Toast.makeText(requireContext(), Localization.getInstance(requireContext()).get("already_root"), Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -196,7 +198,7 @@ public class RemoteFileBrowserFragment extends Fragment {
             currentPaths[p] = backStacks[p].pop();
             loadPanel(p);
         } else {
-            Toast.makeText(requireContext(), "没有更早的记录", Toast.LENGTH_SHORT).show();
+            Toast.makeText(requireContext(), Localization.getInstance(requireContext()).get("no_earlier"), Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -207,7 +209,7 @@ public class RemoteFileBrowserFragment extends Fragment {
             currentPaths[p] = forwardStacks[p].pop();
             loadPanel(p);
         } else {
-            Toast.makeText(requireContext(), "没有更新的记录", Toast.LENGTH_SHORT).show();
+            Toast.makeText(requireContext(), Localization.getInstance(requireContext()).get("no_later"), Toast.LENGTH_SHORT).show();
         }
     }
 

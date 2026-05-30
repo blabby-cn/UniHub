@@ -12,6 +12,6 @@
         android:id="@+id/cb_dont_ask"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="此次会话不再提示"
+        android:text="@string/dont_ask_again"
         android:textSize="14sp" />
 </LinearLayout>

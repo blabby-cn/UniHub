@@ -77,9 +77,9 @@ public class ZipLiulan extends AppCompatActivity {
             }
 
             SimpleAdapter adapter = new SimpleAdapter(
-                this, entryList, R.layout.item_zip_entry,
-                new String[]{"name", "size", "date"},
-                new int[]{R.id.entry_name, R.id.entry_size, R.id.entry_date}
+                    this, entryList, R.layout.item_zip_entry,
+                    new String[]{"name", "size", "date"},
+                    new int[]{R.id.entry_name, R.id.entry_size, R.id.entry_date}
             );
             listView.setAdapter(adapter);
 
@@ -96,6 +96,7 @@ public class ZipLiulan extends AppCompatActivity {
     }
 
     private void extractAndOpen(ZipEntry entry) {
+        Localization l = Localization.getInstance(this);
         try {
             File cacheDir = new File(getCacheDir(), "zip_extract");
             cacheDir.mkdirs();
@@ -110,13 +111,13 @@ public class ZipLiulan extends AppCompatActivity {
                 }
             }
             Uri uri = FileProvider.getUriForFile(this,
-                getPackageName() + ".fileprovider", outFile);
+                    getPackageName() + ".fileprovider", outFile);
             Intent intent = new Intent(Intent.ACTION_VIEW);
             intent.setDataAndType(uri, getMimeType(outFile.getName()));
             intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-            startActivity(Intent.createChooser(intent, Localization.getInstance(this).get("open")));
+            startActivity(Intent.createChooser(intent, l.get("open")));
         } catch (Exception e) {
-            Toast.makeText(this, Localization.getInstance(this).get("extract_failed", e.getMessage()), Toast.LENGTH_LONG).show();
+            Toast.makeText(this, l.get("extract_failed", e.getMessage()), Toast.LENGTH_LONG).show();
         }
     }
 

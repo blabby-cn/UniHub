@@ -56,6 +56,7 @@ public class FileOperations {
         }
     }
 
+    
     public static boolean moveFile(File source, File destDir) throws IOException {
         if (!source.exists()) return false;
         if (!destDir.exists()) {
@@ -63,13 +64,19 @@ public class FileOperations {
         }
         File destFile = new File(destDir, source.getName());
 
+        
         if (source.renameTo(destFile)) {
             return true;
         }
 
+        
         boolean copied = copyFile(source, destDir);
         if (copied) {
             boolean deleted = deleteFile(source);
+            if (!deleted) {
+                
+                
+            }
             return true;
         }
         return false;

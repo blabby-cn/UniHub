@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Unihub</string>
+    <string-array name="compress_formats">
+        <item>.zip</item>
+        <item>.xz</item>
+    </string-array>
+
+    <string name="back_description">Back</string>
+    <string name="save_description">Save</string>
+    <string name="tools_description">Tools</string>
+    <string name="save_as_description">Save As</string>
+    <string name="close_description">Close</string>
+    <string name="avatar_description">Avatar</string>
+    <string name="cancel">Cancel</string>
+    <string name="download">Download</string>
+    <string name="pause">Pause</string>
+    <string name="resume">Resume</string>
+    <string name="delete_download">Delete</string>
+    <string name="ok">OK</string>
+    <string name="save">Save</string>
+    <string name="dont_save">Don\'t save</string>
+    <string name="confirm">Confirm</string>
+    <string name="open">Open</string>
+    <string name="close">Close</string>
+    <string name="insert">Insert</string>
+    <string name="share">Share</string>
+    <string name="share_text">Share text</string>
+    <string name="cut">Cut</string>
+    <string name="paste">Paste</string>
+    <string name="copy">Copy</string>
+    <string name="select_all">Select All</string>
+    <string name="delete">Delete</string>
+    <string name="rename">Rename</string>
+    <string name="properties">Properties</string>
+    <string name="tools">Tools</string>
+    <string name="compress">Compress</string>
+    <string name="open_with">Open with</string>
+    <string name="add_bookmark">Add Bookmark</string>
+    <string name="refresh">Refresh</string>
+    <string name="search">Search</string>
+    <string name="filter">Filter</string>
+    <string name="sort">Sort by</string>
+    <string name="show_hidden">Show hidden files</string>
+    <string name="exit">Exit</string>
+    <string name="forward">Forward</string>
+    <string name="new_file">New</string>
+    <string name="up_level">Up</string>
+    <string name="copy_to_other">Copy to opposite</string>
+    <string name="move_to_other">Move to opposite</string>
+
+    <string name="title_docs">Documents</string>
+    <string name="title_download">Download Manager</string>
+    <string name="title_md_editor">Unihub Markdown Editor</string>
+    <string name="title_text_editor">Unihub Text Editor</string>
+    <string name="title_video_see">Unihub Video Player</string>
+    <string name="title_zip_browser">Unihub Zip Browser</string>
+    <string name="settings_title">Settings</string>
+
+    <string name="menu">Menu</string>
+    <string name="home">Home</string>
+    <string name="settings">Settings</string>
+    <string name="documents">Documents</string>
+    <string name="download_file">Download File</string>
+    <string name="logout">Logout</string>
+    <string name="not_logged_in">Not logged in</string>
+    <string name="click_to_login">Click to login</string>
+    <string name="logged_out">Logged out</string>
+
+    <string name="language">Language</string>
+    <string name="current_language_label">Current Language</string>
+    <string name="language_simplified_chinese">English</string>
+    <string name="language_restart_title">Switch Language</string>
+    <string name="language_restart_message">Switching language requires restarting the app. Restart now?</string>
+    <string name="restart_now">Restart</string>
+
+    <string name="enter_path_or_url">Enter path or URL</string>
+
+    <string name="login">Login</string>
+    <string name="login_blabby">Login Blabby Account</string>
+    <string name="login_remote_server">Login Remote Server</string>
+    <string name="connect">Connect</string>
+    <string name="empty_account">Account and password cannot be empty</string>
+    <string name="login_success">Login successful</string>
+    <string name="host_hint">Host (e.g. ftp.example.com)</string>
+    <string name="port_hint">Port (21/22)</string>
+    <string name="username_hint">Username</string>
+    <string name="password_hint">Password</string>
+    <string name="username_or_email_hint">Username or email</string>
+
+    <string name="file_url">File URL</string>
+    <string name="output_path">Output path</string>
+    <string name="empty_url_path">URL and output path cannot be empty</string>
+    <string name="download_failed">Download failed</string>
+    <string name="no_perm_or_full">No permission or storage full, please check and try again.</string>
+    <string name="starting_download">Starting download...</string>
+    <string name="download_failed_code">Download failed, status code: %d</string>
+    <string name="download_complete">Download complete: %s</string>
+    <string name="download_hint_text">Starting download, tap to view</string>
+    <string name="download_options_title">Download Options</string>
+    <string name="download_save_path_hint">Save path</string>
+    <string name="download_file_name_hint">Filename</string>
+    <string name="new_download">New download</string>
+    <string name="input_download_url">Enter download URL</string>
+
+    <string name="status_waiting">Waiting</string>
+    <string name="status_downloading">Downloading</string>
+    <string name="status_paused">Paused</string>
+    <string name="status_finished">Finished</string>
+    <string name="status_error">Error</string>
+    <string name="status_file_missing">File missing</string>
+    <string name="completed">Complete</string>
+    <string name="file_not_exist_deleted">File does not exist, maybe deleted</string>
+    <string name="download_not_finished">Download not finished, cannot open</string>
+    <string name="open_file">Open file</string>
+    <string name="cannot_open_file">Cannot open file: %s</string>
+
+    <string name="folder_colon">Folders: %d</string>
+    <string name="file_colon">Files: %d</string>
+    <string name="storage_colon" formatted="true">Storage: %1$s/%2$s</string>
+    <string name="remote_no_create">Remote does not support create</string>
+    <string name="ftp_failed">FTP connection failed</string>
+    <string name="sftp_failed">SFTP connection failed</string>
+    <string name="conn_error">Connection error: %s</string>
+    <string name="need_storage_perm">Storage permission required</string>
+    <string name="already_root">Already at root directory</string>
+    <string name="no_earlier">No earlier records</string>
+    <string name="no_later">No newer records</string>
+    <string name="op_failed">Operation failed</string>
+    <string name="error_colon">Error: %s</string>
+    <string name="confirm_delete">Confirm Delete</string>
+    <string name="confirm_delete_msg">Are you sure you want to delete %s?</string>
+    <string name="deleted">Deleted</string>
+    <string name="delete_failed">Delete failed</string>
+    <string name="rename_success">Renamed successfully</string>
+    <string name="rename_failed">Rename failed</string>
+    <string name="name_colon">Name: %s</string>
+    <string name="path_colon">Path: %s</string>
+    <string name="size_colon">Size: %s</string>
+    <string name="folder">Folder</string>
+    <string name="bytes">bytes</string>
+    <string name="modified_colon">Modified: %s</string>
+    <string name="readable_colon">Readable: %s</string>
+    <string name="writable_colon">Writable: %s</string>
+    <string name="create_new">New</string>
+    <string name="create">Create</string>
+    <string name="name_empty">Name cannot be empty</string>
+    <string name="already_exists">A file or folder with the same name already exists</string>
+    <string name="create_success">Created successfully</string>
+    <string name="create_failed">Create failed</string>
+    <string name="moving">moving</string>
+    <string name="copying">copying</string>
+    <string name="move_success">%s successful</string>
+    <string name="input_name">Enter name</string>
+    <string name="file">File</string>
+    <string name="save_path">Save path</string>
+    <string name="enter_dir_path">Enter directory path</string>
+    <string name="archive_name">Archive name</string>
+    <string name="enter_archive_name">Enter archive name (without extension)</string>
+    <string name="format">Format</string>
+    <string name="file_name_label">Filename</string>
+    <string name="enter_file_name">Enter filename</string>
+    <string name="encoding">Encoding</string>
+    <string name="unsaved">Unsaved</string>
+    <string name="unsaved_msg">Content has been modified. Save?</string>
+    <string name="cant_open_file">Cannot open file: %s</string>
+    <string name="save_as">Save As</string>
+    <string name="need_perm">Permission required</string>
+    <string name="save_as_need_perm">Save As requires storage permission. Go to settings?</string>
+    <string name="go_to">Go to</string>
+    <string name="no_storage_perm">No storage permission</string>
+    <string name="saved">Saved</string>
+    <string name="saved_with_encoding">Saved (%s)</string>
+    <string name="save_failed">Save failed: %s</string>
+    <string name="extract_failed">Extract failed: %s</string>
+    <string name="zip_error">Error: %s</string>
+    <string name="parent_directory">Parent Directory</string>
+    <string name="file_prefix">File: %s</string>
+    <string name="long_press_todo">Long press menu todo</string>
+
+    <string name="compress_title">Compress %s</string>
+    <string name="start_compress">Start Compress</string>
+    <string name="path_name_empty">Path and name cannot be empty</string>
+    <string name="compressing">Compressing...</string>
+    <string name="compress_done">Compression complete: %s</string>
+    <string name="compress_failed">Compression failed: %s</string>
+    <string name="compress_save_path_hint">Save Path</string>
+    <string name="compress_archive_name_hint">Archive Name</string>
+    <string name="compress_format_label">Format</string>
+
+    <string name="code_block">Code Block</string>
+    <string name="preview">Preview</string>
+    <string name="default_md_name">untitled.md</string>
+    <string name="zip_browser">Zip Browser</string>
+    <string name="md_editor">Unihub Markdown Editor</string>
+    <string name="text_editor">Unihub Text Editor</string>
+    <string name="video_player">Unihub Video Player</string>
+    <string name="other_open_with">Other open with</string>
+    <string name="choose_open_with">How would you like to open this?</string>
+    <string name="select_code_language">Select Code Language</string>
+
+    <string name="external_app_title">About to launch another app</string>
+    <string name="external_app_warning">The system may not have sufficient permissions to access certain files. It is recommended to use UniHub\'s built-in browser.</string>
+    <string name="dont_ask_again">Don\'t ask again this session</string>
+
+    <string name="create_name_hint">Enter Name</string>
+    <string name="create_file">File</string>
+    <string name="create_folder">Folder</string>
+
+    <string name="search_not_impl">Search not implemented</string>
+    <string name="select_all_not_impl">Select all not implemented</string>
+    <string name="filter_not_impl">Filter not implemented</string>
+    <string name="sort_not_impl">Sort not implemented</string>
+    <string name="show_hidden_files">Show hidden files: %s</string>
+    <string name="bookmark_not_impl">Bookmarks not yet available</string>
+    <string name="bookmarks">Bookmarks</string>
+    <string name="web_bookmark">Web Bookmark</string>
+    <string name="path_bookmark">Path Bookmark</string>
+    <string name="jump">Jump</string>
+    <string name="bookmark_name">Bookmark Name</string>
+    <string name="bookmark_type">Type</string>
+    <string name="bookmark_url">URL</string>
+    <string name="bookmark_path">Path</string>
+    <string name="bookmark_added">Bookmark added</string>
+    <string name="bookmark_deleted">Bookmark deleted</string>
+    <string name="bookmark_updated">Bookmark updated</string>
+    <string name="bookmark_limit_reached">Bookmark limit reached (150)</string>
+    <string name="no_bookmarks">No bookmarks</string>
+    <string name="quick_add_bookmark">Quick Add Bookmark</string>
+    <string name="web_only_bookmark">Web mode only</string>
+    <string name="set_home_not_impl">Set as home not implemented</string>
+    <string name="swap_window_not_impl">Swap windows not implemented</string>
+    <string name="display">Display</string>
+    <string name="theme_tbd">Theme (TBD)</string>
+    <string name="default_home">Default Home</string>
+    <string name="more_settings_tbd">More Settings (TBD)</string>
+
+    <string name="tabs">Tabs</string>
+
+    <string name="user_agreement">User Agreement</string>
+    <string name="privacy_policy">Privacy Policy</string>
+    <string name="changelog">Changelog</string>
+    <string name="third_party_assets">Third-Party Assets</string>
+
+    <string name="sidebar_menu">Menu</string>
+    <string name="menu_home">Home</string>
+    <string name="menu_settings">Settings</string>
+    <string name="menu_docs">Documents</string>
+    <string name="menu_download">Download File</string>
+    <string name="menu_logout">Logout</string>
+    <string name="save_as_path_hint">Save Path</string>
+    <string name="save_as_name_hint">Filename</string>
+    <string name="encoding_label">Encoding</string>
+
+    <string name="auto_save">Auto Save</string>
+    <string name="auto_save_warning_title">Disable Auto Save Warning</string>
+    <string name="auto_save_warning_msg">Warning! After disabling this option, unexpected exit or other force majeure may cause file loss. Please proceed with caution!</string>
+    <string name="auto_save_warning_confirm">Confirm (%ds)</string>
+    <string name="minimize">Minimize</string>
+    <string name="history">History</string>
+    <string name="new_file_hint">New File</string>
+    <string name="remove_from_history">Remove from History</string>
+    <string name="save_original">Save to Original Location</string>
+    <string name="settings_menu">Settings</string>
+
+    <string name="undo">Undo</string>
+    <string name="redo">Redo</string>
+    <string name="more">More</string>
+    <string name="untitled">Untitled</string>
+
+    <string name="inline_code">Inline code</string>
+    <string name="auto_save_disabled_warning">Auto save disabled, please save frequently manually!</string>
+    <string name="clear_history">Clear history</string>
+    <string name="copied">Copied</string>
+    <string name="auto_save_help_title">What is Auto Save?</string>
+    <string name="auto_save_help_msg">Auto Save:\n\nWhen enabled, your content is saved to the app\'s private cache EVERY SECOND. This prevents data loss from unexpected crashes or power outages.\n\nWhen you tap the Save button, it saves to the original file location.\n\nWARNING: The cached content is NOT your original file. Always save manually to preserve your work to the original path.</string>
+    <string name="edit_settings">Settings</string>
+    <string name="auto_save_desc">Automatically save to cache every second</string>
+    <string name="auto_save_warning_msg_brief">Warning! Disabling this option may cause file loss due to unexpected exit or other force majeure. Please proceed with caution!</string>
+</resources>

@@ -9,13 +9,13 @@
         android:id="@+id/et_login"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="用户名或邮箱"
+        android:hint="@string/username_or_email_hint"
         android:inputType="text" />
 
     <EditText
         android:id="@+id/et_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="密码"
+        android:hint="@string/password_hint"
         android:inputType="textPassword" />
 </LinearLayout>

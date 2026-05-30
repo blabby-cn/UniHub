@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:hint="保存路径">
+        android:hint="@string/save_as_path_hint">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/et_save_path"
@@ -28,7 +28,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:hint="文件名">
+        android:hint="@string/save_as_name_hint">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/et_save_name"
@@ -44,7 +44,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
-        android:text="编码"
+        android:text="@string/encoding_label"
         android:textSize="14sp"
         android:textColor="@color/on_surface" />
 

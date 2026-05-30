@@ -13,13 +13,13 @@
         android:layout_width="64dp"
         android:layout_height="64dp"
         android:src="@drawable/ic_account_circle"
-        android:contentDescription="头像" />
+        android:contentDescription="@string/avatar_description" />
 
     <TextView
         android:id="@+id/tv_username"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="未登录"
+        android:text="@string/not_logged_in"
         android:textColor="@color/on_surface"
         android:textSize="16sp"
         android:textStyle="bold"
@@ -29,7 +29,7 @@
         android:id="@+id/tv_email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="点击登录"
+        android:text="@string/click_to_login"
         android:textColor="@color/outline"
         android:textSize="14sp" />
 </LinearLayout>

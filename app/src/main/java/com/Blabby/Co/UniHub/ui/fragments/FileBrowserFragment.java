@@ -21,7 +21,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.core.content.ContextCompat;
-import androidx.core.content.FileProvider;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -29,11 +28,11 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import com.Blabby.Co.UniHub.R;
 import com.Blabby.Co.UniHub.GeshihuaBianji;
 import com.Blabby.Co.UniHub.VideoSee;
-import com.Blabby.Co.UniHub.WenbenBianjiqi;
 import com.Blabby.Co.UniHub.ZipLiulan;
 import com.Blabby.Co.UniHub.WenjianTanchuang;
 import com.Blabby.Co.UniHub.data.model.FileItem;
 import com.Blabby.Co.UniHub.ui.adapters.FileListAdapter;
+import com.Blabby.Co.UniHub.util.BookmarkManager;
 import com.Blabby.Co.UniHub.util.FileOperations;
 import com.Blabby.Co.UniHub.util.FileUtils;
 import com.Blabby.Co.UniHub.util.Localization;
@@ -87,12 +86,9 @@ public class FileBrowserFragment extends Fragment {
         leftRecycler.setLayoutManager(new LinearLayoutManager(requireContext()));
         rightRecycler.setLayoutManager(new LinearLayoutManager(requireContext()));
 
-        
         swipeRefresh.setColorSchemeColors(Color.parseColor("#FF5722"));
         swipeRefresh.setProgressViewOffset(false, 0, 100);
-        swipeRefresh.setOnRefreshListener(() -> {
-            refreshAll();
-        });
+        swipeRefresh.setOnRefreshListener(() -> refreshAll());
 
         leftRecycler.setOnTouchListener((v, e) -> { if (e.getAction() == MotionEvent.ACTION_DOWN) switchToPanel(PANEL_LEFT); return false; });
         rightRecycler.setOnTouchListener((v, e) -> { if (e.getAction() == MotionEvent.ACTION_DOWN) switchToPanel(PANEL_RIGHT); return false; });
@@ -195,7 +191,6 @@ public class FileBrowserFragment extends Fragment {
             updatePanelElevation();
             if (panel == activePanel && pathChangeListener != null) pathChangeListener.onPathChanged(path);
 
-            
             swipeRefresh.setRefreshing(false);
         }, 32);
     }
@@ -261,7 +256,6 @@ public class FileBrowserFragment extends Fragment {
     public void goUpActive() { goUp(activePanel); }
     public void refreshActivePanel() { refreshAll(); }
 
-    
     private void showActionDialog(FileItem item, int panel) {
         if (!(getContext() instanceof android.content.Context)) return;
         File file = new File(item.getPath());
@@ -274,6 +268,15 @@ public class FileBrowserFragment extends Fragment {
             @Override public void onShare(File f) { FileOperations.shareFile(requireContext(), f); }
             @Override public void onOpenWith(File f) { FileOperations.openWith(requireContext(), f); }
             @Override public void onCompress(File f) { showCompressDialog(f); }
+            @Override public void onAddBookmark(File f) {
+                BookmarkManager bm = BookmarkManager.getInstance(requireContext());
+                if (!bm.canAdd()) {
+                    Toast.makeText(requireContext(), Localization.getInstance(requireContext()).get("bookmark_limit_reached"), Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                bm.add(f.getName(), "path", f.getAbsolutePath(), "nil");
+                Toast.makeText(requireContext(), Localization.getInstance(requireContext()).get("bookmark_added"), Toast.LENGTH_SHORT).show();
+            }
         });
     }
 
@@ -342,7 +345,6 @@ public class FileBrowserFragment extends Fragment {
                 .setPositiveButton(Localization.getInstance(requireContext()).get("ok"), null).show();
     }
 
-    
     public void showCreateDialog() {
         View view = LayoutInflater.from(requireContext()).inflate(R.layout.dialog_create_file, null);
         EditText etName = view.findViewById(R.id.et_name);
@@ -379,7 +381,6 @@ public class FileBrowserFragment extends Fragment {
                 .show();
     }
 
-    
     private boolean hasStoragePermission() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) return Environment.isExternalStorageManager();
         else return ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED;
@@ -399,8 +400,8 @@ public class FileBrowserFragment extends Fragment {
 
     private boolean isVideoFile(String name) {
         return name.endsWith(".mp4") || name.endsWith(".avi") || name.endsWith(".mkv")
-            || name.endsWith(".mov") || name.endsWith(".wmv") || name.endsWith(".flv")
-            || name.endsWith(".3gp") || name.endsWith(".webm");
+                || name.endsWith(".mov") || name.endsWith(".wmv") || name.endsWith(".flv")
+                || name.endsWith(".3gp") || name.endsWith(".webm");
     }
 
     private boolean isZipFile(String name) {
@@ -409,32 +410,32 @@ public class FileBrowserFragment extends Fragment {
 
     private boolean isTextFile(String name) {
         String low = name.toLowerCase();
-        return low.endsWith(".txt") || low.endsWith(".md") || low.endsWith(".log")
-            || low.endsWith(".json") || low.endsWith(".xml") || low.endsWith(".csv")
-            || low.endsWith(".ini") || low.endsWith(".cfg") || low.endsWith(".conf")
-            || low.endsWith(".bat") || low.endsWith(".sh") || low.endsWith(".py")
-            || low.endsWith(".js") || low.endsWith(".ts") || low.endsWith(".html")
-            || low.endsWith(".css") || low.endsWith(".java") || low.endsWith(".kt")
-            || low.endsWith(".cpp") || low.endsWith(".c") || low.endsWith(".h")
-            || low.endsWith(".yml") || low.endsWith(".yaml") || low.endsWith(".toml")
-            || low.endsWith(".properties") || low.endsWith(".gradle");
+        // 所有文本文件（包括 md）都用格式化编辑器
+        return low.endsWith(".txt") || low.endsWith(".md") || low.endsWith(".markdown")
+                || low.endsWith(".log") || low.endsWith(".json") || low.endsWith(".xml")
+                || low.endsWith(".csv") || low.endsWith(".ini") || low.endsWith(".cfg")
+                || low.endsWith(".conf") || low.endsWith(".bat") || low.endsWith(".sh")
+                || low.endsWith(".py") || low.endsWith(".js") || low.endsWith(".ts")
+                || low.endsWith(".html") || low.endsWith(".css") || low.endsWith(".java")
+                || low.endsWith(".kt") || low.endsWith(".cpp") || low.endsWith(".c")
+                || low.endsWith(".h") || low.endsWith(".yml") || low.endsWith(".yaml")
+                || low.endsWith(".toml") || low.endsWith(".properties") || low.endsWith(".gradle");
     }
 
     private static boolean dontAskOpenWithWarning = false;
 
     private void showOpenChooser(FileItem item, int panel) {
+        Localization l = Localization.getInstance(requireContext());
         String lowName = item.getName().toLowerCase();
         boolean isZip = isZipFile(lowName);
         boolean isVideo = isVideoFile(lowName);
         boolean isText = isTextFile(lowName);
-        boolean isMarkdown = isMarkdownFile(lowName);
-        boolean isApk = lowName.endsWith(".apk");
 
         List<String> labels = new ArrayList<>();
         List<Runnable> actions = new ArrayList<>();
 
         if (isZip) {
-            labels.add(Localization.getInstance(requireContext()).get("zip_browser"));
+            labels.add(l.get("zip_browser"));
             actions.add(() -> {
                 Intent intent = new Intent(requireContext(), ZipLiulan.class);
                 intent.putExtra("zip_path", item.getPath());
@@ -442,12 +443,9 @@ public class FileBrowserFragment extends Fragment {
                 startActivity(intent);
             });
         }
-        if (isApk) {
-            labels.add(Localization.getInstance(requireContext()).get("install_apk"));
-            actions.add(() -> installApk(item));
-        }
-        if (isMarkdown) {
-            labels.add(Localization.getInstance(requireContext()).get("md_editor"));
+        if (isText) {
+            // 统一使用格式化编辑器
+            labels.add(l.get("md_editor"));
             actions.add(() -> {
                 Intent intent = new Intent(requireContext(), GeshihuaBianji.class);
                 intent.putExtra("file_path", item.getPath());
@@ -455,17 +453,8 @@ public class FileBrowserFragment extends Fragment {
                 startActivity(intent);
             });
         }
-        if (isText) {
-            labels.add(Localization.getInstance(requireContext()).get("text_editor"));
-            actions.add(() -> {
-                Intent intent = new Intent(requireContext(), WenbenBianjiqi.class);
-                intent.putExtra("file_path", item.getPath());
-                intent.putExtra("file_name", item.getName());
-                startActivity(intent);
-            });
-        }
         if (isVideo) {
-            labels.add(Localization.getInstance(requireContext()).get("video_player"));
+            labels.add(l.get("video_player"));
             actions.add(() -> {
                 Intent intent = new Intent(requireContext(), VideoSee.class);
                 intent.putExtra("video_path", item.getPath());
@@ -473,15 +462,15 @@ public class FileBrowserFragment extends Fragment {
                 startActivity(intent);
             });
         }
-        labels.add(Localization.getInstance(requireContext()).get("other_open_with"));
+        labels.add(l.get("other_open_with"));
         actions.add(() -> openWithExternalAppWithWarning(item));
 
-        labels.add(Localization.getInstance(requireContext()).get("cancel"));
+        labels.add(l.get("cancel"));
         actions.add(null);
 
         String[] arr = labels.toArray(new String[0]);
         new AlertDialog.Builder(requireContext(), R.style.AlertDialogTheme)
-                .setTitle(Localization.getInstance(requireContext()).get("choose_open_with"))
+                .setTitle(l.get("choose_open_with"))
                 .setItems(arr, (dialog, which) -> {
                     Runnable action = actions.get(which);
                     if (action != null) action.run();
@@ -489,21 +478,8 @@ public class FileBrowserFragment extends Fragment {
                 .show();
     }
 
-    private void installApk(FileItem item) {
-        File file = new File(item.getPath());
-        Intent intent = new Intent(Intent.ACTION_INSTALL_PACKAGE);
-        Uri apkUri = FileProvider.getUriForFile(requireContext(),
-                requireContext().getPackageName() + ".fileprovider", file);
-        intent.setData(apkUri);
-        intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-        startActivity(intent);
-    }
-
-    private boolean isMarkdownFile(String name) {
-        return name.toLowerCase().endsWith(".md") || name.toLowerCase().endsWith(".markdown");
-    }
-
     private void showCompressDialog(File file) {
+        Localization l = Localization.getInstance(requireContext());
         View view = LayoutInflater.from(requireContext()).inflate(R.layout.dialog_compress, null);
         EditText etPath = view.findViewById(R.id.et_compress_path);
         EditText etName = view.findViewById(R.id.et_compress_name);
@@ -517,20 +493,20 @@ public class FileBrowserFragment extends Fragment {
         spFormat.setAdapter(new ArrayAdapter<>(requireContext(), android.R.layout.simple_spinner_dropdown_item, formats));
 
         new AlertDialog.Builder(requireContext(), R.style.AlertDialogTheme)
-                .setTitle(Localization.getInstance(requireContext()).get("compress_title", file.getName()))
+                .setTitle(l.get("compress_title", file.getName()))
                 .setView(view)
-                .setPositiveButton(Localization.getInstance(requireContext()).get("start_compress"), (d, w) -> {
+                .setPositiveButton(l.get("start_compress"), (d, w) -> {
                     String dir = etPath.getText().toString().trim();
                     String name = etName.getText().toString().trim();
                     if (dir.isEmpty() || name.isEmpty()) {
-                        Toast.makeText(requireContext(), Localization.getInstance(requireContext()).get("path_name_empty"), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(requireContext(), l.get("path_name_empty"), Toast.LENGTH_SHORT).show();
                         return;
                     }
                     boolean useXz = spFormat.getSelectedItemPosition() == 1;
                     String ext = useXz ? ".xz" : ".zip";
                     String fullPath = dir.endsWith("/") ? dir + name + ext : dir + "/" + name + ext;
 
-                    Toast.makeText(requireContext(), Localization.getInstance(requireContext()).get("compressing"), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(requireContext(), l.get("compressing"), Toast.LENGTH_SHORT).show();
                     new Thread(() -> {
                         try {
                             if (useXz) {
@@ -539,16 +515,16 @@ public class FileBrowserFragment extends Fragment {
                                 compressZip(file, new File(fullPath));
                             }
                             requireActivity().runOnUiThread(() -> {
-                                Toast.makeText(requireContext(), Localization.getInstance(requireContext()).get("compress_done", fullPath), Toast.LENGTH_LONG).show();
+                                Toast.makeText(requireContext(), l.get("compress_done", fullPath), Toast.LENGTH_LONG).show();
                                 loadPanel(activePanel);
                             });
                         } catch (Exception e) {
                             requireActivity().runOnUiThread(() ->
-                                Toast.makeText(requireContext(), Localization.getInstance(requireContext()).get("compress_failed", e.getMessage()), Toast.LENGTH_LONG).show());
+                                    Toast.makeText(requireContext(), l.get("compress_failed", e.getMessage()), Toast.LENGTH_LONG).show());
                         }
                     }).start();
                 })
-                .setNegativeButton(Localization.getInstance(requireContext()).get("cancel"), null)
+                .setNegativeButton(l.get("cancel"), null)
                 .show();
     }
 
@@ -622,6 +598,7 @@ public class FileBrowserFragment extends Fragment {
     }
 
     private void openWithExternalAppWithWarning(FileItem item) {
+        Localization l = Localization.getInstance(requireContext());
         if (dontAskOpenWithWarning) {
             FileOperations.openWith(requireContext(), new File(item.getPath()));
             return;
@@ -631,14 +608,14 @@ public class FileBrowserFragment extends Fragment {
         CheckBox cbDontAsk = checkView.findViewById(R.id.cb_dont_ask);
 
         new AlertDialog.Builder(requireContext(), R.style.AlertDialogTheme)
-                .setTitle(Localization.getInstance(requireContext()).get("external_app_title"))
-                .setMessage(Localization.getInstance(requireContext()).get("external_app_warning"))
+                .setTitle(l.get("external_app_title"))
+                .setMessage(l.get("external_app_warning"))
                 .setView(checkView)
-                .setPositiveButton(Localization.getInstance(requireContext()).get("ok"), (d, w) -> {
+                .setPositiveButton(l.get("ok"), (d, w) -> {
                     if (cbDontAsk.isChecked()) dontAskOpenWithWarning = true;
                     FileOperations.openWith(requireContext(), new File(item.getPath()));
                 })
-                .setNegativeButton(Localization.getInstance(requireContext()).get("cancel"), null)
+                .setNegativeButton(l.get("cancel"), null)
                 .show();
     }
 }

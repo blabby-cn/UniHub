@@ -2,26 +2,31 @@ package com.Blabby.Co.UniHub;
 
 import android.Manifest;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.Settings;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.webkit.WebView;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.PopupMenu;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
-import androidx.core.content.ContextCompat;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
+import androidx.core.widget.NestedScrollView;
+import androidx.drawerlayout.widget.DrawerLayout;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -30,65 +35,450 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
-
-import com.Blabby.Co.UniHub.util.Localization;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.Stack;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 public class GeshihuaBianji extends AppCompatActivity {
 
-    private EditText editSource;
+    private DrawerLayout drawerLayout;
+    private ListView lvFileHistory;
+    private EditText etEditor;
+    private TextView tvLineNumbers, tvFileName, tvStatus;
+    private NestedScrollView scrollView;
     private WebView webPreview;
-    private ImageButton btnBack, btnSave, btnTools, btnSaveAs;
-    private TextView tvTitle;
+    private ImageView btnMenu, btnUndo, btnRedo, btnSave, btnEditTools, btnOverflow, btnNewFile, btnSideMenuMore;
+    private TextView btnSymbolRight, btnSymbolSlash, btnSymbolPlus, btnSymbolMinus, btnSymbolStar, btnSymbolEqual, btnSymbolLt, btnSymbolGt;
+    private View btnMinimize;
+    private View bottomBar;
+    private View previewContainer;
+    private ImageButton btnPreviewBack;
 
-    private String filePath;
-    private String fileName;
+    private String currentFilePath;
+    private String currentFileName;
     private boolean modified = false;
     private boolean showingPreview = false;
+    private boolean autoSaveEnabled = true;
+    private ScheduledExecutorService autoSaveExecutor;
+
+    private ArrayList<HistoryItem> historyList = new ArrayList<>();
+    private ArrayAdapter<String> historyAdapter;
+    private SharedPreferences historyPrefs;
+    private static final String HISTORY_PREFS = "editor_history";
+    private static final String HISTORY_SET = "history_set";
+
+    private Stack<String> undoStack = new Stack<>();
+    private Stack<String> redoStack = new Stack<>();
+    private boolean isUndoRedo = false;
 
     private static final String[] CODE_LANGUAGES = {
-        "C#", "C", "C++", "Rust", "TS", "JS", "Zig", "Go",
-        "Swift", "Kotlin", "ObjC", "汇编", "Ruby", "Python",
-        "HTML", "XML", "JSON", "YAML", "Lisp"
+            "C#", "C", "C++", "Rust", "TS", "JS", "Zig", "Go",
+            "Swift", "Kotlin", "ObjC", "汇编", "Ruby", "Python",
+            "HTML", "XML", "JSON", "YAML", "Lisp"
     };
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_geshihua_bianji);
 
-        tvTitle = findViewById(R.id.tv_title);
-        btnBack = findViewById(R.id.btn_back);
-        btnSave = findViewById(R.id.btn_save);
-        btnTools = findViewById(R.id.btn_tools);
-        btnSaveAs = findViewById(R.id.btn_save_as);
-        editSource = findViewById(R.id.edit_source);
-        webPreview = findViewById(R.id.web_preview);
+        initViews();
+        setupDrawer();
+        setupEditor();
+        setupUndoRedo();
+        setupSymbolButtons();
+        setupAutoSave();
+        loadHistory();
 
-        filePath = getIntent().getStringExtra("file_path");
-        fileName = getIntent().getStringExtra("file_name");
+        currentFilePath = getIntent().getStringExtra("file_path");
+        currentFileName = getIntent().getStringExtra("file_name");
+        if (currentFileName != null) tvFileName.setText(currentFileName);
+        if (currentFilePath != null) {
+            loadFileWithConflictCheck(currentFilePath);
+            addToHistory(currentFilePath, currentFileName);
+        } else {
+            etEditor.setText("");
+            currentFileName = getString(R.string.untitled);
+            tvFileName.setText(currentFileName);
+        }
 
-        if (fileName != null) tvTitle.setText(fileName);
-        if (filePath != null) loadFile(filePath);
+        btnMenu.setOnClickListener(v -> drawerLayout.openDrawer(findViewById(R.id.sideMenu)));
+        btnUndo.setOnClickListener(v -> undo());
+        btnRedo.setOnClickListener(v -> redo());
+        btnSave.setOnClickListener(v -> saveToOriginalPath());
+        btnEditTools.setOnClickListener(this::showMarkdownTools);
+        btnOverflow.setOnClickListener(this::showOverflowMenu);
+        btnNewFile.setOnClickListener(v -> createNewFile());
+        btnSideMenuMore.setOnClickListener(v -> showSideMenuMore());
+        btnMinimize.setOnClickListener(v -> finish());
+        btnPreviewBack.setOnClickListener(v -> hidePreview());
 
-        btnBack.setOnClickListener(v -> {
-            if (showingPreview) {
-                togglePreview();
-            } else {
-                checkSaveBeforeExit();
-            }
-        });
-        btnSave.setOnClickListener(v -> saveFile());
-        btnSaveAs.setOnClickListener(v -> showSaveAsDialog());
-        btnTools.setOnClickListener(this::showToolsMenu);
-
-        editSource.addTextChangedListener(new android.text.TextWatcher() {
+        etEditor.addTextChangedListener(new TextWatcher() {
             @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
             @Override public void onTextChanged(CharSequence s, int start, int before, int count) {}
-            @Override public void afterTextChanged(android.text.Editable s) { modified = true; }
+            @Override public void afterTextChanged(Editable s) {
+                if (!isUndoRedo) {
+                    pushToUndoStack(s.toString());
+                    redoStack.clear();
+                }
+                modified = true;
+                updateLineNumbers();
+                if (autoSaveEnabled && currentFilePath != null) {
+                    saveToCache();
+                }
+            }
+        });
+
+        scrollView.getViewTreeObserver().addOnScrollChangedListener(() -> {
+            int scrollY = scrollView.getScrollY();
+            tvLineNumbers.setScrollY(scrollY);
         });
     }
 
-    private void showToolsMenu(View anchor) {
+    private void initViews() {
+        drawerLayout = findViewById(R.id.drawerLayout);
+        lvFileHistory = findViewById(R.id.lvFileHistory);
+        etEditor = findViewById(R.id.etEditor);
+        tvLineNumbers = findViewById(R.id.tvLineNumbers);
+        tvFileName = findViewById(R.id.tvFileName);
+        tvStatus = findViewById(R.id.tvStatus);
+        scrollView = findViewById(R.id.scrollView);
+        webPreview = findViewById(R.id.webPreview);
+        btnMenu = findViewById(R.id.btnMenu);
+        btnUndo = findViewById(R.id.btnUndo);
+        btnRedo = findViewById(R.id.btnRedo);
+        btnSave = findViewById(R.id.btnSave);
+        btnEditTools = findViewById(R.id.btnEditTools);
+        btnOverflow = findViewById(R.id.btnOverflow);
+        btnNewFile = findViewById(R.id.btnNewFile);
+        btnSideMenuMore = findViewById(R.id.btnSideMenuMore);
+        btnMinimize = findViewById(R.id.btnMinimize);
+        btnSymbolRight = findViewById(R.id.btnSymbolRight);
+        btnSymbolSlash = findViewById(R.id.btnSymbolSlash);
+        btnSymbolPlus = findViewById(R.id.btnSymbolPlus);
+        btnSymbolMinus = findViewById(R.id.btnSymbolMinus);
+        btnSymbolStar = findViewById(R.id.btnSymbolStar);
+        btnSymbolEqual = findViewById(R.id.btnSymbolEqual);
+        btnSymbolLt = findViewById(R.id.btnSymbolLt);
+        btnSymbolGt = findViewById(R.id.btnSymbolGt);
+        bottomBar = findViewById(R.id.bottomBar);
+        previewContainer = findViewById(R.id.previewContainer);
+        btnPreviewBack = findViewById(R.id.btnPreviewBack);
+    }
+
+    private void setupUndoRedo() {
+        pushToUndoStack("");
+    }
+
+    private void pushToUndoStack(String text) {
+        if (!undoStack.isEmpty() && undoStack.peek().equals(text)) return;
+        undoStack.push(text);
+        if (undoStack.size() > 100) {
+            undoStack.remove(0);
+        }
+        updateUndoRedoButtons();
+    }
+
+    private void undo() {
+        if (undoStack.size() <= 1) return;
+        isUndoRedo = true;
+        String current = etEditor.getText().toString();
+        redoStack.push(current);
+        undoStack.pop();
+        String previous = undoStack.peek();
+        etEditor.setText(previous);
+        etEditor.setSelection(previous.length());
+        isUndoRedo = false;
+        updateUndoRedoButtons();
+    }
+
+    private void redo() {
+        if (redoStack.isEmpty()) return;
+        isUndoRedo = true;
+        String next = redoStack.pop();
+        pushToUndoStack(next);
+        etEditor.setText(next);
+        etEditor.setSelection(next.length());
+        isUndoRedo = false;
+        updateUndoRedoButtons();
+    }
+
+    private void updateUndoRedoButtons() {
+        btnUndo.setEnabled(undoStack.size() > 1);
+        btnRedo.setEnabled(!redoStack.isEmpty());
+    }
+
+    private void setupDrawer() {
+        historyPrefs = getSharedPreferences(HISTORY_PREFS, MODE_PRIVATE);
+        historyAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, new ArrayList<String>()) {
+            @Override
+            public View getView(int position, View convertView, android.view.ViewGroup parent) {
+                View view = super.getView(position, convertView, parent);
+                TextView text = (TextView) view;
+                text.setText(historyList.get(position).displayName);
+                text.setTextColor(getColor(R.color.on_surface));
+                text.setPadding(32, 16, 16, 16);
+                return view;
+            }
+        };
+        lvFileHistory.setAdapter(historyAdapter);
+        lvFileHistory.setOnItemClickListener((parent, view, position, id) -> {
+            HistoryItem item = historyList.get(position);
+            if (currentFilePath != null && modified && autoSaveEnabled) saveToCache();
+            currentFilePath = item.filePath;
+            currentFileName = new File(item.filePath).getName();
+            tvFileName.setText(currentFileName);
+            loadFileWithConflictCheck(currentFilePath);
+            drawerLayout.closeDrawers();
+        });
+        lvFileHistory.setOnItemLongClickListener((parent, view, position, id) -> {
+            new AlertDialog.Builder(this)
+                    .setTitle(getString(R.string.remove_from_history))
+                    .setMessage(historyList.get(position).displayName)
+                    .setPositiveButton(getString(R.string.ok), (d, w) -> removeFromHistory(position))
+                    .setNegativeButton(getString(R.string.cancel), null)
+                    .show();
+            return true;
+        });
+    }
+
+    private void setupEditor() {
+        etEditor.addTextChangedListener(new TextWatcher() {
+            @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+            @Override public void onTextChanged(CharSequence s, int start, int before, int count) {}
+            @Override public void afterTextChanged(Editable s) { updateLineNumbers(); }
+        });
+    }
+
+    private void updateLineNumbers() {
+        String text = etEditor.getText().toString();
+        int lines = text.split("\n", -1).length;
+        StringBuilder sb = new StringBuilder();
+        for (int i = 1; i <= lines; i++) sb.append(i).append("\n");
+        tvLineNumbers.setText(sb);
+    }
+
+    private void setupSymbolButtons() {
+        View.OnClickListener insertSymbol = v -> {
+            String sym = ((TextView) v).getText().toString();
+            int start = etEditor.getSelectionStart();
+            if (start < 0) start = 0;
+            etEditor.getText().insert(start, sym);
+            etEditor.setSelection(start + sym.length());
+        };
+        btnSymbolRight.setOnClickListener(insertSymbol);
+        btnSymbolSlash.setOnClickListener(insertSymbol);
+        btnSymbolPlus.setOnClickListener(insertSymbol);
+        btnSymbolMinus.setOnClickListener(insertSymbol);
+        btnSymbolStar.setOnClickListener(insertSymbol);
+        btnSymbolEqual.setOnClickListener(insertSymbol);
+        btnSymbolLt.setOnClickListener(insertSymbol);
+        btnSymbolGt.setOnClickListener(insertSymbol);
+    }
+
+    private void setupAutoSave() {
+        SharedPreferences prefs = getSharedPreferences("editor_settings", MODE_PRIVATE);
+        autoSaveEnabled = prefs.getBoolean("auto_save", true);
+        if (autoSaveEnabled) startAutoSaveTimer();
+    }
+
+    private void startAutoSaveTimer() {
+        if (autoSaveExecutor != null) autoSaveExecutor.shutdown();
+        autoSaveExecutor = Executors.newSingleThreadScheduledExecutor();
+        autoSaveExecutor.scheduleAtFixedRate(() -> {
+            if (autoSaveEnabled && currentFilePath != null && modified) {
+                runOnUiThread(() -> saveToCache());
+            }
+        }, 1, 1, TimeUnit.SECONDS);
+    }
+
+    private void saveToCache() {
+        if (currentFilePath == null) return;
+        try {
+            File cacheDir = new File(getFilesDir(), "editor_cache");
+            if (!cacheDir.exists()) cacheDir.mkdirs();
+            String hash = String.valueOf(currentFilePath.hashCode());
+            File cacheFile = new File(cacheDir, hash + ".cache");
+            FileOutputStream fos = new FileOutputStream(cacheFile);
+            fos.write(etEditor.getText().toString().getBytes(StandardCharsets.UTF_8));
+            fos.close();
+        } catch (Exception ignored) { }
+    }
+
+    private String loadFromCache(String originalPath) {
+        try {
+            File cacheDir = new File(getFilesDir(), "editor_cache");
+            String hash = String.valueOf(originalPath.hashCode());
+            File cacheFile = new File(cacheDir, hash + ".cache");
+            if (cacheFile.exists()) {
+                BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(cacheFile)));
+                StringBuilder sb = new StringBuilder();
+                String line;
+                while ((line = br.readLine()) != null) sb.append(line).append("\n");
+                br.close();
+                return sb.toString();
+            }
+        } catch (Exception ignored) { }
+        return null;
+    }
+
+    private String loadFromOriginal(String path) {
+        try {
+            File file = new File(path);
+            BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(file)));
+            StringBuilder sb = new StringBuilder();
+            String line;
+            while ((line = br.readLine()) != null) sb.append(line).append("\n");
+            br.close();
+            return sb.toString();
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    private void loadFileWithConflictCheck(String path) {
+        String cached = loadFromCache(path);
+        String original = loadFromOriginal(path);
+        if (cached != null && original != null && !cached.equals(original)) {
+            new AlertDialog.Builder(this)
+                    .setTitle("文件冲突")
+                    .setMessage("检测到原文件已被外部修改，是否使用缓存中的内容？\n\n选择\"使用缓存\"：恢复上次未保存的编辑\n选择\"使用源文件\"：放弃未保存的更改")
+                    .setPositiveButton("使用缓存", (d, w) -> {
+                        etEditor.setText(cached);
+                        modified = true;
+                        updateLineNumbers();
+                        undoStack.clear();
+                        redoStack.clear();
+                        pushToUndoStack(cached);
+                    })
+                    .setNegativeButton("使用源文件", (d, w) -> {
+                        etEditor.setText(original);
+                        modified = false;
+                        updateLineNumbers();
+                        undoStack.clear();
+                        redoStack.clear();
+                        pushToUndoStack(original);
+                        saveToCache();
+                    })
+                    .show();
+        } else if (cached != null) {
+            etEditor.setText(cached);
+            modified = true;
+            updateLineNumbers();
+            undoStack.clear();
+            redoStack.clear();
+            pushToUndoStack(cached);
+        } else if (original != null) {
+            etEditor.setText(original);
+            modified = false;
+            updateLineNumbers();
+            undoStack.clear();
+            redoStack.clear();
+            pushToUndoStack(original);
+        } else {
+            etEditor.setText("");
+            modified = false;
+            Toast.makeText(this, getString(R.string.cant_open_file, "文件不存在或无法读取"), Toast.LENGTH_LONG).show();
+        }
+        etEditor.setSelection(0);
+    }
+
+    private void saveToOriginalPath() {
+        if (currentFilePath == null) {
+            showSaveAsDialog();
+            return;
+        }
+        if (!checkStoragePermission()) return;
+        try {
+            File file = new File(currentFilePath);
+            File parent = file.getParentFile();
+            if (parent != null && !parent.exists()) parent.mkdirs();
+            FileOutputStream fos = new FileOutputStream(file);
+            fos.write(etEditor.getText().toString().getBytes(StandardCharsets.UTF_8));
+            fos.close();
+            modified = false;
+            Toast.makeText(this, getString(R.string.saved), Toast.LENGTH_SHORT).show();
+            saveToCache();
+        } catch (Exception e) {
+            Toast.makeText(this, getString(R.string.save_failed, e.getMessage()), Toast.LENGTH_LONG).show();
+        }
+    }
+
+    private void showSaveAsDialog() {
+        if (!checkStoragePermission()) return;
+        View view = LayoutInflater.from(this).inflate(R.layout.dialog_save_as, null);
+        EditText etPath = view.findViewById(R.id.et_save_path);
+        EditText etName = view.findViewById(R.id.et_save_name);
+        android.widget.Spinner spEncoding = view.findViewById(R.id.sp_encoding);
+        String[] encodings = {"UTF-8", "GBK", "GB2312", "ISO-8859-1", "UTF-16", "ASCII"};
+        spEncoding.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, encodings));
+        etPath.setText(Environment.getExternalStorageDirectory().getAbsolutePath());
+        etName.setText(currentFileName != null ? currentFileName : "untitled.md");
+        new AlertDialog.Builder(this)
+                .setTitle(getString(R.string.save_as))
+                .setView(view)
+                .setPositiveButton(getString(R.string.save), (d, w) -> {
+                    String dir = etPath.getText().toString().trim();
+                    String name = etName.getText().toString().trim();
+                    String encoding = (String) spEncoding.getSelectedItem();
+                    String fullPath = dir.endsWith("/") ? dir + name : dir + "/" + name;
+                    try {
+                        File file = new File(fullPath);
+                        File parent = file.getParentFile();
+                        if (parent != null && !parent.exists()) parent.mkdirs();
+                        if (encoding != null && !encoding.equals("UTF-8")) {
+                            OutputStreamWriter writer = new OutputStreamWriter(new FileOutputStream(file), Charset.forName(encoding));
+                            writer.write(etEditor.getText().toString());
+                            writer.close();
+                        } else {
+                            FileOutputStream fos = new FileOutputStream(file);
+                            fos.write(etEditor.getText().toString().getBytes(StandardCharsets.UTF_8));
+                            fos.close();
+                        }
+                        currentFilePath = fullPath;
+                        currentFileName = name;
+                        tvFileName.setText(currentFileName);
+                        modified = false;
+                        addToHistory(currentFilePath, currentFileName);
+                        Toast.makeText(this, getString(R.string.saved), Toast.LENGTH_SHORT).show();
+                        saveToCache();
+                    } catch (Exception e) {
+                        Toast.makeText(this, getString(R.string.save_failed, e.getMessage()), Toast.LENGTH_LONG).show();
+                    }
+                })
+                .setNegativeButton(getString(R.string.cancel), null)
+                .show();
+    }
+
+    private boolean checkStoragePermission() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            if (!Environment.isExternalStorageManager()) {
+                new AlertDialog.Builder(this)
+                        .setTitle(getString(R.string.need_perm))
+                        .setMessage(getString(R.string.save_as_need_perm))
+                        .setPositiveButton(getString(R.string.go_to), (d, w) -> {
+                            Intent intent = new Intent(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION);
+                            intent.setData(Uri.parse("package:" + getPackageName()));
+                            startActivity(intent);
+                        })
+                        .setNegativeButton(getString(R.string.cancel), null)
+                        .show();
+                return false;
+            }
+        } else if (Build.VERSION.SDK_INT >= 23) {
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                Toast.makeText(this, getString(R.string.no_storage_perm), Toast.LENGTH_SHORT).show();
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private void showMarkdownTools(View anchor) {
         PopupMenu popup = new PopupMenu(this, anchor);
         popup.getMenu().add(0, 1, 0, "H1");
         popup.getMenu().add(0, 2, 1, "H2");
@@ -96,79 +486,74 @@ public class GeshihuaBianji extends AppCompatActivity {
         popup.getMenu().add(0, 4, 3, "H4");
         popup.getMenu().add(0, 5, 4, "H5");
         popup.getMenu().add(0, 6, 5, "H6");
-        popup.getMenu().add(0, 7, 6, "行内代码 `code`");
-        popup.getMenu().add(0, 8, 7, Localization.getInstance(this).get("code_block"));
-        popup.getMenu().add(0, 9, 8, "一键预览");
+        popup.getMenu().add(0, 7, 6, getString(R.string.inline_code));
+        popup.getMenu().add(0, 8, 7, getString(R.string.code_block));
         popup.setOnMenuItemClickListener(item -> {
-            switch (item.getItemId()) {
-                case 1: insertAtLine("# "); return true;
-                case 2: insertAtLine("## "); return true;
-                case 3: insertAtLine("### "); return true;
-                case 4: insertAtLine("#### "); return true;
-                case 5: insertAtLine("##### "); return true;
-                case 6: insertAtLine("###### "); return true;
-                case 7: insertInlineCode(); return true;
-                case 8: showCodeBlockDialog(); return true;
-                case 9: if (!showingPreview) togglePreview(); return true;
-                default: return false;
-            }
+            int id = item.getItemId();
+            if (id == 1) insertAtLine("# ");
+            else if (id == 2) insertAtLine("## ");
+            else if (id == 3) insertAtLine("### ");
+            else if (id == 4) insertAtLine("#### ");
+            else if (id == 5) insertAtLine("##### ");
+            else if (id == 6) insertAtLine("###### ");
+            else if (id == 7) insertInlineCode();
+            else if (id == 8) showCodeBlockDialog();
+            return true;
         });
         popup.show();
     }
 
     private void insertAtLine(String prefix) {
-        int start = editSource.getSelectionStart();
+        int start = etEditor.getSelectionStart();
         int lineStart = start;
-        CharSequence text = editSource.getText();
+        CharSequence text = etEditor.getText();
         while (lineStart > 0 && text.charAt(lineStart - 1) != '\n') lineStart--;
-        editSource.getText().insert(lineStart, prefix);
+        etEditor.getText().insert(lineStart, prefix);
     }
 
     private void insertInlineCode() {
-        int start = editSource.getSelectionStart();
-        int end = editSource.getSelectionEnd();
+        int start = etEditor.getSelectionStart();
+        int end = etEditor.getSelectionEnd();
         if (start == end) {
-            editSource.getText().insert(start, "``");
-            editSource.setSelection(start + 1);
+            etEditor.getText().insert(start, "``");
+            etEditor.setSelection(start + 1);
         } else {
-            String sel = editSource.getText().subSequence(start, end).toString();
-            editSource.getText().replace(start, end, "`" + sel + "`");
+            String sel = etEditor.getText().subSequence(start, end).toString();
+            etEditor.getText().replace(start, end, "`" + sel + "`");
         }
     }
 
     private void showCodeBlockDialog() {
         View view = LayoutInflater.from(this).inflate(R.layout.dialog_code_block, null);
-        Spinner spLang = view.findViewById(R.id.sp_code_lang);
+        android.widget.Spinner spLang = view.findViewById(R.id.sp_code_lang);
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, CODE_LANGUAGES);
         spLang.setAdapter(adapter);
-
-        new AlertDialog.Builder(this, R.style.AlertDialogTheme)
-                .setTitle(Localization.getInstance(this).get("code_block"))
+        new AlertDialog.Builder(this)
+                .setTitle(getString(R.string.code_block))
                 .setView(view)
-                .setPositiveButton(Localization.getInstance(this).get("insert"), (d, w) -> {
+                .setPositiveButton(getString(R.string.insert), (d, w) -> {
                     String lang = (String) spLang.getSelectedItem();
                     insertCodeBlock(lang);
                 })
-                .setNegativeButton(Localization.getInstance(this).get("cancel"), null)
+                .setNegativeButton(getString(R.string.cancel), null)
                 .show();
     }
 
     private void insertCodeBlock(String language) {
         String langMap = getLangKey(language);
-        String template = getCodeTemplate(language);
         StringBuilder sb = new StringBuilder();
         sb.append("```").append(langMap).append("\n");
-        int start = editSource.getSelectionStart();
-        int end = editSource.getSelectionEnd();
+        int start = etEditor.getSelectionStart();
+        int end = etEditor.getSelectionEnd();
         if (start != end) {
-            sb.append(editSource.getText().subSequence(start, end));
+            sb.append(etEditor.getText().subSequence(start, end));
         } else {
-            sb.append(template);
+            sb.append(getCodeTemplate(language));
         }
         sb.append("\n```");
-        editSource.getText().replace(start, end, sb.toString());
+        etEditor.getText().replace(start, end, sb.toString());
         int cursor = start + 3 + langMap.length() + 1;
-        editSource.setSelection(cursor);
+        etEditor.setSelection(cursor);
     }
 
     private String getLangKey(String lang) {
@@ -212,156 +597,36 @@ public class GeshihuaBianji extends AppCompatActivity {
         }
     }
 
-    private void togglePreview() {
-        showingPreview = !showingPreview;
-        if (showingPreview) {
-            renderPreview();
-            editSource.setVisibility(View.GONE);
-            webPreview.setVisibility(View.VISIBLE);
-        } else {
-            editSource.setVisibility(View.VISIBLE);
-            webPreview.setVisibility(View.GONE);
-        }
-    }
-
-    private void checkSaveBeforeExit() {
-        if (!modified) { finish(); return; }
-        new AlertDialog.Builder(this, R.style.AlertDialogTheme)
-                .setTitle(Localization.getInstance(this).get("unsaved"))
-                .setMessage(Localization.getInstance(this).get("unsaved_msg"))
-                .setPositiveButton(Localization.getInstance(this).get("save"), (d, w) -> { saveFile(); finish(); })
-                .setNegativeButton(Localization.getInstance(this).get("dont_save"), (d, w) -> finish())
-                .setNeutralButton(Localization.getInstance(this).get("cancel"), null)
-                .show();
-    }
-
-    private void loadFile(String path) {
-        try {
-            File file = new File(path);
-            BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(file)));
-            StringBuilder sb = new StringBuilder();
-            String line;
-            while ((line = br.readLine()) != null) {
-                sb.append(line).append("\n");
+    private void showOverflowMenu(View anchor) {
+        PopupMenu popup = new PopupMenu(this, anchor);
+        popup.getMenu().add(0, 1, 0, getString(R.string.preview));
+        popup.getMenu().add(0, 2, 1, getString(R.string.edit_settings));
+        popup.setOnMenuItemClickListener(item -> {
+            int id = item.getItemId();
+            if (id == 1) {
+                showPreview();
+            } else if (id == 2) {
+                startActivity(new Intent(this, EditSettingsActivity.class));
             }
-            br.close();
-            editSource.setText(sb.toString());
-            modified = false;
-        } catch (Exception e) {
-            editSource.setText(Localization.getInstance(this).get("cant_open_file", e.getMessage()));
-        }
+            return true;
+        });
+        popup.show();
     }
 
-    private void saveFile() {
-        if (filePath == null) { showSaveAsDialog(); return; }
-        if (!checkStoragePermission()) return;
-        writeFile(filePath, editSource.getText().toString());
-    }
-
-    private void showSaveAsDialog() {
-        if (!checkStoragePermission()) return;
-
-        View view = LayoutInflater.from(this).inflate(R.layout.dialog_save_as, null);
-        EditText etPath = view.findViewById(R.id.et_save_path);
-        EditText etName = view.findViewById(R.id.et_save_name);
-        Spinner spEncoding = view.findViewById(R.id.sp_encoding);
-
-        String[] encodings = {"UTF-8", "GBK", "GB2312", "ISO-8859-1", "UTF-16", "ASCII"};
-        spEncoding.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, encodings));
-
-        if (filePath != null) {
-            etPath.setText(new File(filePath).getParent());
-            etName.setText(new File(filePath).getName());
-        } else {
-            etPath.setText(Environment.getExternalStorageDirectory().getAbsolutePath());
-            etName.setText("untitled.md");
-        }
-
-        new AlertDialog.Builder(this, R.style.AlertDialogTheme)
-                .setTitle(Localization.getInstance(this).get("save_as"))
-                .setView(view)
-                .setPositiveButton(Localization.getInstance(this).get("save"), (d, w) -> {
-                    String dir = etPath.getText().toString().trim();
-                    String name = etName.getText().toString().trim();
-                    if (dir.isEmpty() || name.isEmpty()) {
-                        Toast.makeText(this, Localization.getInstance(this).get("path_name_empty"), Toast.LENGTH_SHORT).show();
-                        return;
-                    }
-                    String encoding = (String) spEncoding.getSelectedItem();
-                    String fullPath = dir.endsWith("/") ? dir + name : dir + "/" + name;
-                    if (encoding != null && !encoding.equals("UTF-8")) {
-                        writeFileWithEncoding(fullPath, editSource.getText().toString(), encoding);
-                    } else {
-                        writeFile(fullPath, editSource.getText().toString());
-                    }
-                    filePath = fullPath;
-                    fileName = name;
-                    tvTitle.setText(fileName);
-                })
-                .setNegativeButton(Localization.getInstance(this).get("cancel"), null)
-                .show();
-    }
-
-    private boolean checkStoragePermission() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-            if (!Environment.isExternalStorageManager()) {
-                new AlertDialog.Builder(this, R.style.AlertDialogTheme)
-                        .setTitle(Localization.getInstance(this).get("need_perm"))
-                        .setMessage(Localization.getInstance(this).get("save_as_need_perm"))
-                        .setPositiveButton(Localization.getInstance(this).get("go_to"), (d, w) -> {
-                            Intent intent = new Intent(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION);
-                            intent.setData(android.net.Uri.parse("package:" + getPackageName()));
-                            startActivity(intent);
-                        })
-                        .setNegativeButton(Localization.getInstance(this).get("cancel"), null)
-                        .show();
-                return false;
-            }
-        } else if (Build.VERSION.SDK_INT >= 23) {
-            if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-                Toast.makeText(this, Localization.getInstance(this).get("no_storage_perm"), Toast.LENGTH_SHORT).show();
-                return false;
-            }
-        }
-        return true;
-    }
-
-    private void writeFile(String path, String content) {
-        try {
-            File file = new File(path);
-            File parent = file.getParentFile();
-            if (parent != null && !parent.exists()) parent.mkdirs();
-            FileOutputStream fos = new FileOutputStream(file);
-            fos.write(content.getBytes(StandardCharsets.UTF_8));
-            fos.close();
-            modified = false;
-            Toast.makeText(this, Localization.getInstance(this).get("saved"), Toast.LENGTH_SHORT).show();
-        } catch (Exception e) {
-            Toast.makeText(this, Localization.getInstance(this).get("save_failed", e.getMessage()), Toast.LENGTH_LONG).show();
-        }
-    }
-
-    private void writeFileWithEncoding(String path, String content, String encoding) {
-        try {
-            File file = new File(path);
-            File parent = file.getParentFile();
-            if (parent != null && !parent.exists()) parent.mkdirs();
-            FileOutputStream fos = new FileOutputStream(file);
-            OutputStreamWriter writer = new OutputStreamWriter(fos, Charset.forName(encoding));
-            writer.write(content);
-            writer.close();
-            fos.close();
-            modified = false;
-            Toast.makeText(this, Localization.getInstance(this).get("saved_with_encoding", encoding), Toast.LENGTH_SHORT).show();
-        } catch (Exception e) {
-            Toast.makeText(this, Localization.getInstance(this).get("save_failed", e.getMessage()), Toast.LENGTH_LONG).show();
-        }
-    }
-
-    private void renderPreview() {
-        String markdown = editSource.getText().toString();
+    private void showPreview() {
+        if (showingPreview) return;
+        showingPreview = true;
+        String markdown = etEditor.getText().toString();
         String html = markdownToHtml(markdown);
         webPreview.loadDataWithBaseURL(null, html, "text/html", "UTF-8", null);
+        bottomBar.setVisibility(View.GONE);
+        previewContainer.setVisibility(View.VISIBLE);
+    }
+
+    private void hidePreview() {
+        showingPreview = false;
+        bottomBar.setVisibility(View.VISIBLE);
+        previewContainer.setVisibility(View.GONE);
     }
 
     private String markdownToHtml(String md) {
@@ -387,16 +652,13 @@ public class GeshihuaBianji extends AppCompatActivity {
         sb.append("hr { border: none; border-top: 1px solid #334155; }");
         sb.append("ul, ol { padding-left: 24px; }");
         sb.append("</style></head><body>");
-
         String[] lines = md.split("\n", -1);
         boolean inCodeBlock = false;
         StringBuilder codeBlock = new StringBuilder();
         boolean inTable = false;
-
         for (int i = 0; i < lines.length; i++) {
             String line = lines[i];
             String trimmed = line.trim();
-
             if (trimmed.startsWith("```")) {
                 if (inCodeBlock) {
                     sb.append("<pre><code>").append(escapeHtml(codeBlock.toString())).append("</code></pre>\n");
@@ -412,74 +674,41 @@ public class GeshihuaBianji extends AppCompatActivity {
                 codeBlock.append(line);
                 continue;
             }
-
             if (trimmed.isEmpty()) {
                 sb.append("<p>");
-                while (i + 1 < lines.length && lines[i + 1].trim().isEmpty()) {
-                    i++;
-                }
+                while (i + 1 < lines.length && lines[i + 1].trim().isEmpty()) i++;
                 sb.append("</p>\n");
                 continue;
             }
-
             if (trimmed.startsWith("|") && trimmed.endsWith("|")) {
-                if (!inTable) {
-                    sb.append("<table>");
-                    inTable = true;
-                }
+                if (!inTable) { sb.append("<table>"); inTable = true; }
                 String[] cells = trimmed.split("\\|");
                 boolean isHeader = i + 1 < lines.length && lines[i + 1].trim().matches("^[|\\s:-]+$");
                 sb.append("<tr>");
                 for (int c = 1; c < cells.length - 1; c++) {
                     String cell = cells[c].trim();
                     if (cell.isEmpty()) continue;
-                    if (isHeader) {
-                        sb.append("<th>").append(renderInline(cell)).append("</th>");
-                    } else {
-                        sb.append("<td>").append(renderInline(cell)).append("</td>");
-                    }
+                    if (isHeader) sb.append("<th>").append(renderInline(cell)).append("</th>");
+                    else sb.append("<td>").append(renderInline(cell)).append("</td>");
                 }
                 sb.append("</tr>");
                 if (isHeader) i++;
                 continue;
-            } else if (inTable) {
-                sb.append("</table>");
-                inTable = false;
-            }
-
-            if (trimmed.startsWith("###### ")) {
-                sb.append("<h6>").append(renderInline(trimmed.substring(7))).append("</h6>\n");
-            } else if (trimmed.startsWith("##### ")) {
-                sb.append("<h5>").append(renderInline(trimmed.substring(6))).append("</h5>\n");
-            } else if (trimmed.startsWith("#### ")) {
-                sb.append("<h4>").append(renderInline(trimmed.substring(5))).append("</h4>\n");
-            } else if (trimmed.startsWith("### ")) {
-                sb.append("<h3>").append(renderInline(trimmed.substring(4))).append("</h3>\n");
-            } else if (trimmed.startsWith("## ")) {
-                sb.append("<h2>").append(renderInline(trimmed.substring(3))).append("</h2>\n");
-            } else if (trimmed.startsWith("# ")) {
-                sb.append("<h1>").append(renderInline(trimmed.substring(2))).append("</h1>\n");
-            } else if (trimmed.startsWith("> ")) {
-                sb.append("<blockquote>").append(renderInline(trimmed.substring(2))).append("</blockquote>\n");
-            } else if (trimmed.startsWith("- ") || trimmed.startsWith("* ")) {
-                sb.append("<li>").append(renderInline(trimmed.substring(2))).append("</li>\n");
-            } else if (trimmed.matches("^\\d+\\.\\s.*")) {
-                int dot = trimmed.indexOf('.');
-                sb.append("<li>").append(renderInline(trimmed.substring(dot + 1).trim())).append("</li>\n");
-            } else if (trimmed.startsWith("---") || trimmed.startsWith("***") || trimmed.startsWith("___")) {
-                sb.append("<hr />\n");
-            } else {
-                sb.append("<p>").append(renderInline(trimmed)).append("</p>\n");
-            }
+            } else if (inTable) { sb.append("</table>"); inTable = false; }
+            if (trimmed.startsWith("###### ")) sb.append("<h6>").append(renderInline(trimmed.substring(7))).append("</h6>\n");
+            else if (trimmed.startsWith("##### ")) sb.append("<h5>").append(renderInline(trimmed.substring(6))).append("</h5>\n");
+            else if (trimmed.startsWith("#### ")) sb.append("<h4>").append(renderInline(trimmed.substring(5))).append("</h4>\n");
+            else if (trimmed.startsWith("### ")) sb.append("<h3>").append(renderInline(trimmed.substring(4))).append("</h3>\n");
+            else if (trimmed.startsWith("## ")) sb.append("<h2>").append(renderInline(trimmed.substring(3))).append("</h2>\n");
+            else if (trimmed.startsWith("# ")) sb.append("<h1>").append(renderInline(trimmed.substring(2))).append("</h1>\n");
+            else if (trimmed.startsWith("> ")) sb.append("<blockquote>").append(renderInline(trimmed.substring(2))).append("</blockquote>\n");
+            else if (trimmed.startsWith("- ") || trimmed.startsWith("* ")) sb.append("<li>").append(renderInline(trimmed.substring(2))).append("</li>\n");
+            else if (trimmed.matches("^\\d+\\.\\s.*")) { int dot = trimmed.indexOf('.'); sb.append("<li>").append(renderInline(trimmed.substring(dot + 1).trim())).append("</li>\n"); }
+            else if (trimmed.startsWith("---") || trimmed.startsWith("***") || trimmed.startsWith("___")) sb.append("<hr />\n");
+            else sb.append("<p>").append(renderInline(trimmed)).append("</p>\n");
         }
-
-        if (inCodeBlock) {
-            sb.append("<pre><code>").append(escapeHtml(codeBlock.toString())).append("</code></pre>\n");
-        }
-        if (inTable) {
-            sb.append("</table>");
-        }
-
+        if (inCodeBlock) sb.append("<pre><code>").append(escapeHtml(codeBlock.toString())).append("</code></pre>\n");
+        if (inTable) sb.append("</table>");
         sb.append("</body></html>");
         return sb.toString();
     }
@@ -499,12 +728,101 @@ public class GeshihuaBianji extends AppCompatActivity {
         return text.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;");
     }
 
+    private void showSideMenuMore() {
+        PopupMenu popup = new PopupMenu(this, btnSideMenuMore);
+        popup.getMenu().add(0, 1, 0, getString(R.string.clear_history));
+        popup.setOnMenuItemClickListener(item -> {
+            historyList.clear();
+            saveHistorySet();
+            refreshHistoryList();
+            return true;
+        });
+        popup.show();
+    }
+
+    private void createNewFile() {
+        if (modified && autoSaveEnabled && currentFilePath != null) saveToCache();
+        currentFilePath = null;
+        currentFileName = getString(R.string.untitled);
+        tvFileName.setText(currentFileName);
+        etEditor.setText("");
+        modified = false;
+        undoStack.clear();
+        redoStack.clear();
+        pushToUndoStack("");
+    }
+
+    private void addToHistory(String path, String name) {
+        for (HistoryItem item : historyList) {
+            if (item.filePath.equals(path)) return;
+        }
+        historyList.add(0, new HistoryItem(path, name));
+        if (historyList.size() > 50) historyList.remove(historyList.size() - 1);
+        saveHistorySet();
+        refreshHistoryList();
+    }
+
+    private void removeFromHistory(int index) {
+        historyList.remove(index);
+        saveHistorySet();
+        refreshHistoryList();
+    }
+
+    private void saveHistorySet() {
+        Set<String> set = new HashSet<>();
+        for (HistoryItem item : historyList) set.add(item.filePath + "|" + item.displayName);
+        historyPrefs.edit().putStringSet(HISTORY_SET, set).apply();
+    }
+
+    private void loadHistory() {
+        Set<String> set = historyPrefs.getStringSet(HISTORY_SET, new HashSet<>());
+        historyList.clear();
+        for (String s : set) {
+            String[] parts = s.split("\\|", 2);
+            if (parts.length == 2) historyList.add(new HistoryItem(parts[0], parts[1]));
+        }
+        refreshHistoryList();
+    }
+
+    private void refreshHistoryList() {
+        ArrayList<String> display = new ArrayList<>();
+        for (HistoryItem item : historyList) display.add(item.displayName);
+        historyAdapter.clear();
+        historyAdapter.addAll(display);
+        historyAdapter.notifyDataSetChanged();
+    }
+
+    private static class HistoryItem {
+        String filePath, displayName;
+        HistoryItem(String path, String name) { filePath = path; displayName = name; }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (autoSaveExecutor != null) autoSaveExecutor.shutdown();
+        if (autoSaveEnabled && currentFilePath != null) saveToCache();
+    }
+
     @Override
     public void onBackPressed() {
         if (showingPreview) {
-            togglePreview();
+            hidePreview();
+        } else if (drawerLayout.isDrawerOpen(findViewById(R.id.sideMenu))) {
+            drawerLayout.closeDrawers();
+        } else if (modified && autoSaveEnabled) {
+            saveToCache();
+            finish();
+        } else if (modified) {
+            new AlertDialog.Builder(this)
+                    .setTitle(getString(R.string.unsaved))
+                    .setMessage(getString(R.string.unsaved_msg))
+                    .setPositiveButton(getString(R.string.save), (d, w) -> { saveToOriginalPath(); finish(); })
+                    .setNegativeButton(getString(R.string.dont_save), (d, w) -> finish())
+                    .setNeutralButton(getString(R.string.cancel), null)
+                    .show();
         } else {
-            checkSaveBeforeExit();
+            finish();
         }
     }
 }

@@ -110,48 +110,57 @@
 
         </LinearLayout>
 
-        <!-- 使用 NestedScrollView 实现惯性滚动 -->
-        <androidx.core.widget.NestedScrollView
+        <!-- 使用 FrameLayout 实现行号与编辑器同步滚动 -->
+        <FrameLayout
             android:id="@+id/scrollView"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1"
-            android:fillViewport="true"
-            android:scrollbars="vertical"
-            android:overScrollMode="always">
+            android:layout_weight="1">
 
-            <LinearLayout
+            <HorizontalScrollView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:layout_height="match_parent"
+                android:fillViewport="true"
+                android:scrollbars="vertical|horizontal"
+                android:overScrollMode="always">
 
-                <TextView
-                    android:id="@+id/tvLineNumbers"
-                    android:layout_width="48dp"
+                <LinearLayout
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/outline"
-                    android:textSize="18sp"
-                    android:gravity="end"
-                    android:padding="8dp"
-                    android:typeface="monospace" />
+                    android:orientation="horizontal">
 
-                <EditText
-                    android:id="@+id/etEditor"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@android:color/transparent"
-                    android:textColor="@color/on_surface"
-                    android:textSize="18sp"
-                    android:gravity="top|start"
-                    android:inputType="textMultiLine"
-                    android:padding="8dp"
-                    android:typeface="monospace"
-                    android:scrollHorizontally="false"
-                    android:overScrollMode="never" />
+                    <TextView
+                        android:id="@+id/tvLineNumbers"
+                        android:layout_width="48dp"
+                        android:layout_height="match_parent"
+                        android:textColor="@color/outline"
+                        android:textSize="18sp"
+                        android:gravity="end"
+                        android:padding="8dp"
+                        android:typeface="monospace"
+                        android:minHeight="48dp" />
 
-            </LinearLayout>
+                    <EditText
+                        android:id="@+id/etEditor"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@android:color/transparent"
+                        android:textColor="@color/on_surface"
+                        android:textSize="18sp"
+                        android:gravity="top|start"
+                        android:inputType="textMultiLine|textNoSuggestions"
+                        android:padding="8dp"
+                        android:typeface="monospace"
+                        android:scrollHorizontally="true"
+                        android:overScrollMode="always"
+                        android:cursorVisible="true"
+                        android:importantForAutofill="no" />
 
-        </androidx.core.widget.NestedScrollView>
+                </LinearLayout>
+
+            </HorizontalScrollView>
+
+        </FrameLayout>
 
         <!-- 底部符号栏 -->
         <LinearLayout

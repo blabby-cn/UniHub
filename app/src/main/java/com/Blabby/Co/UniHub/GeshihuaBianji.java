@@ -16,6 +16,8 @@ import android.view.View;
 import android.webkit.WebView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.HorizontalScrollView;
+import android.widget.ScrollView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -25,7 +27,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
-import androidx.core.widget.NestedScrollView;
+
 import androidx.drawerlayout.widget.DrawerLayout;
 import java.io.BufferedReader;
 import java.io.File;
@@ -49,37 +51,7 @@ public class GeshihuaBianji extends AppCompatActivity {
     private ListView lvFileHistory;
     private EditText etEditor;
     private TextView tvLineNumbers, tvFileName, tvStatus;
-    private NestedScrollView scrollView;
-    private WebView webPreview;
-    private ImageView btnMenu, btnUndo, btnRedo, btnSave, btnEditTools, btnOverflow, btnNewFile, btnSideMenuMore;
-    private TextView btnSymbolRight, btnSymbolSlash, btnSymbolPlus, btnSymbolMinus, btnSymbolStar, btnSymbolEqual, btnSymbolLt, btnSymbolGt;
-    private View btnMinimize;
-    private View bottomBar;
-    private View previewContainer;
-    private ImageButton btnPreviewBack;
-
-    private String currentFilePath;
-    private String currentFileName;
-    private boolean modified = false;
-    private boolean showingPreview = false;
-    private boolean autoSaveEnabled = true;
-    private ScheduledExecutorService autoSaveExecutor;
-
-    private ArrayList<HistoryItem> historyList = new ArrayList<>();
-    private ArrayAdapter<String> historyAdapter;
-    private SharedPreferences historyPrefs;
-    private static final String HISTORY_PREFS = "editor_history";
-    private static final String HISTORY_SET = "history_set";
-
-    private Stack<String> undoStack = new Stack<>();
-    private Stack<String> redoStack = new Stack<>();
-    private boolean isUndoRedo = false;
-
-    private static final String[] CODE_LANGUAGES = {
-            "C#", "C", "C++", "Rust", "TS", "JS", "Zig", "Go",
-            "Swift", "Kotlin", "ObjC", "汇编", "Ruby", "Python",
-            "HTML", "XML", "JSON", "YAML", "Lisp"
-    };
+    private ScrollView scrollView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -133,9 +105,8 @@ public class GeshihuaBianji extends AppCompatActivity {
             }
         });
 
-        scrollView.getViewTreeObserver().addOnScrollChangedListener(() -> {
-            int scrollY = scrollView.getScrollY();
-            tvLineNumbers.setScrollY(scrollY);
+        etEditor.setOnScrollChangeListener((v, scrollX, scrollY, oldScrollX, oldScrollY) -> {
+            tvLineNumbers.scrollTo(0, scrollY);
         });
     }
 

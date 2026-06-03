@@ -95,18 +95,7 @@ UniHub ships with built-in internationalization. The following languages are cur
 | Chinese (Simplified) | `zh_cn` | 简体中文 |
 | Chinese (Traditional) | `zh_tw` | 繁體中文 |
 | English | `en` | English |
-| Japanese | `ja` | 日本語 |
-| Korean | `ko` | 한국어 |
 | Malay | `ms` | Bahasa Melayu |
-| Burmese | `my` | မြန်မာ |
-| German | `de` | Deutsch |
-| French | `fr` | Français |
-| Russian | `ru` | Русский |
-| Ukrainian | `uk` | Українська |
-| Danish | `da` | Dansk |
-| Czech | `cs` | Čeština |
-| Greek | `el` | Ελληνικά |
-
 > Language files live in `assets/languages/*.yaml`. PRs adding new languages are welcome!
 
 ## Tech Stack
@@ -147,7 +136,7 @@ The debug APK will be generated at `app/build/outputs/apk/debug/`.
 
 ## License
 
-This project is licensed under the [GNU General Public License v3.0 (GPL-3.0)](https://github.com/blabby-cn/UniHub/blob/main/LICENSE).
+This project is licensed under the [GNU General Public License v2.0 (GPL-2.0)](https://github.com/blabby-cn/UniHub/blob/main/LICENSE).
 
 ---
 

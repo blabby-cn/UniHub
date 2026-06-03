@@ -147,7 +147,7 @@ cd UniHub
 
 ## 许可证
 
-本项目基于 [GNU General Public License v3.0 (GPL-3.0)](https://github.com/blabby-cn/UniHub/blob/main/LICENSE) 开源。
+本项目基于 [GNU General Public License v2.0 (GPL-2.0)](https://github.com/blabby-cn/UniHub/blob/main/LICENSE) 开源。
 
 ---
 

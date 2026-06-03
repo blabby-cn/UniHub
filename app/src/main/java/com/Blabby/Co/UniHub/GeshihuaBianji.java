@@ -16,8 +16,6 @@ import android.view.View;
 import android.webkit.WebView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
-import android.widget.HorizontalScrollView;
-import android.widget.ScrollView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -51,7 +49,37 @@ public class GeshihuaBianji extends AppCompatActivity {
     private ListView lvFileHistory;
     private EditText etEditor;
     private TextView tvLineNumbers, tvFileName, tvStatus;
-    private ScrollView scrollView;
+    private View scrollView;
+    private WebView webPreview;
+    private ImageView btnMenu, btnUndo, btnRedo, btnSave, btnEditTools, btnOverflow, btnNewFile, btnSideMenuMore;
+    private TextView btnSymbolRight, btnSymbolSlash, btnSymbolPlus, btnSymbolMinus, btnSymbolStar, btnSymbolEqual, btnSymbolLt, btnSymbolGt;
+    private View btnMinimize;
+    private View bottomBar;
+    private View previewContainer;
+    private ImageButton btnPreviewBack;
+
+    private String currentFilePath;
+    private String currentFileName;
+    private boolean modified = false;
+    private boolean showingPreview = false;
+    private boolean autoSaveEnabled = true;
+    private ScheduledExecutorService autoSaveExecutor;
+
+    private ArrayList<HistoryItem> historyList = new ArrayList<>();
+    private ArrayAdapter<String> historyAdapter;
+    private SharedPreferences historyPrefs;
+    private static final String HISTORY_PREFS = "editor_history";
+    private static final String HISTORY_SET = "history_set";
+
+    private Stack<String> undoStack = new Stack<>();
+    private Stack<String> redoStack = new Stack<>();
+    private boolean isUndoRedo = false;
+
+    private static final String[] CODE_LANGUAGES = {
+            "C#", "C", "C++", "Rust", "TS", "JS", "Zig", "Go",
+            "Swift", "Kotlin", "ObjC", "汇编", "Ruby", "Python",
+            "HTML", "XML", "JSON", "YAML", "Lisp"
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -218,11 +246,7 @@ public class GeshihuaBianji extends AppCompatActivity {
     }
 
     private void setupEditor() {
-        etEditor.addTextChangedListener(new TextWatcher() {
-            @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
-            @Override public void onTextChanged(CharSequence s, int start, int before, int count) {}
-            @Override public void afterTextChanged(Editable s) { updateLineNumbers(); }
-        });
+        // Editor listeners are already set up in onCreate
     }
 
     private void updateLineNumbers() {

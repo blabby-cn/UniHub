@@ -5,12 +5,15 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.StatFs;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AccelerateInterpolator;
 import android.view.animation.Animation;
+import android.view.animation.DecelerateInterpolator;
 import android.view.animation.TranslateAnimation;
 import android.widget.*;
 import androidx.annotation.NonNull;
@@ -191,6 +194,7 @@ public class MainActivity extends AppCompatActivity implements FileBrowserFragme
                 Animation.RELATIVE_TO_SELF, 0.0f
         );
         slideIn.setDuration(200);
+        slideIn.setInterpolator(new DecelerateInterpolator());
         sidebarOverlay.startAnimation(slideIn);
     }
 
@@ -202,6 +206,7 @@ public class MainActivity extends AppCompatActivity implements FileBrowserFragme
                 Animation.RELATIVE_TO_SELF, 0.0f
         );
         slideOut.setDuration(200);
+        slideOut.setInterpolator(new AccelerateInterpolator());
         slideOut.setAnimationListener(new Animation.AnimationListener() {
             @Override public void onAnimationStart(Animation animation) {}
             @Override public void onAnimationRepeat(Animation animation) {}
@@ -210,6 +215,17 @@ public class MainActivity extends AppCompatActivity implements FileBrowserFragme
             }
         });
         sidebarOverlay.startAnimation(slideOut);
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (sidebarOverlay.getVisibility() == View.VISIBLE) {
+            if (keyCode == KeyEvent.KEYCODE_BACK || keyCode == KeyEvent.KEYCODE_ESCAPE) {
+                closeSidebar();
+                return true;
+            }
+        }
+        return super.onKeyDown(keyCode, event);
     }
 
     @Override

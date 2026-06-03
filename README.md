@@ -24,7 +24,7 @@
 
 **UniHub** is a multi-purpose file management and browsing tool for Android, combining local file management, remote connectivity, and web browsing in one app.
 
-It features a **dual-pane local file browser**, **FTP/SFTP remote file access**, a **multi-tab WebView browser**, **text & Markdown editors**, a **video player**, **ZIP archive browser**, and supports **14 languages** for the UI.
+It features a **dual-pane local file browser**, **FTP/SFTP remote file access**, a **multi-tab WebView browser**, **text & Markdown editors**, a **video player**, **ZIP archive browser**, and supports **4 languages** for the UI.
 
 ## Features
 

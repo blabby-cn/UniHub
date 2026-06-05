@@ -1,22 +1,13 @@
 package com.Blabby.Co.UniHub;
 
-import android.Manifest;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
-import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
-import android.os.Environment;
-import android.provider.Settings;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.webkit.WebView;
 import android.widget.ArrayAdapter;
-import android.widget.EditText;
-import android.widget.ImageButton;
+
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.PopupMenu;
@@ -24,7 +15,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
 
 import androidx.drawerlayout.widget.DrawerLayout;
 import java.io.BufferedReader;
@@ -33,30 +23,38 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
-import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.Stack;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
+
+import io.github.rosemoe.sora.event.ContentChangeEvent;
+import io.github.rosemoe.sora.event.SelectionChangeEvent;
+import io.github.rosemoe.sora.lang.EmptyLanguage;
+
+import io.github.rosemoe.sora.langs.monarch.MonarchLanguage;
+
+import io.github.rosemoe.sora.langs.monarch.registry.MonarchGrammarRegistry;
+
+import io.github.rosemoe.sora.widget.CodeEditor;
+import io.github.rosemoe.sora.widget.schemes.SchemeDarcula;
 
 public class GeshihuaBianji extends AppCompatActivity {
 
     private DrawerLayout drawerLayout;
     private ListView lvFileHistory;
-    private EditText etEditor;
-    private TextView tvLineNumbers, tvFileName, tvStatus;
-    private View scrollView;
+    private CodeEditor codeEditor;
+    private TextView tvFileName, tvStatus;
     private WebView webPreview;
     private ImageView btnMenu, btnUndo, btnRedo, btnSave, btnEditTools, btnOverflow, btnNewFile, btnSideMenuMore;
     private TextView btnSymbolRight, btnSymbolSlash, btnSymbolPlus, btnSymbolMinus, btnSymbolStar, btnSymbolEqual, btnSymbolLt, btnSymbolGt;
     private View btnMinimize;
     private View bottomBar;
     private View previewContainer;
-    private ImageButton btnPreviewBack;
+    private ImageView btnPreviewBack;
 
     private String currentFilePath;
     private String currentFileName;
@@ -70,10 +68,7 @@ public class GeshihuaBianji extends AppCompatActivity {
     private SharedPreferences historyPrefs;
     private static final String HISTORY_PREFS = "editor_history";
     private static final String HISTORY_SET = "history_set";
-
-    private Stack<String> undoStack = new Stack<>();
-    private Stack<String> redoStack = new Stack<>();
-    private boolean isUndoRedo = false;
+    private static final int EDIT_SETTINGS_REQUEST = 100;
 
     private static final String[] CODE_LANGUAGES = {
             "C#", "C", "C++", "Rust", "TS", "JS", "Zig", "Go",
@@ -81,17 +76,66 @@ public class GeshihuaBianji extends AppCompatActivity {
             "HTML", "XML", "JSON", "YAML", "Lisp"
     };
 
+    private boolean isInternalChange = false;
+
+    private static final java.util.Map<String, String> EXT_LANG_MAP = new java.util.HashMap<>();
+    static {
+        EXT_LANG_MAP.put("java", "source.java");
+        EXT_LANG_MAP.put("kt", "source.kotlin");
+        EXT_LANG_MAP.put("kts", "source.kotlin");
+        EXT_LANG_MAP.put("py", "source.python");
+        EXT_LANG_MAP.put("js", "source.javascript");
+        EXT_LANG_MAP.put("ts", "source.typescript");
+        EXT_LANG_MAP.put("html", "text.html.basic");
+        EXT_LANG_MAP.put("css", "source.css");
+        EXT_LANG_MAP.put("xml", "text.xml");
+        EXT_LANG_MAP.put("json", "source.json");
+        EXT_LANG_MAP.put("yaml", "source.yaml");
+        EXT_LANG_MAP.put("yml", "source.yaml");
+        EXT_LANG_MAP.put("md", "text.html.markdown");
+        EXT_LANG_MAP.put("markdown", "text.html.markdown");
+        EXT_LANG_MAP.put("sh", "source.shell");
+        EXT_LANG_MAP.put("bash", "source.shell");
+        EXT_LANG_MAP.put("c", "source.c");
+        EXT_LANG_MAP.put("cpp", "source.cpp");
+        EXT_LANG_MAP.put("cxx", "source.cpp");
+        EXT_LANG_MAP.put("h", "source.c");
+        EXT_LANG_MAP.put("hpp", "source.cpp");
+        EXT_LANG_MAP.put("cs", "source.cs");
+        EXT_LANG_MAP.put("rs", "source.rust");
+        EXT_LANG_MAP.put("go", "source.go");
+        EXT_LANG_MAP.put("rb", "source.ruby");
+        EXT_LANG_MAP.put("swift", "source.swift");
+        EXT_LANG_MAP.put("php", "source.php");
+        EXT_LANG_MAP.put("pl", "source.perl");
+        EXT_LANG_MAP.put("sql", "source.sql");
+        EXT_LANG_MAP.put("toml", "source.toml");
+        EXT_LANG_MAP.put("ini", "source.ini");
+        EXT_LANG_MAP.put("cfg", "source.ini");
+        EXT_LANG_MAP.put("conf", "source.ini");
+        EXT_LANG_MAP.put("properties", "source.ini");
+        EXT_LANG_MAP.put("gradle", "source.groovy");
+        EXT_LANG_MAP.put("bat", "source.bat");
+        EXT_LANG_MAP.put("cmd", "source.bat");
+        EXT_LANG_MAP.put("lua", "source.lua");
+        EXT_LANG_MAP.put("scala", "source.scala");
+        EXT_LANG_MAP.put("dart", "source.dart");
+        EXT_LANG_MAP.put("tex", "source.tex");
+        EXT_LANG_MAP.put("csv", "text.csv");
+        EXT_LANG_MAP.put("log", "source.log");
+        EXT_LANG_MAP.put("txt", "text.plain");
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_geshihua_bianji);
 
         initViews();
-        setupDrawer();
         setupEditor();
-        setupUndoRedo();
         setupSymbolButtons();
         setupAutoSave();
+        setupDrawer();
         loadHistory();
 
         currentFilePath = getIntent().getStringExtra("file_path");
@@ -101,7 +145,7 @@ public class GeshihuaBianji extends AppCompatActivity {
             loadFileWithConflictCheck(currentFilePath);
             addToHistory(currentFilePath, currentFileName);
         } else {
-            etEditor.setText("");
+            codeEditor.setText("");
             currentFileName = getString(R.string.untitled);
             tvFileName.setText(currentFileName);
         }
@@ -117,35 +161,27 @@ public class GeshihuaBianji extends AppCompatActivity {
         btnMinimize.setOnClickListener(v -> finish());
         btnPreviewBack.setOnClickListener(v -> hidePreview());
 
-        etEditor.addTextChangedListener(new TextWatcher() {
-            @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
-            @Override public void onTextChanged(CharSequence s, int start, int before, int count) {}
-            @Override public void afterTextChanged(Editable s) {
-                if (!isUndoRedo) {
-                    pushToUndoStack(s.toString());
-                    redoStack.clear();
-                }
+        codeEditor.subscribeEvent(ContentChangeEvent.class, (event, __) -> {
+            if (!isInternalChange) {
                 modified = true;
-                updateLineNumbers();
+                updateUndoRedoButtons();
                 if (autoSaveEnabled && currentFilePath != null) {
                     saveToCache();
                 }
             }
         });
 
-        etEditor.setOnScrollChangeListener((v, scrollX, scrollY, oldScrollX, oldScrollY) -> {
-            tvLineNumbers.scrollTo(0, scrollY);
+        codeEditor.subscribeEvent(SelectionChangeEvent.class, (event, __) -> {
+            updateStatusText();
         });
     }
 
     private void initViews() {
         drawerLayout = findViewById(R.id.drawerLayout);
         lvFileHistory = findViewById(R.id.lvFileHistory);
-        etEditor = findViewById(R.id.etEditor);
-        tvLineNumbers = findViewById(R.id.tvLineNumbers);
+        codeEditor = findViewById(R.id.codeEditor);
         tvFileName = findViewById(R.id.tvFileName);
         tvStatus = findViewById(R.id.tvStatus);
-        scrollView = findViewById(R.id.scrollView);
         webPreview = findViewById(R.id.webPreview);
         btnMenu = findViewById(R.id.btnMenu);
         btnUndo = findViewById(R.id.btnUndo);
@@ -169,46 +205,78 @@ public class GeshihuaBianji extends AppCompatActivity {
         btnPreviewBack = findViewById(R.id.btnPreviewBack);
     }
 
-    private void setupUndoRedo() {
-        pushToUndoStack("");
-    }
-
-    private void pushToUndoStack(String text) {
-        if (!undoStack.isEmpty() && undoStack.peek().equals(text)) return;
-        undoStack.push(text);
-        if (undoStack.size() > 100) {
-            undoStack.remove(0);
+    private void setupEditor() {
+        codeEditor.setLineNumberEnabled(true);
+        codeEditor.setColorScheme(new SchemeDarcula());
+        codeEditor.setTextSize(18f);
+        SharedPreferences prefs = getSharedPreferences("editor_settings", MODE_PRIVATE);
+        codeEditor.setWordwrap(prefs.getBoolean("word_wrap", false));
+        try {
+            MonarchHelper.INSTANCE.setupGrammars();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
         updateUndoRedoButtons();
+        updateStatusText();
+    }
+
+    private void applyLanguageForFile(String filePath) {
+        SharedPreferences prefs = getSharedPreferences("editor_settings", MODE_PRIVATE);
+        String syntaxLang = prefs.getString("syntax_lang", "auto");
+        if (syntaxLang.equals("none")) {
+            codeEditor.setEditorLanguage(new EmptyLanguage());
+            return;
+        }
+        if (!syntaxLang.equals("auto")) {
+            try {
+                MonarchLanguage lang = MonarchLanguage.create(syntaxLang, true);
+                codeEditor.setEditorLanguage(lang);
+                return;
+            } catch (Exception ignored) { }
+        }
+        if (filePath == null) {
+            codeEditor.setEditorLanguage(new EmptyLanguage());
+            return;
+        }
+        String ext = "";
+        int dot = filePath.lastIndexOf('.');
+        if (dot >= 0) {
+            ext = filePath.substring(dot + 1).toLowerCase();
+        }
+        String langId = EXT_LANG_MAP.get(ext);
+        if (langId != null) {
+            try {
+                MonarchLanguage lang = MonarchLanguage.create(langId, true);
+                codeEditor.setEditorLanguage(lang);
+            } catch (Exception e) {
+                codeEditor.setEditorLanguage(new EmptyLanguage());
+            }
+        } else {
+            codeEditor.setEditorLanguage(new EmptyLanguage());
+        }
     }
 
     private void undo() {
-        if (undoStack.size() <= 1) return;
-        isUndoRedo = true;
-        String current = etEditor.getText().toString();
-        redoStack.push(current);
-        undoStack.pop();
-        String previous = undoStack.peek();
-        etEditor.setText(previous);
-        etEditor.setSelection(previous.length());
-        isUndoRedo = false;
-        updateUndoRedoButtons();
+        if (codeEditor.canUndo()) {
+            codeEditor.undo();
+        }
     }
 
     private void redo() {
-        if (redoStack.isEmpty()) return;
-        isUndoRedo = true;
-        String next = redoStack.pop();
-        pushToUndoStack(next);
-        etEditor.setText(next);
-        etEditor.setSelection(next.length());
-        isUndoRedo = false;
-        updateUndoRedoButtons();
+        if (codeEditor.canRedo()) {
+            codeEditor.redo();
+        }
     }
 
     private void updateUndoRedoButtons() {
-        btnUndo.setEnabled(undoStack.size() > 1);
-        btnRedo.setEnabled(!redoStack.isEmpty());
+        btnUndo.setEnabled(codeEditor.canUndo());
+        btnRedo.setEnabled(codeEditor.canRedo());
+    }
+
+    private void updateStatusText() {
+        int line = codeEditor.getCursor().getLeftLine() + 1;
+        int column = codeEditor.getCursor().getLeftColumn() + 1;
+        tvStatus.setText(line + ":" + column);
     }
 
     private void setupDrawer() {
@@ -245,25 +313,13 @@ public class GeshihuaBianji extends AppCompatActivity {
         });
     }
 
-    private void setupEditor() {
-        // Editor listeners are already set up in onCreate
-    }
-
-    private void updateLineNumbers() {
-        String text = etEditor.getText().toString();
-        int lines = text.split("\n", -1).length;
-        StringBuilder sb = new StringBuilder();
-        for (int i = 1; i <= lines; i++) sb.append(i).append("\n");
-        tvLineNumbers.setText(sb);
-    }
-
     private void setupSymbolButtons() {
         View.OnClickListener insertSymbol = v -> {
             String sym = ((TextView) v).getText().toString();
-            int start = etEditor.getSelectionStart();
-            if (start < 0) start = 0;
-            etEditor.getText().insert(start, sym);
-            etEditor.setSelection(start + sym.length());
+            int line = codeEditor.getCursor().getLeftLine();
+            int column = codeEditor.getCursor().getLeftColumn();
+            codeEditor.getText().insert(line, column, sym);
+            codeEditor.setSelection(line, column + sym.length());
         };
         btnSymbolRight.setOnClickListener(insertSymbol);
         btnSymbolSlash.setOnClickListener(insertSymbol);
@@ -299,7 +355,7 @@ public class GeshihuaBianji extends AppCompatActivity {
             String hash = String.valueOf(currentFilePath.hashCode());
             File cacheFile = new File(cacheDir, hash + ".cache");
             FileOutputStream fos = new FileOutputStream(cacheFile);
-            fos.write(etEditor.getText().toString().getBytes(StandardCharsets.UTF_8));
+            fos.write(codeEditor.getText().toString().getBytes(StandardCharsets.UTF_8));
             fos.close();
         } catch (Exception ignored) { }
     }
@@ -343,154 +399,81 @@ public class GeshihuaBianji extends AppCompatActivity {
                     .setTitle("文件冲突")
                     .setMessage("检测到原文件已被外部修改，是否使用缓存中的内容？\n\n选择\"使用缓存\"：恢复上次未保存的编辑\n选择\"使用源文件\"：放弃未保存的更改")
                     .setPositiveButton("使用缓存", (d, w) -> {
-                        etEditor.setText(cached);
+                        setEditorText(cached);
                         modified = true;
-                        updateLineNumbers();
-                        undoStack.clear();
-                        redoStack.clear();
-                        pushToUndoStack(cached);
                     })
                     .setNegativeButton("使用源文件", (d, w) -> {
-                        etEditor.setText(original);
+                        setEditorText(original);
                         modified = false;
-                        updateLineNumbers();
-                        undoStack.clear();
-                        redoStack.clear();
-                        pushToUndoStack(original);
-                        saveToCache();
                     })
                     .show();
         } else if (cached != null) {
-            etEditor.setText(cached);
+            setEditorText(cached);
             modified = true;
-            updateLineNumbers();
-            undoStack.clear();
-            redoStack.clear();
-            pushToUndoStack(cached);
         } else if (original != null) {
-            etEditor.setText(original);
+            setEditorText(original);
             modified = false;
-            updateLineNumbers();
-            undoStack.clear();
-            redoStack.clear();
-            pushToUndoStack(original);
         } else {
-            etEditor.setText("");
+            codeEditor.setText("");
             modified = false;
-            Toast.makeText(this, getString(R.string.cant_open_file, "文件不存在或无法读取"), Toast.LENGTH_LONG).show();
         }
-        etEditor.setSelection(0);
+    }
+
+    private void setEditorText(String text) {
+        isInternalChange = true;
+        codeEditor.setText(text);
+        isInternalChange = false;
+        applyLanguageForFile(currentFilePath);
+    }
+
+    private void loadFile(String path) {
+        String content = loadFromOriginal(path);
+        if (content != null) {
+            setEditorText(content);
+            modified = false;
+        } else {
+            codeEditor.setText("");
+            modified = false;
+        }
     }
 
     private void saveToOriginalPath() {
         if (currentFilePath == null) {
-            showSaveAsDialog();
+            Toast.makeText(this, "没有文件路径", Toast.LENGTH_SHORT).show();
             return;
         }
-        if (!checkStoragePermission()) return;
         try {
             File file = new File(currentFilePath);
             File parent = file.getParentFile();
             if (parent != null && !parent.exists()) parent.mkdirs();
-            FileOutputStream fos = new FileOutputStream(file);
-            fos.write(etEditor.getText().toString().getBytes(StandardCharsets.UTF_8));
-            fos.close();
+            OutputStreamWriter writer = new OutputStreamWriter(new FileOutputStream(file), StandardCharsets.UTF_8);
+            writer.write(codeEditor.getText().toString());
+            writer.close();
             modified = false;
             Toast.makeText(this, getString(R.string.saved), Toast.LENGTH_SHORT).show();
-            saveToCache();
         } catch (Exception e) {
             Toast.makeText(this, getString(R.string.save_failed, e.getMessage()), Toast.LENGTH_LONG).show();
         }
     }
 
-    private void showSaveAsDialog() {
-        if (!checkStoragePermission()) return;
-        View view = LayoutInflater.from(this).inflate(R.layout.dialog_save_as, null);
-        EditText etPath = view.findViewById(R.id.et_save_path);
-        EditText etName = view.findViewById(R.id.et_save_name);
-        android.widget.Spinner spEncoding = view.findViewById(R.id.sp_encoding);
-        String[] encodings = {"UTF-8", "GBK", "GB2312", "ISO-8859-1", "UTF-16", "ASCII"};
-        spEncoding.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, encodings));
-        etPath.setText(Environment.getExternalStorageDirectory().getAbsolutePath());
-        etName.setText(currentFileName != null ? currentFileName : "untitled.md");
-        new AlertDialog.Builder(this)
-                .setTitle(getString(R.string.save_as))
-                .setView(view)
-                .setPositiveButton(getString(R.string.save), (d, w) -> {
-                    String dir = etPath.getText().toString().trim();
-                    String name = etName.getText().toString().trim();
-                    String encoding = (String) spEncoding.getSelectedItem();
-                    String fullPath = dir.endsWith("/") ? dir + name : dir + "/" + name;
-                    try {
-                        File file = new File(fullPath);
-                        File parent = file.getParentFile();
-                        if (parent != null && !parent.exists()) parent.mkdirs();
-                        if (encoding != null && !encoding.equals("UTF-8")) {
-                            OutputStreamWriter writer = new OutputStreamWriter(new FileOutputStream(file), Charset.forName(encoding));
-                            writer.write(etEditor.getText().toString());
-                            writer.close();
-                        } else {
-                            FileOutputStream fos = new FileOutputStream(file);
-                            fos.write(etEditor.getText().toString().getBytes(StandardCharsets.UTF_8));
-                            fos.close();
-                        }
-                        currentFilePath = fullPath;
-                        currentFileName = name;
-                        tvFileName.setText(currentFileName);
-                        modified = false;
-                        addToHistory(currentFilePath, currentFileName);
-                        Toast.makeText(this, getString(R.string.saved), Toast.LENGTH_SHORT).show();
-                        saveToCache();
-                    } catch (Exception e) {
-                        Toast.makeText(this, getString(R.string.save_failed, e.getMessage()), Toast.LENGTH_LONG).show();
-                    }
-                })
-                .setNegativeButton(getString(R.string.cancel), null)
-                .show();
-    }
-
-    private boolean checkStoragePermission() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-            if (!Environment.isExternalStorageManager()) {
-                new AlertDialog.Builder(this)
-                        .setTitle(getString(R.string.need_perm))
-                        .setMessage(getString(R.string.save_as_need_perm))
-                        .setPositiveButton(getString(R.string.go_to), (d, w) -> {
-                            Intent intent = new Intent(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION);
-                            intent.setData(Uri.parse("package:" + getPackageName()));
-                            startActivity(intent);
-                        })
-                        .setNegativeButton(getString(R.string.cancel), null)
-                        .show();
-                return false;
-            }
-        } else if (Build.VERSION.SDK_INT >= 23) {
-            if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-                Toast.makeText(this, getString(R.string.no_storage_perm), Toast.LENGTH_SHORT).show();
-                return false;
-            }
-        }
-        return true;
-    }
-
     private void showMarkdownTools(View anchor) {
         PopupMenu popup = new PopupMenu(this, anchor);
-        popup.getMenu().add(0, 1, 0, "H1");
-        popup.getMenu().add(0, 2, 1, "H2");
-        popup.getMenu().add(0, 3, 2, "H3");
-        popup.getMenu().add(0, 4, 3, "H4");
-        popup.getMenu().add(0, 5, 4, "H5");
-        popup.getMenu().add(0, 6, 5, "H6");
+        popup.getMenu().add(0, 1, 0, "粗体");
+        popup.getMenu().add(0, 2, 1, "斜体");
+        popup.getMenu().add(0, 3, 2, "删除线");
+        popup.getMenu().add(0, 4, 3, "标题");
+        popup.getMenu().add(0, 5, 4, "链接");
+        popup.getMenu().add(0, 6, 5, "图片");
         popup.getMenu().add(0, 7, 6, getString(R.string.inline_code));
         popup.getMenu().add(0, 8, 7, getString(R.string.code_block));
         popup.setOnMenuItemClickListener(item -> {
             int id = item.getItemId();
-            if (id == 1) insertAtLine("# ");
-            else if (id == 2) insertAtLine("## ");
-            else if (id == 3) insertAtLine("### ");
-            else if (id == 4) insertAtLine("#### ");
-            else if (id == 5) insertAtLine("##### ");
-            else if (id == 6) insertAtLine("###### ");
+            if (id == 1) insertBold();
+            else if (id == 2) insertItalic();
+            else if (id == 3) insertStrikethrough();
+            else if (id == 4) insertHeading();
+            else if (id == 5) insertLink();
+            else if (id == 6) insertImage();
             else if (id == 7) insertInlineCode();
             else if (id == 8) showCodeBlockDialog();
             return true;
@@ -498,23 +481,119 @@ public class GeshihuaBianji extends AppCompatActivity {
         popup.show();
     }
 
-    private void insertAtLine(String prefix) {
-        int start = etEditor.getSelectionStart();
-        int lineStart = start;
-        CharSequence text = etEditor.getText();
-        while (lineStart > 0 && text.charAt(lineStart - 1) != '\n') lineStart--;
-        etEditor.getText().insert(lineStart, prefix);
+    private void insertAtCursor(String text) {
+        int line = codeEditor.getCursor().getLeftLine();
+        int column = codeEditor.getCursor().getLeftColumn();
+        codeEditor.getText().insert(line, column, text);
+        codeEditor.setSelection(line, column + text.length());
+    }
+
+    private void replaceSelection(String replacement) {
+        int startLine = codeEditor.getCursor().getLeftLine();
+        int startCol = codeEditor.getCursor().getLeftColumn();
+        int endLine = codeEditor.getCursor().getRightLine();
+        int endCol = codeEditor.getCursor().getRightColumn();
+        if (startLine == endLine && startCol == endCol) {
+            insertAtCursor(replacement);
+        } else {
+            codeEditor.getText().replace(startLine, startCol, endLine, endCol, replacement);
+            codeEditor.setSelection(startLine, startCol + replacement.length());
+        }
+    }
+
+    private String getSelectedText() {
+        if (codeEditor.getCursor().isSelected()) {
+            int start = codeEditor.getCursor().getLeft();
+            int end = codeEditor.getCursor().getRight();
+            return codeEditor.getText().subSequence(start, end).toString();
+        }
+        return "";
+    }
+
+    private void insertBold() {
+        String sel = getSelectedText();
+        if (sel.isEmpty()) {
+            insertAtCursor("****");
+            int line = codeEditor.getCursor().getLeftLine();
+            int col = codeEditor.getCursor().getLeftColumn();
+            codeEditor.setSelection(line, col - 2);
+        } else {
+            replaceSelection("**" + sel + "**");
+        }
+    }
+
+    private void insertItalic() {
+        String sel = getSelectedText();
+        if (sel.isEmpty()) {
+            insertAtCursor("**");
+            int line = codeEditor.getCursor().getLeftLine();
+            int col = codeEditor.getCursor().getLeftColumn();
+            codeEditor.setSelection(line, col - 1);
+        } else {
+            replaceSelection("*" + sel + "*");
+        }
+    }
+
+    private void insertStrikethrough() {
+        String sel = getSelectedText();
+        if (sel.isEmpty()) {
+            insertAtCursor("~~~~");
+            int line = codeEditor.getCursor().getLeftLine();
+            int col = codeEditor.getCursor().getLeftColumn();
+            codeEditor.setSelection(line, col - 2);
+        } else {
+            replaceSelection("~~" + sel + "~~");
+        }
+    }
+
+    private void insertHeading() {
+        int line = codeEditor.getCursor().getLeftLine();
+        int col = codeEditor.getCursor().getLeftColumn();
+        String lineText = codeEditor.getText().getLine(line).toString();
+        String prefix = "# ";
+        int lineStart = 0;
+        int nonSpace = 0;
+        while (nonSpace < lineText.length() && lineText.charAt(nonSpace) == ' ') nonSpace++;
+        if (nonSpace < lineText.length() && lineText.charAt(nonSpace) == '#') {
+            int hashCount = 0;
+            int pos = nonSpace;
+            while (pos < lineText.length() && lineText.charAt(pos) == '#') { hashCount++; pos++; }
+            if (hashCount < 6) { StringBuilder sb2 = new StringBuilder(hashCount + 2); for (int i = 0; i <= hashCount; i++) sb2.append("#"); prefix = sb2.toString() + " "; }
+            else prefix = "";
+        }
+        codeEditor.getText().insert(line, lineStart, prefix);
+    }
+
+    private void insertLink() {
+        String sel = getSelectedText();
+        if (sel.isEmpty()) {
+            insertAtCursor("[](url)");
+            int line = codeEditor.getCursor().getLeftLine();
+            int col = codeEditor.getCursor().getLeftColumn();
+            codeEditor.setSelection(line, col - 5);
+        } else {
+            replaceSelection("[" + sel + "](url)");
+        }
+    }
+
+    private void insertImage() {
+        String sel = getSelectedText();
+        if (sel.isEmpty()) {
+            insertAtCursor("![](url)");
+        } else {
+            replaceSelection("![" + sel + "](url)");
+        }
     }
 
     private void insertInlineCode() {
-        int start = etEditor.getSelectionStart();
-        int end = etEditor.getSelectionEnd();
-        if (start == end) {
-            etEditor.getText().insert(start, "``");
-            etEditor.setSelection(start + 1);
+        String sel = getSelectedText();
+        if (sel.isEmpty()) {
+            insertAtCursor("``");
+            int line = codeEditor.getCursor().getLeftLine();
+            int col = codeEditor.getCursor().getLeftColumn();
+            codeEditor.setSelection(line, col - 1);
         } else {
-            String sel = etEditor.getText().subSequence(start, end).toString();
-            etEditor.getText().replace(start, end, "`" + sel + "`");
+            replaceSelection("`" + sel + "`");
         }
     }
 
@@ -538,17 +617,23 @@ public class GeshihuaBianji extends AppCompatActivity {
         String langMap = getLangKey(language);
         StringBuilder sb = new StringBuilder();
         sb.append("```").append(langMap).append("\n");
-        int start = etEditor.getSelectionStart();
-        int end = etEditor.getSelectionEnd();
-        if (start != end) {
-            sb.append(etEditor.getText().subSequence(start, end));
+        String sel = getSelectedText();
+        if (!sel.isEmpty()) {
+            sb.append(sel);
         } else {
             sb.append(getCodeTemplate(language));
         }
         sb.append("\n```");
-        etEditor.getText().replace(start, end, sb.toString());
-        int cursor = start + 3 + langMap.length() + 1;
-        etEditor.setSelection(cursor);
+        int line = codeEditor.getCursor().getLeftLine();
+        int col = codeEditor.getCursor().getLeftColumn();
+        int endLine = codeEditor.getCursor().getRightLine();
+        int endCol = codeEditor.getCursor().getRightColumn();
+        if (line == endLine && col == endCol) {
+            codeEditor.getText().insert(line, col, sb.toString());
+            codeEditor.setSelection(line, col + 3 + langMap.length() + 1);
+        } else {
+            codeEditor.getText().replace(line, col, endLine, endCol, sb.toString());
+        }
     }
 
     private String getLangKey(String lang) {
@@ -601,7 +686,7 @@ public class GeshihuaBianji extends AppCompatActivity {
             if (id == 1) {
                 showPreview();
             } else if (id == 2) {
-                startActivity(new Intent(this, EditSettingsActivity.class));
+                startActivityForResult(new Intent(this, EditSettingsActivity.class), EDIT_SETTINGS_REQUEST);
             }
             return true;
         });
@@ -611,7 +696,7 @@ public class GeshihuaBianji extends AppCompatActivity {
     private void showPreview() {
         if (showingPreview) return;
         showingPreview = true;
-        String markdown = etEditor.getText().toString();
+        String markdown = codeEditor.getText().toString();
         String html = markdownToHtml(markdown);
         webPreview.loadDataWithBaseURL(null, html, "text/html", "UTF-8", null);
         bottomBar.setVisibility(View.GONE);
@@ -740,11 +825,12 @@ public class GeshihuaBianji extends AppCompatActivity {
         currentFilePath = null;
         currentFileName = getString(R.string.untitled);
         tvFileName.setText(currentFileName);
-        etEditor.setText("");
+        isInternalChange = true;
+        codeEditor.setText("");
+        isInternalChange = false;
         modified = false;
-        undoStack.clear();
-        redoStack.clear();
-        pushToUndoStack("");
+        applyLanguageForFile(null);
+        updateUndoRedoButtons();
     }
 
     private void addToHistory(String path, String name) {
@@ -790,6 +876,19 @@ public class GeshihuaBianji extends AppCompatActivity {
     private static class HistoryItem {
         String filePath, displayName;
         HistoryItem(String path, String name) { filePath = path; displayName = name; }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == EDIT_SETTINGS_REQUEST && resultCode == RESULT_OK
+                && data != null && data.getBooleanExtra("restart_editor", false)) {
+            Intent restartIntent = new Intent(this, GeshihuaBianji.class);
+            restartIntent.putExtra("file_path", currentFilePath);
+            restartIntent.putExtra("file_name", currentFileName);
+            finish();
+            startActivity(restartIntent);
+        }
     }
 
     @Override

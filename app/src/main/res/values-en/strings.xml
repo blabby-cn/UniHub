@@ -277,4 +277,12 @@
     <string name="edit_settings">Settings</string>
     <string name="auto_save_desc">Automatically save to cache every second</string>
     <string name="auto_save_warning_msg_brief">Warning! Disabling this option may cause file loss due to unexpected exit or other force majeure. Please proceed with caution!</string>
+    <string name="word_wrap">Word Wrap</string>
+    <string name="word_wrap_desc">Wrap lines that exceed the screen width</string>
+    <string name="word_wrap_restart_required">Enabling or disabling word wrap requires restarting the editor to take effect</string>
+    <string name="restart_later">Restart later</string>
+    <string name="syntax_highlight">Syntax Highlighting</string>
+    <string name="syntax_highlight_desc">Select the syntax highlighting language for the editor</string>
+    <string name="syntax_auto">Auto-detect (based on file extension)</string>
+    <string name="syntax_none">None</string>
 </resources>

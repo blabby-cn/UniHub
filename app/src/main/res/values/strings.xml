@@ -277,4 +277,12 @@
     <string name="edit_settings">设置</string>
     <string name="auto_save_desc">每秒自动保存到缓存</string>
     <string name="auto_save_warning_msg_brief">注意！关闭此选项后，由于意外退出或其他不可抗力因素可能导致文件丢失，请谨慎操作！</string>
+    <string name="word_wrap">自动换行</string>
+    <string name="word_wrap_desc">超出屏幕宽度的内容自动换到下一行</string>
+    <string name="word_wrap_restart_required">开启或关闭自动换行需重启编辑器才可生效</string>
+    <string name="restart_later">暂不重启</string>
+    <string name="syntax_highlight">语法高亮</string>
+    <string name="syntax_highlight_desc">选择编辑器使用的语法高亮语言</string>
+    <string name="syntax_auto">自动识别（根据文件扩展名）</string>
+    <string name="syntax_none">无高亮</string>
 </resources>

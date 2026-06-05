@@ -1,17 +1,18 @@
 plugins {
     id 'com.android.application'
+    id 'org.jetbrains.kotlin.android' version '2.3.10'
 }
 
 android {
     namespace 'com.Blabby.Co.UniHub'
-    compileSdk 34
+    compileSdk 36
 
     defaultConfig {
         applicationId "com.Blabby.Co.UniHub"
         minSdk 21
-        targetSdk 34
-        versionCode 3
-        versionName "1.0.3"
+        targetSdk 36
+        versionCode 4
+        versionName "1.0.4"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -44,8 +45,11 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+    kotlinOptions {
+        jvmTarget = '17'
     }
 }
 
@@ -83,5 +87,11 @@ dependencies {
     implementation 'org.tukaani:xz:1.9'
 
     implementation 'com.google.android.material:material:1.9.0'
+
+    // sora-editor
+    implementation 'io.github.rosemoe:editor:0.24.5'
+    implementation 'io.github.rosemoe:language-monarch:0.24.5'
+    implementation 'io.github.dingyi222666.monarch:monarch-language-pack:1.0.2'
+    implementation 'io.github.dingyi222666.monarch:monarch-json-loader:1.0.2'
 
 }

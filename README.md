@@ -136,12 +136,12 @@ The debug APK will be generated at `app/build/outputs/apk/debug/`.
 
 ## License
 
-This project is licensed under the [GNU General Public License v2.0 (GPL-2.0)](https://github.com/blabby-cn/UniHub/blob/main/LICENSE).
+This project is licensed under the [GNU General Public License v3.0 (GPL-3.0)](https://github.com/blabby-cn/UniHub/blob/main/LICENSE).
 
 ---
 
 <div align="center">
   <sub>Built with ❤️ by <a href="https://github.com/blabby-cn">Blabby.Co Studio</a></sub>
   <br />
-  <sub>Copyright ©️ 2026 Blabby.Co Studio</sub>
+  <sub>Copyright ©️ 2026-Now Blabby.Co Studio</sub>
 </div>

@@ -152,7 +152,7 @@ cd UniHub
 ---
 
 <div align="center">
-  <sub>由 <a href="https://github.com/blabby-cn">Blabby.Co Studio</a> 用心打造</sub>
+  <sub>由 <a href="https://www.blabby.top">Blabby.Co Studio</a> 用心打造</sub>
   <br />
   <sub>Copyright © 2026-现在 Blabby.Co Studio</sub>
 </div>

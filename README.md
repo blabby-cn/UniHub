@@ -141,7 +141,7 @@ This project is licensed under the [GNU General Public License v3.0 (GPL-3.0)](h
 ---
 
 <div align="center">
-  <sub>Built with ❤️ by <a href="https://github.com/blabby-cn">Blabby.Co Studio</a></sub>
+  <sub>Built with ❤️ by <a href="https://www.blabby.top">Blabby.Co Studio</a></sub>
   <br />
   <sub>Copyright ©️ 2026-Now Blabby.Co Studio</sub>
 </div>

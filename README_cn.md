@@ -147,12 +147,12 @@ cd UniHub
 
 ## 许可证
 
-本项目基于 [GNU General Public License v2.0 (GPL-2.0)](https://github.com/blabby-cn/UniHub/blob/main/LICENSE) 开源。
+本项目基于 [GNU General Public License v3.0 (GPL-3.0)](https://github.com/blabby-cn/UniHub/blob/main/LICENSE) 开源。
 
 ---
 
 <div align="center">
   <sub>由 <a href="https://github.com/blabby-cn">Blabby.Co Studio</a> 用心打造</sub>
   <br />
-  <sub>Copyright © 2026 Blabby.Co Studio</sub>
+  <sub>Copyright © 2026-现在 Blabby.Co Studio</sub>
 </div>
